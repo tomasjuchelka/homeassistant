@@ -1,0 +1,135 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+python_script:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  customize: !include customize.yaml
+  auth_providers:
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.0.0/16
+      trusted_users:
+        192.168.0.0/16:
+          - f1a0d51bf81a474b846ab33537af3496
+          - e6ead2ebf33f45508df3c592e06292d7
+
+zwave:
+  usb_path: /dev/serial/by-id/usb-0658_0200-if00
+
+tts:
+  - platform: google_translate
+
+switch:
+  - platform: mqtt
+    name: "Ventilator"
+    state_topic: "shellies/shelly1/relay/0"
+    command_topic: "shellies/shelly1/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+
+panel_iframe:
+  weather:
+    title: "Weather"
+    url: "https://embed.windy.com/embed2.html?lat=49.668&lon=15.447&zoom=7&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=50.082&detailLon=14.425&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
+    icon: mdi:weather-windy
+
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.11.10-11
+    interval_seconds: 60
+    consider_home: 900
+    home_interval: 10
+    new_device_defaults:
+      track_new_devices: false
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.11.203
+    token: !secret mi_token
+
+notify:
+  - platform: pushover
+    name: Pusher
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+
+sensor: !include sensor.yaml
+
+input_boolean:
+  enable_daily_vacuum:
+    name: Daily cleanup
+    initial: true
+  enable_automatic_ventilation:
+    name: Automatic
+    initial: true
+
+input_datetime:
+  last_cleanup_time:
+    name: Last time of clean up
+    has_date: true
+    has_time: true
+
+input_select:
+  vacuum_room:
+    name: Choose a room to clean
+    options:
+      - Select ...
+      - Bedroom
+      - Living room
+      - Kids room
+      - Kitchen
+      - Hall
+
+light:
+  - platform: group
+    name: All Lights
+    entities:
+      - light.box_lamp
+      - light.hall_lamp
+      - light.corner_lamp
+      - light.ball_lamp
+      - light.pc_lamp
+  - platform: group
+    name: Emergency Lights
+    entities:
+      - light.hall_lamp
+      - light.corner_lamp
+
+#bmw_connected_drive:
+#  name:
+#    username: !secret bmw_username
+#    password: !secret bmw_password
+#    region: "rest_of_world"
+
+recorder:
+  purge_keep_days: 3
+  commit_interval: 60
+  exclude:
+    domains:
+      - updater
+      - sensor
+      - sun
+      - media_player
+      - automation
+      - script
+      - lock
+      - zwave
+      - input_*
+      - group
+      - device_tracker
+      - binary_sensor
+
+binary_sensor:
+  - platform: school
+    name: School news
+    url: "https://www.zschvaleticka.cz"

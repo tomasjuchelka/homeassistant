@@ -1,0 +1,26 @@
+person.tomas_juchelka:
+  entity_picture: /local/T.jpg
+person.deniska:
+  entity_picture: /local/D.jpg
+switch.ventilator:
+  icon: mdi:fan
+switch.sonoff_ch1:
+  friendly_name: Main lamp
+sensor.hue_motion_sensor_1_temperature:
+  icon: mdi:thermometer
+zwave.fibaro_system_fgsd002_smoke_sensor:
+  friendly_name: FIBARO Smoke Sensor
+sensor.fibaro_system_fgsd002_smoke_sensor_alarm_level:
+  friendly_name: FIBARO Smoke Sensor Alarm Level
+sensor.fibaro_system_fgsd002_smoke_sensor_battery_level:
+  friendly_name: FIBARO Smoke Sensor Battery Level
+sensor.fibaro_system_fgsd002_smoke_sensor_temperature:
+  friendly_name: FIBARO Smoke Sensor Temperature
+light.dimmable_light_2:
+  friendly_name: WC lamp
+light.extended_color_light_3:
+  friendly_name: Box lamp
+light.configuration_tool_1:
+  friendly_name: ConBee-II
+sensor.waqi_pha10_prumyslova_prague_czech_republic:
+  friendly_name: WAQI Prague

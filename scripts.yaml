@@ -1,0 +1,90 @@
+kids_room_zone_cleanup:
+  alias: Kidsroom zone cleanup
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 17510
+        - 26300
+        - 22000
+        - 29300
+        - 1
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.send_command
+hall_zone_cleanup:
+  alias: Hall zone cleanup
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 22100
+        - 26000
+        - 29000
+        - 29300
+        - 1
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.send_command
+bedroom_zone_cleanup:
+  alias: Bedroom zone cleanup
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 17510
+        - 22500
+        - 20500
+        - 25600
+        - 1
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.send_command
+kitchen_zone_cleanup:
+  alias: Kitchen zone cleanup
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 21800
+        - 22500
+        - 25500
+        - 24900
+        - 1
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.send_command
+living_room_zone_cleanup:
+  alias: Livingroom zone cleanup
+  sequence:
+  - data:
+      command: app_zoned_clean
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      params:
+      - - 25500
+        - 23500
+        - 29000
+        - 25900
+        - 1
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.send_command
+vacuum_start:
+  alias: Start Vacuum
+  sequence:
+  - data_template:
+      date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+      time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+    entity_id: input_datetime.last_cleanup_time
+    service: input_datetime.set_datetime
+  - data: {}
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    service: vacuum.start
+bedroom_lamp_on:
+  alias: Bedroom CH2 ON
+  sequence:
+  - data:
+      brightness_pct: 80
+      kelvin: 2700
+    entity_id: light.box_lamp
+    service: light.turn_on
+  mode: single

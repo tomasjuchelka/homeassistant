@@ -1,0 +1,764 @@
+- id: '1584621966513'
+  alias: 3_Clima CO2 high
+  description: Turn on when above given treshold, but not withing quiet hours.
+  trigger:
+  - above: '1000'
+    entity_id: sensor.co2
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.ventilator
+    state: 'off'
+  - condition: or
+    conditions:
+    - after: '21:00:00'
+      before: 06:00:00
+      condition: time
+    - after: 08:00:00
+      before: '19:00:00'
+      condition: time
+  - condition: state
+    entity_id: input_boolean.enable_automatic_ventilation
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.ventilator
+    service: switch.turn_on
+  mode: single
+- id: '1584622202899'
+  alias: 3_Clima CO2 low
+  description: Turn off when under given treshold and at certain times
+  trigger:
+  - below: '800'
+    entity_id: sensor.co2
+    platform: numeric_state
+  - at: 06:00:00
+    platform: time
+  - at: '19:00:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: switch.ventilator
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.enable_automatic_ventilation
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.ventilator
+    service: switch.turn_off
+  mode: single
+- id: '1585251952484'
+  alias: 1_Lights Toogle Box lamp
+  description: Manual trigger for bedroom lamp
+  trigger:
+  - entity_id: switch.sonoff_ch2
+    platform: state
+  condition: []
+  action:
+  - entity_id: light.box_lamp
+    service: "{% if trigger.to_state.state == 'on' %}\n  script.bedroom_lamp_on\n\
+      {%- else %}\n  light.turn_off\n{% endif %}\n"
+  mode: single
+- id: '1585325340725'
+  alias: 1_Lights OFF All lights
+  description: Turn off lights in the whole flat
+  trigger:
+  - entity_id: switch.sonoff_ch3
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - entity_id: light.all_lights
+    service: light.turn_off
+  - data: {}
+    entity_id: switch.sonoff_b1,switch.sonoff_b2,switch.sonoff_ch1,switch.sonoff_ch3
+    service: switch.turn_off
+  mode: single
+- id: '1585401649964'
+  alias: 1_Lights 4_ON Cloud night light
+  description: Lighting on when dark outside
+  trigger:
+  - below: '2'
+    entity_id: sun.sun
+    platform: numeric_state
+    value_template: '{{ state_attr(''sun.sun'', ''elevation'') }}'
+  condition:
+  - condition: state
+    entity_id: switch.sonoff_b2
+    state: 'off'
+  - before: '20:30:00'
+    condition: time
+  action:
+  - data: {}
+    entity_id: switch.sonoff_b2
+    service: switch.turn_on
+  mode: single
+- id: '1585401838076'
+  alias: 1_Lights 4_OFF Cloud night light
+  description: ''
+  trigger:
+  - at: '21:15:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: switch.sonoff_b2
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.sonoff_b2
+    service: switch.turn_off
+  mode: single
+- id: '1585502004382'
+  alias: 1_Lights 5_ON Daily lights
+  description: ''
+  trigger:
+  - below: '2'
+    entity_id: sun.sun
+    platform: numeric_state
+    value_template: '{{ state_attr(''sun.sun'', ''elevation'') }}'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.sonoff_b1
+    service: switch.turn_on
+  mode: single
+- id: '1585676836818'
+  alias: 1_Lights 5_OFF Daily lights
+  description: ''
+  trigger:
+  - at: 00:00:00
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.sonoff_b1
+    service: switch.turn_off
+  mode: single
+- id: '1585935683696'
+  alias: 3_Clima CO2 high time based
+  description: Additionaly after end of quiet hours it must be checked if not already
+    above treshold
+  trigger:
+  - at: 08:00:00
+    platform: time
+  - at: '21:00:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: switch.ventilator
+    state: 'off'
+  - above: '1000'
+    condition: numeric_state
+    entity_id: sensor.co2
+  - condition: state
+    entity_id: input_boolean.enable_automatic_ventilation
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.ventilator
+    service: switch.turn_on
+  mode: single
+- id: '1587234076223'
+  alias: 2_Vacuum Daily clean up
+  description: Run regular clean up based on a defined schedule
+  trigger:
+  - minutes: '1'
+    platform: time_pattern
+  condition:
+  - after: 09:00:00
+    before: '19:00:00'
+    condition: time
+  - condition: state
+    entity_id: input_boolean.enable_daily_vacuum
+    state: 'on'
+  - condition: state
+    entity_id: group.group_family
+    state: not_home
+  - above: '1'
+    condition: numeric_state
+    entity_id: sensor.days_since_last_cleanup
+  action:
+  - data: {}
+    service: script.vacuum_start
+  mode: single
+- id: '1587300175500'
+  alias: 2_Vacuum Zone clean up
+  description: ''
+  trigger:
+  - entity_id: input_select.vacuum_room
+    from: Select ...
+    platform: state
+  condition: []
+  action:
+  - data:
+      entity_id: "{% if is_state(\"input_select.vacuum_room\", \"Kids room\") %}\n\
+        \  script.kids_room_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\"\
+        , \"Living room\") %} \n  script.living_room_zone_cleanup\n{% elif is_state(\"\
+        input_select.vacuum_room\", \"Bedroom\") %} \n  script.bedroom_zone_cleanup\n\
+        {% elif is_state(\"input_select.vacuum_room\", \"Kitchen\") %} \n  script.kitchen_zone_cleanup\n\
+        {% elif is_state(\"input_select.vacuum_room\", \"Hall\") %} \n  script.hall_zone_cleanup\n\
+        {% else %}  {% endif %}\n"
+    service: script.turn_on
+  - data:
+      option: Select ...
+    entity_id: input_select.vacuum_room
+    service: input_select.select_option
+  mode: single
+- id: '1589699960298'
+  alias: 1_Lights OFF Hallway if not home
+  description: ''
+  trigger:
+  - entity_id: group.group_family
+    from: home
+    platform: state
+    to: not_home
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: light.corner_lamp
+      state: 'on'
+    - condition: state
+      entity_id: light.hall_lamp
+      state: 'on'
+  action:
+  - data: {}
+    entity_id: light.corner_lamp,light.hall_lamp
+    service: light.turn_off
+  mode: single
+- id: '1596491335249'
+  alias: 98_System Start up
+  description: This happens after HASS start up
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      data:
+        device: galaxys10
+        priority: -1
+      message: Home Assistant has started.
+    service: notify.pusher
+  mode: single
+- id: '1596572554050'
+  alias: 99_Notify Fire detection
+  description: Executed in case of fire!
+  trigger:
+  - device_id: eeee8fdbb2e548bfac7d1d9194a6d398
+    domain: binary_sensor
+    entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor
+    platform: device
+    type: turned_on
+  condition: []
+  action:
+  - data:
+      data:
+        expire: 3600
+        priority: 2
+        retry: 60
+      message: Fire alarm!
+      title: Smoke detector
+    service: notify.pusher
+  - data: {}
+    entity_id: light.emergency_lights
+    service: light.turn_on
+  mode: single
+- id: '1596642967004'
+  alias: 1_Lights 3_ON WC lamp
+  description: ''
+  trigger:
+  - device_id: 8e4df4c39f9f46d5ad753dd42bb0e103
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor
+    platform: device
+    type: motion
+  condition: []
+  action:
+  - data:
+      brightness_pct: "{% if now().hour > 5 %}\n  80\n{%- else %}\n  10\n{% endif\
+        \ %}\n"
+    entity_id: light.wc_lamp
+    service: light.turn_on
+  mode: single
+- id: '1596644035996'
+  alias: 99_Notify Water detection
+  description: Notifies about water leaks.
+  trigger:
+  - entity_id: binary_sensor.water_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data:
+        expire: 3600
+        priority: 2
+        retry: 60
+      message: Water alarm!
+      title: Water leak detector
+    service: notify.pusher
+  mode: single
+- id: '1596657200251'
+  alias: 1_Lights 3_OFF WC lamp
+  description: ''
+  trigger:
+  - device_id: 8e4df4c39f9f46d5ad753dd42bb0e103
+    domain: binary_sensor
+    entity_id: binary_sensor.motion_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.wc_lamp
+    service: light.turn_off
+  mode: single
+- id: '1596993559449'
+  alias: 99_Notify Vacuum state
+  description: ''
+  trigger:
+  - entity_id: sensor.vacuum_error
+    from: No Error
+    platform: state
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 1
+      message: '{{states.sensor.vacuum_error.state}}'
+      title: Vacuum cleaner
+    service: notify.pusher
+  mode: single
+- id: '1596994988659'
+  alias: 1_Lights 2_ON Door lamp
+  description: Automatic light in door area
+  trigger:
+  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+    domain: binary_sensor
+    entity_id: binary_sensor.tradfri_motion_sensor
+    platform: device
+    type: motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.door_lamp
+    service: light.turn_on
+  mode: single
+- id: '1596995179898'
+  alias: 1_Lights 2_OFF Door lamp
+  description: Automatic light in door area
+  trigger:
+  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+    domain: binary_sensor
+    entity_id: binary_sensor.tradfri_motion_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.door_lamp
+    service: light.turn_off
+  mode: single
+- id: remote_control_1
+  alias: 4_Remote circle controller
+  description: Actions performed by circle remote at PC desk
+  trigger:
+  - event_data:
+      event: 1002
+      id: tradfri_remote_control
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2002
+      id: tradfri_remote_control
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 3002
+      id: tradfri_remote_control
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4002
+      id: tradfri_remote_control
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 5002
+      id: tradfri_remote_control
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1002 }}'
+      sequence:
+      - data: {}
+        entity_id: light.corner_lamp
+        service: light.toggle
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.corner_lamp",
+          "on") }}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.corner_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  100\n{% endif %}\n"
+        entity_id: light.corner_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.corner_lamp",
+          "on") }}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.corner_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  1\n{% endif %}\n"
+        entity_id: light.corner_lamp
+        service: light.turn_on
+  mode: single
+- id: remote_control_2
+  alias: 4_Remote button controller
+  description: Actions performed by simple on off switch
+  trigger:
+  - event_data:
+      event: 1002
+      id: tradfri_on_off_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2002
+      id: tradfri_on_off_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 1003
+      id: tradfri_on_off_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2003
+      id: tradfri_on_off_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1002 and is_state("light.box_lamp",
+          "off")}}'
+      sequence:
+      - data: {}
+        entity_id: light.box_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.box_lamp",
+          "on")}}'
+      sequence:
+      - data: {}
+        entity_id: light.box_lamp
+        service: light.turn_off
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1002 and is_state("light.box_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
+            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
+            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  100\n{% endif %}\n"
+        entity_id: light.box_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2003 and is_state("light.box_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
+            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct -\
+            \ 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n\
+            \  1\n{% endif %}\n"
+        entity_id: light.box_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1003}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: 80
+          kelvin: 2700
+        entity_id: light.box_lamp
+        service: light.turn_on
+  mode: single
+- id: '1601296769489'
+  alias: 98_System HA releases
+  description: Notify about new HA releases
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: -1
+        device: galaxys10
+        url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+      title: New Home Assistant Release
+      message: 'Home Assistant  {{ state_attr(''binary_sensor.updater'', ''newest_version'')
+        }}  is now available.'
+    service: notify.pusher
+  - service: python_script.set_state
+    data:
+      entity_id: binary_sensor.updater
+      state: 'off'
+  mode: single
+- id: '1601480894174'
+  alias: 98_System Refresh sensors
+  description: Refreshes all time dependend sensors on a defined schedule
+  trigger:
+  - platform: time_pattern
+    minutes: /10
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    entity_id: sensor.days_since_last_cleanup
+  mode: single
+- id: school_news
+  alias: 98_School news
+  description: Notify about new article on school webpage
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.school_news
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 0
+        url: "{{ state_attr('binary_sensor.school_news', 'link') }}"
+      title: New article on school webpage
+      message: "{{ state_attr('binary_sensor.school_news', 'header') }}"
+    service: notify.pusher
+  mode: single
+- id: '1602089750353'
+  alias: 99_System Notify about Air pollution
+  description: Notify when AQI index goes over 100
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
+    above: '50'
+  - platform: numeric_state
+    entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
+    above: '100'
+  - platform: numeric_state
+    entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
+    above: '150'
+  - platform: numeric_state
+    entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
+    above: '200'
+  - platform: numeric_state
+    entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
+    above: '300'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 50 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int <= 100 }}'
+      sequence:
+      - data:
+          data:
+            priority: -1
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states.sensor.waqi_pha10_prumyslova_prague_czech_republic.state
+            }}. {{- ''\n'' -}} Stav: mírné znečištění {{- ''\n'' -}} Primární zdroj:
+            {{ state_attr(''sensor.waqi_pha10_prumyslova_prague_czech_republic'',
+            ''dominentpol'') }}.'
+        service: notify.pusher
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 100 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int <= 150 }}'
+      sequence:
+      - data:
+          data:
+            priority: 0
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states.sensor.waqi_pha10_prumyslova_prague_czech_republic.state
+            }}. {{- ''\n'' -}} Stav: nezdravé pro určité skupiny {{- ''\n'' -}} Primární
+            zdroj: {{ state_attr(''sensor.waqi_pha10_prumyslova_prague_czech_republic'',
+            ''dominentpol'') }}.'
+        service: notify.pusher
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 150 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int <= 200 }}'
+      sequence:
+      - data:
+          data:
+            priority: 0
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states.sensor.waqi_pha10_prumyslova_prague_czech_republic.state
+            }}. {{- ''\n'' -}} Stav: nezdravé {{- ''\n'' -}} Primární zdroj: {{ state_attr(''sensor.waqi_pha10_prumyslova_prague_czech_republic'',
+            ''dominentpol'') }}.'
+        service: notify.pusher
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 200 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int <= 300 }}'
+      sequence:
+      - data:
+          data:
+            priority: 1
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states.sensor.waqi_pha10_prumyslova_prague_czech_republic.state
+            }}. {{- ''\n'' -}} Stav: velmi nezdravé (havarijní) {{- ''\n'' -}} Primární
+            zdroj: {{ state_attr(''sensor.waqi_pha10_prumyslova_prague_czech_republic'',
+            ''dominentpol'') }}.'
+        service: notify.pusher
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 300 }}'
+      sequence:
+      - data:
+          data:
+            expire: 3600
+            priority: 2
+            retry: 60
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states.sensor.waqi_pha10_prumyslova_prague_czech_republic.state
+            }}. {{- ''\n'' -}} Stav: nebezpečné (hazardní) {{- ''\n'' -}} Primární
+            zdroj: {{ state_attr(''sensor.waqi_pha10_prumyslova_prague_czech_republic'',
+            ''dominentpol'') }}.'
+        service: notify.pusher
+  mode: single
+- id: '1602357978047'
+  alias: 99_Notify Inform about stock price
+  description: Notify about significant loss in the share price
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.siemens_ag
+    below: '100'
+    attribute: 05. price
+  - platform: numeric_state
+    entity_id: sensor.siemens_ag
+    attribute: 09. change
+    below: '-3.0'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 0
+        device: galaxys10
+      title: Share price info
+      message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'') |
+        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change percent'') | round(2) }}.'
+    service: notify.pusher
+  mode: single
+- id: remote_control_dimmer
+  alias: 4_Remote dimmer controller
+  description: Actions performed by philips dimmer switch
+  trigger:
+  - event_data:
+      event: 1000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 3000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1000 and is_state("light.hall_lamp",
+          "off")}}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 4000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.turn_off
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
+            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
+            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  100\n{% endif %}\n"
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 3000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
+            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct -\
+            \ 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n\
+            \  1\n{% endif %}\n"
+        entity_id: light.hall_lamp
+        service: light.turn_on
+  mode: single

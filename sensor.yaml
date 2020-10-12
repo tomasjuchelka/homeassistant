@@ -1,0 +1,113 @@
+- platform: mqtt
+  name: "Temperature"
+  state_topic: "/home/dht"
+  unit_of_measurement: "°C"
+  value_template: "{{ value_json.temperature}}"
+- platform: mqtt
+  name: "Humidity"
+  state_topic: "/home/dht"
+  unit_of_measurement: "%"
+  value_template: "{{ value_json.humidity}}"
+- platform: mqtt
+  name: "CO2"
+  state_topic: "/home/co2"
+  unit_of_measurement: "ppm"
+  value_template: "{{ value_json.co2_ppm}}"
+- platform: time_date
+  display_options:
+    - "date"
+    - "time"
+    - "date_time"
+- platform: template
+  sensors:
+    days_since_last_cleanup:
+      friendly_name: Days ago
+      value_template: "{{ ((as_timestamp(now())-(states.input_datetime.last_cleanup_time.attributes.timestamp)) | int /86400) | round(1) }}"
+      unit_of_measurement: "Days"
+- platform: template
+  sensors:
+    vacuum_status:
+      friendly_name: Status
+      value_template: "Status: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}"
+      icon_template: >
+        {% set val =  states.vacuum.xiaomi_vacuum_cleaner.attributes.status  %}
+        {% if val == 'Charging' %}
+          mdi:battery-charging
+        {% elif val == 'Cleaning' %}
+          mdi:move-resize
+        {% elif val == 'Returning home' %}
+          mdi:keyboard-return
+        {% elif val == 'Idle' %}
+          mdi:dots-horizontal
+        {% elif val == 'Paused' %}
+          mdi:pause-circle
+        {% else %}
+          mdi:help-circle
+        {% endif %}
+    vacuum_error:
+      friendly_name: Vacuum Cleaner Error
+      value_template: >-
+        {% if states.vacuum.xiaomi_vacuum_cleaner.attributes.error is defined %}
+          {{states.vacuum.xiaomi_vacuum_cleaner.attributes.error}}
+        {% else %}
+          No Error
+        {% endif %}
+    vacuum_fan_speed:
+      friendly_name: Fan Speed
+      value_template: "Mode: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.fan_speed }}"
+      icon_template: "mdi:speedometer"
+    vacuum_battery:
+      friendly_name: Vacuum Battery
+      value_template: "Battery: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}"
+      unit_of_measurement: "%"
+      icon_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_icon }}"
+    vacuum_cleaning_time:
+      friendly_name: Time of Last Cycle
+      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }}"
+      icon_template: "mdi:timer"
+    vacuum_cleaned_area:
+      friendly_name: Area of Last Cycle
+      unit_of_measurement: "m2"
+      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }}"
+      icon_template: "mdi:ruler"
+    vacuum_cleanmainbrush:
+      friendly_name: Replace main brush
+      unit_of_measurement: "h"
+      value_template: "Main Brush: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.main_brush_left }}"
+      icon_template: "mdi:screwdriver"
+    vacuum_cleansidebrush:
+      friendly_name: Replace side brush
+      unit_of_measurement: "h"
+      value_template: "Side brush: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.side_brush_left }}"
+      icon_template: "mdi:screwdriver"
+    vacuum_cleanfilter:
+      friendly_name: Replace filter
+      unit_of_measurement: "h"
+      value_template: "Filter: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}"
+      icon_template: "mdi:screwdriver"
+    vacuum_sensordirtyleft:
+      friendly_name: Replace filter
+      unit_of_measurement: "h"
+      value_template: "Sensor: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.sensor_dirty_left }}"
+      icon_template: "mdi:screwdriver"
+- platform: waze_travel_time
+  origin: 50.08286520, 14.56114710
+  destination: 50.04702660, 14.30680500
+  region: 'EU'
+  name: "Travel time to work"
+- platform: waqi
+  token: !secret waqi_token
+  locations:
+    - pha10-prumyslova
+- platform: alpha_vantage
+  api_key: !secret alpha_vantage_api_key
+  foreign_exchange:
+    - name: EUR_CZK
+      from: EUR
+      to: CZK
+- platform: stock_price
+  api_key: !secret alpha_vantage_api_key
+  symbols:
+    - symbol: SIE.DEX
+      currency: EUR
+      name: Siemens AG

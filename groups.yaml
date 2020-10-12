@@ -1,0 +1,5 @@
+group_family:
+  name: Family
+  entities:
+    - person.tomas_juchelka 
+    - person.deniska
