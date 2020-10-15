@@ -122,6 +122,7 @@ class School(BinarySensorEntity):
                     break
                 self.header = self._get_title(listx[w])
                 self.link = self.url + path
+                _LOGGER.info("link: " + self.link)
         if path == "":
             self.header = "Stránka nenalezena nebo neobsahuje žádné informace."
             self.link = self.url + "/clanky"
