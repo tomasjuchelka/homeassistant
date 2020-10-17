@@ -10,7 +10,6 @@ tts/
 custom_components/hacs/
 custom_components/sonoff/
 www/community
-image
 core
 OZW_Log.txt
 known_devices.yaml
