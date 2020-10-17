@@ -1,4 +1,5 @@
-<img align=right src="./images/ha.png" />
+<img align=right src="./image/ha.png" width="100"/>
+
 # **Home assistant**
 
 Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
