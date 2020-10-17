@@ -133,3 +133,7 @@ binary_sensor:
   - platform: school
     name: School news
     url: "https://www.zschvaleticka.cz"
+
+logger:
+  logs:
+    custom_components.school: info
