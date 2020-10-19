@@ -4,6 +4,10 @@
 
 Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
 
+## Vision
+
+The home automation should help and simplify daily routines, provide important information relevant for daily life. It should be easily extensible and accessible to all family members. The focus is on local control instead of cloud based solution.  
+
 ## Climate Control
 
 The climate control was the first reason to start with home automation at all. To tackle the humidity problem in our apartment, I build a simple solution based on MQTT and Python script running on Raspberry Pi Zero W. This node was gathering data from temperature and humidity sensor DHT22 and carbon dioxide (co2) from MH-Z19 sensor. I risked that and bought it from China. It is pretty sufficient for ventilation control (not speaking about absolute accuracy, since it is not so important).
