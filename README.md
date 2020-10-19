@@ -83,6 +83,42 @@ Chromecast is connected to the TV, but actualy not so often used. The TV doesn't
 | --- | --- | --- |
 | <img src="./image/google_nest_mini.jpg" width="200"/> | <img src="./image/google_assistant.jpg" width="200"/></a> | <img src="./image/google-chromecast.jpg" width="200"/></a> |
 
+## Vacuum cleaner
+
+Our best friend at our home is the robotic vacuum cleaner. Xiaomi vacuum is a solid devices for a reasonable price. It could work out of the box with original SW/app but the integration into HA gives more flexibility.
+The cleaning process starts only if:
+<ul>
+<li>no one is at home</li>
+<li>not within quiet hours</li>
+<li>time since last cleaning > 1 day</li>
+</ul>
+
+It can be triggered manually.
+I created a very nice lovelace dashboard card with the basic controls. Inspired at: <a href="https://community.home-assistant.io/t/xiaomi-vacuum-cleaner-card/64456/">Xiaomi Vacuum cleaner card</a> in the community forum.
+Nice feature is zone clean up. There are preconfigured zones, so it is possible to do cleaning only in a specified area.
+The zone definition is quite trial and error process. It consisted of sending a zone coordinates over developer service call in HA and visual control on the mobile app.
+At the end a user can select a room and start cleaning there.
+
+The biggest pain point is the connection *token* needed by the xiaomi_miio integration.
+It is not easily accessible and there are principally two ways how to get it:
+<ul>
+<li>Send a special UDP packet and capture the traffic using e.g. wireshark</li>
+<li>Read the token from a specific mobile app version</li>
+</ul>
+
+For me the first way didn't work so I will describe the second approach:
+<ul>
+<li>Intall Mi Home 5.4.49 (another phone if you like)</li>
+<li>Select a region - russian server works</li>
+<li>Locate a text file in files /Smarthome/logs... and search for *token*</li>
+</ul>
+
+Just keep in mind that this token is valid only till next FW update or WIFI reset on the device. Maybe also if you connect it to a different network.
+
+| Xiaomi Vacuum |
+| --- |
+| <img src="./image/xiaomi_vacuum.jpg" width="200"/> |
+
 ## Lighting
 
 The biggest part of the automation is regarding lights. Automatic switching of lights after sunset and in frequent areas based on motion sensor.
