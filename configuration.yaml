@@ -1,4 +1,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
+logger:
+  default: debug
+  logs:
+    custom_components.school: info
+
 default_config:
 python_script:
 
@@ -6,6 +11,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+sensor: !include sensor.yaml
 
 homeassistant:
   customize: !include customize.yaml
@@ -39,6 +45,12 @@ panel_iframe:
     url: "https://embed.windy.com/embed2.html?lat=49.668&lon=15.447&zoom=7&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=50.082&detailLon=14.425&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
     icon: mdi:weather-windy
 
+panel_iframe:
+  documentation:
+    title: "Documentation"
+    url: "https://github.com/tomasjuchelka/homeassistant#homeassistant"
+    icon: mdi:file-document
+
 sonoff:
   username: !secret sonoff_username
   password: !secret sonoff_password
@@ -62,8 +74,6 @@ notify:
     name: Pusher
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
-
-sensor: !include sensor.yaml
 
 input_boolean:
   enable_daily_vacuum:
@@ -105,12 +115,6 @@ light:
       - light.hall_lamp
       - light.corner_lamp
 
-#bmw_connected_drive:
-#  name:
-#    username: !secret bmw_username
-#    password: !secret bmw_password
-#    region: "rest_of_world"
-
 recorder:
   purge_keep_days: 3
   commit_interval: 60
@@ -133,7 +137,3 @@ binary_sensor:
   - platform: school
     name: School news
     url: "https://www.zschvaleticka.cz"
-
-logger:
-  logs:
-    custom_components.school: info
