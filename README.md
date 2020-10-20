@@ -61,7 +61,7 @@ docker start home-assistant
 Python is used as a programming language for custom components and more. It is not the language I would know that much, so it is a limitation for me to overcome some problems and do bigger customizations. I just need to google sometimes :)
 Before it has been switched to Docker, HA run in Python virtual environent. It was OK, but it caused always troubles with missing dependencies. With one of the recent HA release it crashed completely and I moved to Docker.
 
-The source code is versioned with GIT version control. Pushing the sources to GitHub was straightforward and the only issue was how to hide confidential files (secrets). There is an elegant solution - <a href="https://git-secret.io/">git secret</a> using RSA encryption.
+The source code is versioned with GIT version control. Pushing the sources to GitHub was straightforward and the only issue was how to hide confidential files (secrets). There is an elegant solution <a href="https://git-secret.io/">git secret</a> using RSA encryption.
 The following commands can be used to encrypt and decrypt of confidential files.
 
 ```sh
@@ -94,7 +94,7 @@ The cleaning process starts only if:
 </ul>
 
 It can be triggered manually.
-I created a very nice lovelace dashboard card with the basic controls. Inspired at: <a href="https://community.home-assistant.io/t/xiaomi-vacuum-cleaner-card/64456/">Xiaomi Vacuum cleaner card</a> in the community forum.
+I created a nice lovelace dashboard card with the basic controls. Inspired at <a href="https://community.home-assistant.io/t/xiaomi-vacuum-cleaner-card/64456/">Xiaomi Vacuum cleaner card</a> in the community forum.
 Nice feature is zone clean up. There are preconfigured zones, so it is possible to do cleaning only in a specified area.
 The zone definition is quite trial and error process. It consisted of sending a zone coordinates over developer service call in HA and visual control on the mobile app.
 At the end a user can select a room and start cleaning there.
@@ -124,7 +124,15 @@ Just keep in mind that this token is valid only till next FW update or WIFI rese
 The biggest part of the automation is regarding lights. Automatic switching of lights after sunset and in frequent areas based on motion sensor.
 All it started with Philips Hue starter kit and now it is all migrated to the local solution using Conbee II Zigbee gateway.
 
+Here you can see an example of non-conceptual home automation growth. Fortunately it doesn't matter as all runs on Zigbee. There are devices from various manufactures, because have only Hue devices is quite expensive. The best experience I have with Hue. With others were observed some small issues as needed reset of Mi motion sensor and strange battery readings from IKEA devices. But in most application the benefit/cost ratio is much higher.
+
+Nice feature is turning on the light after sun set.
+After some experiments I found the most fitting setting of Sun elevation < 2°.
+If the sun falls below horizon and is below this angle, it is a good time to turn on the defined lights (e.g. lamp in living room). One can understand this also as kind of security functions.
+
 ### Light bulbs
+
+There are Hue white and Tradfri dimmable bulbs in the hall and service rooms, small 5W RGBs in decorative lamps and Hue play behind the computer monitor. 
 
 | Hue White 9W E27 | Immax Neo 5W RGB E14 | Tradfri E27 806lm | Hue play |
 | --- | --- | --- | --- |
@@ -132,11 +140,16 @@ All it started with Philips Hue starter kit and now it is all migrated to the lo
 
 ### Remote controls
 
+A disadvantage if you use these devices without an App is that you must implement an automation for it. So there is an automation handling all the events using the sequences. It was finally possible to have only one automation per remote control.
+
 | Hue Dimmer | Tradfri remote | Tradfri Dimmer |
 | --- | --- | --- |
 | <img src="./image/philips-hue-dimmer.jpg" width="200"/> | <img src="./image/tradfri-remote.jpg" width="200"/></a> | <img src="./image/tradfri-dimmer.jpg" width="200"/></a> |
 
 ### Motion sensors
+
+There are two motion sensors placed on frequent areas. One is in the entrance hall and one on the toilet.
+The automation is configured to set the brightness to the minimum level in the night.
 
 | Hue Motion | Mi Motion | Tradfri motion |
 | --- | --- | --- |
@@ -159,6 +172,36 @@ The third button is used to turn all the lights off, but even more is possible r
 | Sonoff TX-3 | Sonoff Basic |
 | --- | --- |
 | <img src="./image/sonoff-T1-EU-TX-3.jpg" width="200"/> | <img src="./image/sonoff-basic-zbr3.jpg" width="200"/></a> |
+
+## Notifications
+
+HA is sending notifications as results of automation procedures, sensors, warnings and emergency states.
+The <a href="https://www.home-assistant.io/integrations/pushover">Pushover</a> service is a platform for the notify component. This allows integrations to send messages to the user using Pushover.
+
+It has many features as priority setting, different tones and url links.
+For low prio messages a user gets only notification without sound, for normal priority it sounds like a standard message and emergency priority must be confirmed by the user.
+The ammount of messages in limited to 5000 and you must purchase the mobile app for a small amount (it's worth it in my opinion).
+
+## Other features
+
+In the case of missing or not fitting functionality I was forced to implement custom component or update existing one.
+Some examples are below.
+
+### School news
+
+I implemented a custom component basically from scratch. It accesses a specific webpage of elementary school and reads articles. It is not a rocket science code, but works. We are notified if there is a new article on the school webpage.
+
+### Stock price tracking
+
+The aim was to use <a href="https://www.home-assistant.io/integrations/alpha_vantage">Alpha Vantage</a> integration, but it doesn't provide intraday time series data for (some) European indexes. I modified it so it uses only global quote data, but works for the requested companies.
+
+### Other noteworthy features
+
+<ul>
+<li>Sending info about new Home Assistant releases</li>
+<li>Notification in case of problems with vacuum cleaner</li>
+<li>Notification about air pollution levels based on <a href="https://www.home-assistant.io/integrations/waqi">WAQI</a> integration</li>
+</ul>
 
 ## Final thoughts
 
