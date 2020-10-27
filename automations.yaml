@@ -278,7 +278,7 @@
   condition: []
   action:
   - data:
-      brightness_pct: "{% if now().hour > 5 %}\n  80\n{%- else %}\n  10\n{% endif\
+      brightness_pct: "{% if now().hour > 6 and now().hour < 23 %}\n  80\n{%- else %}\n  10\n{% endif\
         \ %}\n"
     entity_id: light.wc_lamp
     service: light.turn_on

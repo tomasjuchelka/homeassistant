@@ -45,12 +45,6 @@ panel_iframe:
     url: "https://embed.windy.com/embed2.html?lat=49.668&lon=15.447&zoom=7&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=50.082&detailLon=14.425&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1"
     icon: mdi:weather-windy
 
-panel_iframe:
-  documentation:
-    title: "Documentation"
-    url: "https://github.com/tomasjuchelka/homeassistant#homeassistant"
-    icon: mdi:file-document
-
 sonoff:
   username: !secret sonoff_username
   password: !secret sonoff_password
