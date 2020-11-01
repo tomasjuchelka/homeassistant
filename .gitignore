@@ -6,7 +6,6 @@ secrets.yaml
 .storage/hacs*
 .storage/core.restore_state
 .storage/mobile_app
-.storage/auth
 .sonoff.json
 tts/
 custom_components/hacs/
@@ -19,3 +18,4 @@ known_devices.yaml
 .gitsecret/keys/random_seed
 !*.secret
 .storage/core.config
+.storage/auth
