@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "key": "person",
+    "data": {
+        "items": [
+            {
+                "device_trackers": [
+                    "device_tracker.a8_db_03_50_10_af"
+                ],
+                "id": "tomas_juchelka",
+                "name": "Tom\u00e1\u0161",
+                "user_id": "f1a0d51bf81a474b846ab33537af3496",
+                "picture": "/api/image/serve/c411137cfedd0152cbd8c31550fb3ba4/512x512"
+            },
+            {
+                "device_trackers": [
+                    "device_tracker.cc_21_19_b7_84_af"
+                ],
+                "id": "deniska",
+                "name": "Deniska",
+                "user_id": "e6ead2ebf33f45508df3c592e06292d7",
+                "picture": "/api/image/serve/cfe3a18c462018edd78bab0e2d5180cd/512x512"
+            }
+        ]
+    }
+}

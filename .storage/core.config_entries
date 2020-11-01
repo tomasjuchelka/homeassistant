@@ -1,0 +1,219 @@
+{
+    "version": 1,
+    "key": "core.config_entries",
+    "data": {
+        "entries": [
+            {
+                "entry_id": "9d4f8a7dab3c434a883c4a0271c216ee",
+                "version": 1,
+                "domain": "met",
+                "title": "Home",
+                "data": {
+                    "track_home": true
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "onboarding",
+                "connection_class": "cloud_poll",
+                "unique_id": null
+            },
+            {
+                "entry_id": "4df482864a4b4f189110e6039da29684",
+                "version": 1,
+                "domain": "cast",
+                "title": "Google Cast",
+                "data": {
+                    "user_id": "bf52306dc80d4eecaebdbfe599afa527"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "zeroconf",
+                "connection_class": "local_push",
+                "unique_id": null
+            },
+            {
+                "entry_id": "0f5affae4a4e408b955283a80beb093c",
+                "version": 1,
+                "domain": "mqtt",
+                "title": "127.0.0.1",
+                "data": {
+                    "broker": "127.0.0.1",
+                    "discovery": false,
+                    "port": 1883
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "local_push",
+                "unique_id": null
+            },
+            {
+                "entry_id": "8436afd2cb82420d97cb36534b4b2648",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "SM-A750FN",
+                "data": {
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "dvgnnvdUd8E:APA91bENbaH61cUndvcQqV7B4m6qyi7IjnqZ-XWpvVUoOVU7ZrqTiF2lQOd2Pr7pVOvEsdmDj3gcS9_FyPTiANI86eJMwoqziia9DplNENOHsfRd5NsWQ7ZFmw-3vJxepZj3L5HcMSEC"
+                    },
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2.5.0-full (400)",
+                    "device_id": "f838e528fe8213b0",
+                    "device_name": "SM-A750FN",
+                    "manufacturer": "samsung",
+                    "model": "SM-A750FN",
+                    "os_name": "Android",
+                    "os_version": "29",
+                    "supports_encryption": false,
+                    "user_id": "e6ead2ebf33f45508df3c592e06292d7",
+                    "webhook_id": "83b10919a65f562bfd599621946bdb3226143f7a0ce63d48787752bacf42dd53"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "registration",
+                "connection_class": "cloud_push",
+                "unique_id": "io.homeassistant.companion.android-f838e528fe8213b0"
+            },
+            {
+                "entry_id": "f2f613eeaaab4c9aae44e8a9f242aa2a",
+                "version": 1,
+                "domain": "hacs",
+                "title": "",
+                "data": {
+                    "appdaemon": true,
+                    "netdaemon": true,
+                    "sidepanel_icon": "mdi:alpha-c-box",
+                    "sidepanel_title": "HACS",
+                    "token": "d61dddebf700fb0f0e5734bebc3ba05a315b0d3d"
+                },
+                "options": {
+                    "appdaemon": true,
+                    "country": "ALL",
+                    "debug": false,
+                    "experimental": false,
+                    "netdaemon": false,
+                    "release_limit": 5,
+                    "sidepanel_icon": "hacs:hacs",
+                    "sidepanel_title": "HACS"
+                },
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": null
+            },
+            {
+                "entry_id": "1a2d7b3a164d4e4fbc6602ea8dfc0add",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "SM-G973F",
+                "data": {
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "eGdzzmloR1s:APA91bHX9eNL6nzCk5wQFWNnvVQ77_XTTeJ6bZWJmGgQJZS3bHLU3GJyRX_EDiDe6aAZLuxG3kS1FlhfoZR_efOYGURpPjS-UQGai-TMliU2hxQuKjwK_NbhurLOOVOZVky_Qm0Zb4yo"
+                    },
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2.5.0-full (400)",
+                    "device_id": "158e469ddd0e22d6",
+                    "device_name": "SM-G973F",
+                    "manufacturer": "samsung",
+                    "model": "SM-G973F",
+                    "os_name": "Android",
+                    "os_version": "29",
+                    "supports_encryption": false,
+                    "user_id": "f1a0d51bf81a474b846ab33537af3496",
+                    "webhook_id": "c5d3aad6c14ea7faedb5c487ef4f0a62e963a4fcf48d6d34f2ef7aa01ba28ed2"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "registration",
+                "connection_class": "cloud_push",
+                "unique_id": "io.homeassistant.companion.android-158e469ddd0e22d6"
+            },
+            {
+                "entry_id": "c5955f9c6a5247608dfb91b2d0bde649",
+                "version": 1,
+                "domain": "zwave",
+                "title": "Z-Wave (import from configuration.yaml)",
+                "data": {
+                    "network_key": null,
+                    "usb_path": "/dev/ttyACM0"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "import",
+                "connection_class": "local_push",
+                "unique_id": null
+            },
+            {
+                "entry_id": "0d8eeb78c15646e5b7132359956350ac",
+                "version": 1,
+                "domain": "upnp",
+                "title": "ArcherC6v2",
+                "data": {
+                    "st": "urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                    "udn": "uuid:e4c797e0-82ce-4f84-b56d-085d9d77c8cd"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "local_poll",
+                "unique_id": "uuid:e4c797e0-82ce-4f84-b56d-085d9d77c8cd::urn:schemas-upnp-org:device:InternetGatewayDevice:1"
+            },
+            {
+                "entry_id": "543550d6b45d49498ebcb0356f531090",
+                "version": 1,
+                "domain": "deconz",
+                "title": "00212E05D777",
+                "data": {
+                    "api_key": "298221209D",
+                    "host": "192.168.11.100",
+                    "port": 80
+                },
+                "options": {
+                    "master": true
+                },
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ssdp",
+                "connection_class": "local_push",
+                "unique_id": "00212E05D777"
+            },
+            {
+                "entry_id": "756ea2fdfe9411ea9ce4092d139fac7a",
+                "version": 1,
+                "domain": "shelly",
+                "title": "Ignored",
+                "data": {
+                    "host": "192.168.11.204"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ignore",
+                "connection_class": "local_poll",
+                "unique_id": "98F4ABF3272D"
+            }
+        ]
+    }
+}

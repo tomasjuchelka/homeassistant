@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "key": "lovelace_resources",
+    "data": {
+        "items": [
+            {
+                "id": "1f8092e6680c42faad0eb2489cc6d5ff",
+                "type": "js",
+                "url": "/local/vertical-stack-in-card.js"
+            }
+        ]
+    }
+}
