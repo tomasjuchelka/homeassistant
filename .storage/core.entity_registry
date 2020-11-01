@@ -129,7 +129,7 @@
                 "device_class": "battery",
                 "unit_of_measurement": "%",
                 "original_name": "SM-A750FN Battery Level",
-                "original_icon": "mdi:battery-30"
+                "original_icon": "mdi:battery-40"
             },
             {
                 "entity_id": "sensor.sm_a750fn_wifi_connection",

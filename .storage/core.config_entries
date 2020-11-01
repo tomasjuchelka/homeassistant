@@ -151,7 +151,7 @@
                 "title": "Z-Wave (import from configuration.yaml)",
                 "data": {
                     "network_key": null,
-                    "usb_path": "/dev/ttyACM0"
+                    "usb_path": "/dev/ttyACM1"
                 },
                 "options": {},
                 "system_options": {
