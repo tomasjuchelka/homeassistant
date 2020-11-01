@@ -5,7 +5,8 @@
         "items": [
             {
                 "device_trackers": [
-                    "device_tracker.a8_db_03_50_10_af"
+                    "device_tracker.a8_db_03_50_10_af",
+                    "device_tracker.s10"
                 ],
                 "id": "tomas_juchelka",
                 "name": "Tom\u00e1\u0161",
@@ -14,7 +15,8 @@
             },
             {
                 "device_trackers": [
-                    "device_tracker.cc_21_19_b7_84_af"
+                    "device_tracker.cc_21_19_b7_84_af",
+                    "device_tracker.a7"
                 ],
                 "id": "deniska",
                 "name": "Deniska",
