@@ -1,0 +1,683 @@
+{
+    "version": 1,
+    "key": "core.device_registry",
+    "data": {
+        "devices": [
+            {
+                "config_entries": [
+                    "4df482864a4b4f189110e6039da29684"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "9417bc2edaa3ca23a59d1f5c5b1d419d"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "TV",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "86d66735d1034a2cbe3c35e257138616",
+                "via_device_id": null,
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "4df482864a4b4f189110e6039da29684"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "cast",
+                        "4206a0e97bd760428aa1da8417c2bad5"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Google Nest Mini",
+                "name": "Google Assistent",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "81c700beafac4d1fb1c179175011b605",
+                "via_device_id": null,
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "7966ad6d7e46afa7940e2a77306eac61"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "158e469ddd0e22d6"
+                    ]
+                ],
+                "manufacturer": "samsung",
+                "model": "SM-G973F",
+                "name": "SM-G973F",
+                "sw_version": "29",
+                "entry_type": null,
+                "id": "d130b8a2b27a491883e36c8a82311156",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "d3cb4f0cff7d4c31bfb98bdd8a269f03"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "mobile_app",
+                        "f838e528fe8213b0"
+                    ]
+                ],
+                "manufacturer": "samsung",
+                "model": "SM-A750FN",
+                "name": "SM-A750FN",
+                "sw_version": "29",
+                "entry_type": null,
+                "id": "8039419b22694b9fa34d36f09f09553e",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "f2f613eeaaab4c9aae44e8a9f242aa2a"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "hacs",
+                        "0717a0cd-745c-48fd-9b16-c8534c9704f9-bc944b0f-fd42-4a58-a072-ade38d1444cd"
+                    ]
+                ],
+                "manufacturer": "hacs.xyz",
+                "model": "",
+                "name": "HACS",
+                "sw_version": "1.6.1",
+                "entry_type": "service",
+                "id": "d236a1600f6f407c9678f6ae873814b8",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        1
+                    ]
+                ],
+                "manufacturer": "AEON Labs",
+                "model": "ZW090 Z-Stick Gen5 EU",
+                "name": "AEON Labs ZW090 Z-Stick Gen5 EU",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "a5c3953afe314a3e8eacbdb81679ef85",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "0d8eeb78c15646e5b7132359956350ac"
+                ],
+                "connections": [
+                    [
+                        "upnp",
+                        "uuid:e4c797e0-82ce-4f84-b56d-085d9d77c8cd"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "upnp",
+                        "uuid:e4c797e0-82ce-4f84-b56d-085d9d77c8cd"
+                    ]
+                ],
+                "manufacturer": "TP-Link",
+                "model": "ArcherC6v2",
+                "name": "ArcherC6v2",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d87b4806d18c420899a0a83e77d07a54",
+                "via_device_id": null,
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "b8:27:eb:69:d7:fc"
+                    ],
+                    [
+                        "mac",
+                        "38:60:77:7c:53:18"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00212E05D777"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ",
+                "name": "Phoscon-GW",
+                "sw_version": "2.5.86",
+                "entry_type": null,
+                "id": "267bf9cf06c1403bacde750d61361f27",
+                "via_device_id": null,
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:04:62:e5:10"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:04:62:e5:10"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.sensor_motion",
+                "name": "Motion Sensor Mi",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "8e4df4c39f9f46d5ad753dd42bb0e103",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": "Motion Sensor Mi"
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:02:70:d2:ff"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:02:70:d2:ff"
+                    ]
+                ],
+                "manufacturer": "LUMI",
+                "model": "lumi.sensor_wleak.aq1",
+                "name": "Water Sensor",
+                "sw_version": "20170721",
+                "entry_type": null,
+                "id": "56fc176f72674f3eb7aeeb0fddebfeba",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": "c409004b6be04f89a9f74a9ac13eb9f5",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:21:2e:ff:ff:05:d7:77"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:21:2e:ff:ff:05:d7:77"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "PHDL00",
+                "name": "Daylight",
+                "sw_version": "1.0",
+                "entry_type": null,
+                "id": "e22bd960ed6e4bd592ae34fe4bf25c59",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": "f37ac4648b694173a61b807ae0d7f73d",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:08:63:e1:c8"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:08:63:e1:c8"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "SML001",
+                "name": "Motion Sensor Hue",
+                "sw_version": "6.1.1.27575",
+                "entry_type": null,
+                "id": "e626c93c26c6490c9d2a9e71de6bbc80",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "68:0a:e2:ff:fe:10:fb:1c"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "68:0a:e2:ff:fe:10:fb:1c"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E27 WW 806lm",
+                "name": "WC Lamp",
+                "sw_version": "2.1.022",
+                "entry_type": null,
+                "id": "e07d48f0f0a84f15867daf6527f13042",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "68:0a:e2:ff:fe:16:71:a7"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "68:0a:e2:ff:fe:16:71:a7"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI on/off switch",
+                "name": "TR\u00c5DFRI on/off switch",
+                "sw_version": "2.2.010",
+                "entry_type": null,
+                "id": "38c4eb3ecdb4413787a4d5be57817be2",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "58:8e:81:ff:fe:21:3c:2c"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "58:8e:81:ff:fe:21:3c:2c"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI remote control",
+                "name": "TR\u00c5DFRI remote control",
+                "sw_version": "2.3.014",
+                "entry_type": null,
+                "id": "ad9b59d39d87403c81dfac5b2c39eedb",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "84:2e:14:ff:fe:1c:0e:ac"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "84:2e:14:ff:fe:1c:0e:ac"
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI motion sensor",
+                "name": "TR\u00c5DFRI Motion sensor",
+                "sw_version": "2.0.022",
+                "entry_type": null,
+                "id": "90c09b1f4e4f499daf07ce6f280a4f31",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:02:4f:47:9d"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:02:4f:47:9d"
+                    ]
+                ],
+                "manufacturer": "Immax",
+                "model": "IM-Z3.0-RGBW",
+                "name": "Box Lamp",
+                "sw_version": "1000-0001",
+                "entry_type": null,
+                "id": "31e88caf195144d2a8c14af6a97a28f1",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:15:8d:00:02:4f:4b:d6"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:15:8d:00:02:4f:4b:d6"
+                    ]
+                ],
+                "manufacturer": "Immax",
+                "model": "IM-Z3.0-RGBW",
+                "name": "Ball Lamp",
+                "sw_version": "1000-0001",
+                "entry_type": null,
+                "id": "0695a4a4de1e444890ab6729196c624d",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:00:68:8d"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:00:68:8d"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWA001",
+                "name": "Door Lamp",
+                "sw_version": "1.65.9_hB3217DF4",
+                "entry_type": null,
+                "id": "dc43a4110bb311eba39da5fe890b663b",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:e2:1e:6f"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:e2:1e:6f"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWA001",
+                "name": "Hall Lamp",
+                "sw_version": "1.65.9_hB3217DF4",
+                "entry_type": null,
+                "id": "dcf314100bb311eba0df034b006e5059",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:e2:1e:36"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:e2:1e:36"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LWA001",
+                "name": "Corner Lamp",
+                "sw_version": "1.65.9_hB3217DF4",
+                "entry_type": null,
+                "id": "e0cf3a250bb311eb8e6d0f3af31cb892",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:b7:e7:04"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:b7:e7:04"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "RWL021",
+                "name": "Dimmer Switch",
+                "sw_version": "6.1.1.28573",
+                "entry_type": null,
+                "id": "e15abe7c0bb311eb934b73a4ba4275ed",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "00:17:88:01:06:93:21:72"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "00:17:88:01:06:93:21:72"
+                    ]
+                ],
+                "manufacturer": "Philips",
+                "model": "LCT024",
+                "name": "PC Lamp",
+                "sw_version": "1.50.2_r30933",
+                "entry_type": null,
+                "id": "585331a00bb611eb87feabc58da0e747",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "9d4f8a7dab3c434a883c4a0271c216ee"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "met"
+                    ]
+                ],
+                "manufacturer": "Met.no",
+                "model": "Forecast",
+                "name": "Forecast",
+                "sw_version": null,
+                "entry_type": "service",
+                "id": "09875d1275e541ad1fedc0d0d7ae2ba5",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "dc:a6:32:d1:ff:76"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": null,
+                "model": null,
+                "name": null,
+                "sw_version": null,
+                "entry_type": null,
+                "id": "5f01bc45209617d5e8f1d166ef792741",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        7
+                    ]
+                ],
+                "manufacturer": "FIBARO System",
+                "model": "FGSD002 Smoke Sensor",
+                "name": "FIBARO System FGSD002 Smoke Sensor",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d7c95ac9d0bdb86e35271925be26e0b5",
+                "via_device_id": "a5c3953afe314a3e8eacbdb81679ef85",
+                "area_id": null,
+                "name_by_user": null
+            }
+        ],
+        "deleted_devices": [
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        5
+                    ]
+                ],
+                "id": "d8e9226350dc47f3bd0fdba8b9fed19d"
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        4
+                    ]
+                ],
+                "id": "eeee8fdbb2e548bfac7d1d9194a6d398"
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        6
+                    ]
+                ],
+                "id": "25e2a0612a0686b4d4e83596a690325c"
+            }
+        ]
+    }
+}

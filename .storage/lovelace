@@ -1,0 +1,508 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "Domov",
+            "views": [
+                {
+                    "path": "default_view",
+                    "title": "Home",
+                    "badges": [
+                        {
+                            "entity": "person.tomas_juchelka"
+                        },
+                        {
+                            "entity": "person.deniska"
+                        },
+                        {
+                            "entity": "sensor.humidity"
+                        },
+                        {
+                            "entity": "sensor.co2"
+                        },
+                        {
+                            "entity": "sensor.temperature"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.door_lamp"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "P\u0159eds\u00ed\u0148",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.hall_lamp"
+                                },
+                                {
+                                    "entity": "light.corner_lamp"
+                                }
+                            ],
+                            "title": "Chodba",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.ball_lamp"
+                                },
+                                {
+                                    "entity": "switch.sonoff_b1"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Ob\u00fdvac\u00ed pokoj",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.box_lamp"
+                                },
+                                {
+                                    "entity": "switch.sonoff_ch1"
+                                }
+                            ],
+                            "show_header_toggle": true,
+                            "title": "Lo\u017enice",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.corner_lamp"
+                                },
+                                {
+                                    "entity": "light.pc_lamp"
+                                }
+                            ],
+                            "title": "PC koutek",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "weather.domov",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.sonoff_b2"
+                                }
+                            ],
+                            "title": "D\u011btsk\u00fd pokoj",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_boolean.enable_automatic_ventilation"
+                                },
+                                {
+                                    "entity": "switch.ventilator"
+                                }
+                            ],
+                            "title": "Ventilator",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.wc_lamp"
+                                }
+                            ],
+                            "title": "WC",
+                            "type": "entities"
+                        }
+                    ]
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "elements": [
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "icon": "mdi:bell-ring",
+                                            "style": {
+                                                "color": "#3090C7",
+                                                "left": "80%",
+                                                "top": "90%"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "vacuum.locate",
+                                                "service_data": {
+                                                    "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "icon": "mdi:home",
+                                            "style": {
+                                                "color": "#3090C7",
+                                                "left": "65%",
+                                                "top": "90%"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "vacuum.return_to_base",
+                                                "service_data": {
+                                                    "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "icon": "mdi:stop",
+                                            "style": {
+                                                "color": "#3090C7",
+                                                "left": "50%",
+                                                "top": "90%"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "vacuum.stop",
+                                                "service_data": {
+                                                    "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "icon": "mdi:pause",
+                                            "style": {
+                                                "color": "#3090C7",
+                                                "left": "35%",
+                                                "top": "90%"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "vacuum.pause",
+                                                "service_data": {
+                                                    "entity_id": "vacuum.xiaomi_vacuum_cleaner"
+                                                }
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "icon": "mdi:play",
+                                            "style": {
+                                                "color": "#3090C7",
+                                                "left": "20%",
+                                                "top": "90%"
+                                            },
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.vacuum_start"
+                                            },
+                                            "type": "icon"
+                                        },
+                                        {
+                                            "entity": "vacuum.xiaomi_vacuum_cleaner",
+                                            "style": {
+                                                "background-color": "#cccccc",
+                                                "border-color": "rgb(34, 154, 210)",
+                                                "border-radius": "6px",
+                                                "color": "#3090C7",
+                                                "font-family": "Trebuchet MS",
+                                                "font-size": "130%",
+                                                "font-weight": "bold",
+                                                "right": "38%",
+                                                "top": "14%",
+                                                "transform": "translate(0%,-50%)"
+                                            },
+                                            "tap_action": "more-info",
+                                            "type": "state-label"
+                                        },
+                                        {
+                                            "entity": "sensor.vacuum_status",
+                                            "style": {
+                                                "border-color": "#3090C7",
+                                                "border-left-style": "solid",
+                                                "color": "#3090C7",
+                                                "font-family": "Trebuchet MS",
+                                                "font-size": "80%",
+                                                "font-weight": "bold",
+                                                "left": "1%",
+                                                "pointer-events": "none",
+                                                "top": "10%",
+                                                "transform": "translate(0%,-50%)"
+                                            },
+                                            "type": "state-label"
+                                        },
+                                        {
+                                            "entity": "sensor.vacuum_battery",
+                                            "style": {
+                                                "border-color": "rgb(34, 154, 210)",
+                                                "border-left-style": "solid",
+                                                "color": "#3090C7",
+                                                "font-family": "Trebuchet MS",
+                                                "font-size": "80%",
+                                                "font-weight": "bold",
+                                                "left": "1%",
+                                                "pointer-events": "none",
+                                                "top": "20%",
+                                                "transform": "translate(0%,-50%)"
+                                            },
+                                            "type": "state-label"
+                                        },
+                                        {
+                                            "entity": "sensor.vacuum_cleaned_area",
+                                            "prefix": "Area:",
+                                            "style": {
+                                                "border-color": "rgb(34, 154, 210)",
+                                                "border-right-style": "solid",
+                                                "color": "#3090C7",
+                                                "font-family": "Trebuchet MS",
+                                                "font-size": "80%",
+                                                "font-weight": "bold",
+                                                "pointer-events": "none",
+                                                "right": "1%",
+                                                "top": "10%",
+                                                "transform": "translate(0%,-50%)"
+                                            },
+                                            "type": "state-label"
+                                        },
+                                        {
+                                            "entity": "sensor.vacuum_cleaning_time",
+                                            "prefix": "Time:",
+                                            "style": {
+                                                "border-color": "rgb(34, 154, 210)",
+                                                "border-right-style": "solid",
+                                                "color": "#3090C7",
+                                                "font-family": "Trebuchet MS",
+                                                "font-size": "80%",
+                                                "font-weight": "bold",
+                                                "pointer-events": "none",
+                                                "right": "1%",
+                                                "top": "20%",
+                                                "transform": "translate(0%,-50%)"
+                                            },
+                                            "type": "state-label"
+                                        }
+                                    ],
+                                    "image": "/local/vacuum.jpg",
+                                    "title": "Vacuum",
+                                    "type": "picture-elements"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "input_select.vacuum_room"
+                                        }
+                                    ],
+                                    "type": "entities"
+                                }
+                            ],
+                            "type": "custom:vertical-stack-in-card"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_boolean.enable_daily_vacuum"
+                                },
+                                {
+                                    "entity": "input_datetime.last_cleanup_time"
+                                },
+                                {
+                                    "entity": "sensor.days_since_last_cleanup"
+                                }
+                            ],
+                            "title": "Settings",
+                            "type": "glance"
+                        }
+                    ],
+                    "path": "vacuum",
+                    "title": "Vacuum"
+                },
+                {
+                    "path": "sensors",
+                    "title": "Sensors",
+                    "badges": [
+                        {
+                            "entity": "sensor.humidity"
+                        },
+                        {
+                            "entity": "sensor.co2"
+                        },
+                        {
+                            "entity": "sensor.temperature"
+                        },
+                        {
+                            "entity": "sun.sun"
+                        },
+                        {
+                            "entity": "binary_sensor.updater"
+                        }
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.water_sensor"
+                                },
+                                {
+                                    "entity": "binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor"
+                                }
+                            ],
+                            "title": "Sensors",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.fibaro_system_fgsd002_smoke_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.motion_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.motion_sensor_2_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.tradfri_motion_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.water_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.dimmer_switch_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.tradfri_remote_control_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.tradfri_on_off_switch_battery_level"
+                                }
+                            ],
+                            "title": "Battery levels",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.fibaro_system_fgsd002_smoke_sensor_temperature"
+                                },
+                                {
+                                    "entity": "sensor.temperature_6"
+                                },
+                                {
+                                    "entity": "sensor.temperature"
+                                }
+                            ],
+                            "title": "Temperatures",
+                            "type": "entities"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.school_news"
+                                }
+                            ],
+                            "title": "School news",
+                            "show_header_toggle": false
+                        },
+                        {
+                            "type": "sensor",
+                            "entity": "sensor.waqi_pha10_prumyslova_prague_czech_republic",
+                            "graph": "line"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.siemens_ag"
+                                },
+                                {
+                                    "entity": "sensor.eur_czk"
+                                }
+                            ],
+                            "title": "Finance",
+                            "show_header_toggle": false
+                        },
+                        {
+                            "type": "sensor",
+                            "graph": "line",
+                            "entity": "sensor.co2"
+                        }
+                    ]
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "sensor.travel_time_to_work"
+                            ]
+                        },
+                        {
+                            "type": "iframe",
+                            "url": "https://embed.waze.com/iframe?zoom=11&lat=50.061767&lon=14.501610&ct=livemap",
+                            "aspect_ratio": "80%"
+                        },
+                        {
+                            "type": "entities",
+                            "title": "Bookmark links",
+                            "show_header_toggle": false,
+                            "entities": [
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "weblink",
+                                    "name": "Waze",
+                                    "url": "https://www.waze.com/en/livemap/directions?bifrost_routing=yes&ct=livemap&utm_campaign=iFrame_expand_the_map&utm_expid=.NMSW4Hk_Rg6AFGKx-rAj4A.2&utm_referrer=& to=place.EiRTaWVtZW5zb3ZhLCAxNTUgMDAgUHJhaGEgMTMsIEN6ZWNoaWEiLiosChQKEglJDvGpCL4LRxEC9OQ1mN2iLhIUChIJiTbUMAS- C0cR0LIVZg-vAAU&from=place.EjBVIEhvc3Rhdmlja8OpaG8gcG90b2thLCAxOTggMDAgUHJhaGEgMTQsIEN6ZWNoaWEiLiosChQKEglnKVvFr5ILRxHezCTZZSKDZRIUChIJvToq20vtC0cR4LIVZg-vAAU",
+                                    "icon": "mdi:car"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "weblink",
+                                    "name": "Home Assistant releases",
+                                    "url": "https://github.com/home-assistant/core/releases",
+                                    "icon": "mdi:home-assistant"
+                                },
+                                {
+                                    "type": "divider"
+                                },
+                                {
+                                    "type": "weblink",
+                                    "name": "Home Assistant issues",
+                                    "url": "https://github.com/home-assistant/core/issues",
+                                    "icon": "mdi:home-assistant"
+                                }
+                            ]
+                        },
+                        {
+                            "entity": "media_player.google_assistent",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.tv",
+                            "type": "media-control"
+                        }
+                    ],
+                    "path": "media",
+                    "title": "Media"
+                }
+            ]
+        }
+    }
+}

@@ -1,7 +1,3 @@
-person.tomas_juchelka:
-  entity_picture: /local/T.jpg
-person.deniska:
-  entity_picture: /local/D.jpg
 switch.ventilator:
   icon: mdi:fan
 switch.sonoff_ch1:

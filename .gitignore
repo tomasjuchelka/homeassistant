@@ -3,8 +3,9 @@ secrets.yaml
 *.xml
 *.db
 *.sqlite
-.storage/
-.vscode/
+.storage/hacs*
+.storage/core.restore_state
+.storage/mobile_app
 .sonoff.json
 tts/
 custom_components/hacs/
@@ -16,3 +17,6 @@ known_devices.yaml
 *__pycache*
 .gitsecret/keys/random_seed
 !*.secret
+.storage/core.config
+.storage/auth
+.storage/http

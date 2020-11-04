@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo chown -R pi:pi .
 git secret hide -m
 git add .
 git status
