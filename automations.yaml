@@ -247,11 +247,11 @@
   alias: 99_Notify Fire detection
   description: Executed in case of fire!
   trigger:
-  - device_id: eeee8fdbb2e548bfac7d1d9194a6d398
-    domain: binary_sensor
-    entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor
+  - type: turned_on
     platform: device
-    type: turned_on
+    device_id: d7c95ac9d0bdb86e35271925be26e0b5
+    entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor
+    domain: binary_sensor
   condition: []
   action:
   - data:
@@ -278,8 +278,8 @@
   condition: []
   action:
   - data:
-      brightness_pct: "{% if now().hour > 6 and now().hour < 23 %}\n  80\n{%- else %}\n  10\n{% endif\
-        \ %}\n"
+      brightness_pct: "{% if now().hour > 6 and now().hour < 23 %}\n  80\n{%- else\
+        \ %}\n  10\n{% endif %}\n"
     entity_id: light.wc_lamp
     service: light.turn_on
   mode: single
@@ -531,10 +531,10 @@
       data:
         priority: -1
         device: galaxys10
-        url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+        url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
       title: New Home Assistant Release
-      message: 'Home Assistant  {{ state_attr(''binary_sensor.updater'', ''newest_version'')
-        }}  is now available.'
+      message: Home Assistant  {{ state_attr('binary_sensor.updater', 'newest_version')
+        }}  is now available.
     service: notify.pusher
   - service: python_script.set_state
     data:
@@ -566,9 +566,9 @@
   - data:
       data:
         priority: 0
-        url: "{{ state_attr('binary_sensor.school_news', 'link') }}"
+        url: '{{ state_attr(''binary_sensor.school_news'', ''link'') }}'
       title: New article on school webpage
-      message: "{{ state_attr('binary_sensor.school_news', 'header') }}"
+      message: '{{ state_attr(''binary_sensor.school_news'', ''header'') }}'
     service: notify.pusher
   mode: single
 - id: '1602089750353'
@@ -689,7 +689,8 @@
         device: galaxys10
       title: Share price info
       message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'') |
-        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change percent'') | round(2) }}.'
+        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change
+        percent'') | round(2) }}.'
     service: notify.pusher
   mode: single
 - id: remote_control_dimmer
@@ -742,9 +743,9 @@
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
-            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ + 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
@@ -755,10 +756,10 @@
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct -\
-            \ 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n\
-            \  1\n{% endif %}\n"
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  1\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
   mode: single

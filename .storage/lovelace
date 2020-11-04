@@ -418,6 +418,11 @@
                             "show_header_toggle": false
                         },
                         {
+                            "type": "sensor",
+                            "entity": "sensor.waqi_pha10_prumyslova_prague_czech_republic",
+                            "graph": "line"
+                        },
+                        {
                             "type": "entities",
                             "entities": [
                                 {
@@ -432,8 +437,8 @@
                         },
                         {
                             "type": "sensor",
-                            "entity": "sensor.waqi_pha10_prumyslova_prague_czech_republic",
-                            "graph": "line"
+                            "graph": "line",
+                            "entity": "sensor.co2"
                         }
                     ]
                 },

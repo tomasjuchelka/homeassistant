@@ -131,27 +131,6 @@
             },
             {
                 "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "zwave",
-                        4
-                    ]
-                ],
-                "manufacturer": "FIBARO System",
-                "model": "FGSD002 Smoke Sensor",
-                "name": "FIBARO System FGSD002 Smoke Sensor",
-                "sw_version": null,
-                "entry_type": null,
-                "id": "eeee8fdbb2e548bfac7d1d9194a6d398",
-                "via_device_id": "a5c3953afe314a3e8eacbdb81679ef85",
-                "area_id": null,
-                "name_by_user": null
-            },
-            {
-                "config_entries": [
                     "0d8eeb78c15646e5b7132359956350ac"
                 ],
                 "connections": [
@@ -183,11 +162,11 @@
                 "connections": [
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ],
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ]
                 ],
                 "identifiers": [
@@ -636,6 +615,27 @@
                 "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        7
+                    ]
+                ],
+                "manufacturer": "FIBARO System",
+                "model": "FGSD002 Smoke Sensor",
+                "name": "FIBARO System FGSD002 Smoke Sensor",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "d7c95ac9d0bdb86e35271925be26e0b5",
+                "via_device_id": "a5c3953afe314a3e8eacbdb81679ef85",
+                "area_id": null,
+                "name_by_user": null
             }
         ],
         "deleted_devices": [
@@ -651,6 +651,32 @@
                     ]
                 ],
                 "id": "d8e9226350dc47f3bd0fdba8b9fed19d"
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        4
+                    ]
+                ],
+                "id": "eeee8fdbb2e548bfac7d1d9194a6d398"
+            },
+            {
+                "config_entries": [
+                    "c5955f9c6a5247608dfb91b2d0bde649"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "zwave",
+                        6
+                    ]
+                ],
+                "id": "25e2a0612a0686b4d4e83596a690325c"
             }
         ]
     }

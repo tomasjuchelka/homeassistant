@@ -19,3 +19,4 @@ known_devices.yaml
 !*.secret
 .storage/core.config
 .storage/auth
+.storage/http
