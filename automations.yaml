@@ -436,6 +436,20 @@
             \ %}\n  1\n{% endif %}\n"
         entity_id: light.corner_lamp
         service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 5002 }}'
+      sequence:
+      - data: {}
+        entity_id: light.pc_lamp
+        service: light.toggle
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 4002 }}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.toggle
   mode: single
 - id: remote_control_2
   alias: 4_Remote button controller

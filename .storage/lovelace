@@ -439,6 +439,21 @@
                             "type": "sensor",
                             "graph": "line",
                             "entity": "sensor.co2"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.tradfri_motion_sensor_last_changed"
+                                },
+                                {
+                                    "entity": "sensor.mi_motion_sensor_last_changed"
+                                },
+                                {
+                                    "entity": "sensor.hue_motion_sensor_last_changed"
+                                }
+                            ],
+                            "title": "Motion last triggered"
                         }
                     ]
                 },

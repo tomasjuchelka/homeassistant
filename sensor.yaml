@@ -111,3 +111,14 @@
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
+- platform: template
+  sensors:
+    tradfri_motion_sensor_last_changed:
+      friendly_name: Hall last motion
+      value_template: "{{ states.binary_sensor.tradfri_motion_sensor.last_changed.strftime('%H:%M:%S') }}"
+    mi_motion_sensor_last_changed:
+      friendly_name: WC last motion
+      value_template: "{{ states.binary_sensor.motion_sensor.last_changed.strftime('%H:%M:%S') }}"
+    hue_motion_sensor_last_changed:
+      friendly_name: Bedroom last motion
+      value_template: "{{ states.binary_sensor.presence_5.last_changed.strftime('%H:%M:%S') }}"
