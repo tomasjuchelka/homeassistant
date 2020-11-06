@@ -115,10 +115,10 @@
   sensors:
     tradfri_motion_sensor_last_changed:
       friendly_name: Hall last motion
-      value_template: "{{ states.binary_sensor.tradfri_motion_sensor.last_changed.strftime('%H:%M:%S') }}"
+      value_template: "{{ as_timestamp(states.binary_sensor.tradfri_motion_sensor.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
     mi_motion_sensor_last_changed:
       friendly_name: WC last motion
-      value_template: "{{ states.binary_sensor.motion_sensor.last_changed.strftime('%H:%M:%S') }}"
+      value_template: "{{ as_timestamp(states.binary_sensor.motion_sensor.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
     hue_motion_sensor_last_changed:
       friendly_name: Bedroom last motion
-      value_template: "{{ states.binary_sensor.presence_5.last_changed.strftime('%H:%M:%S') }}"
+      value_template: "{{ as_timestamp(states.binary_sensor.presence_5.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
