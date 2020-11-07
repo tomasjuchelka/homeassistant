@@ -122,3 +122,7 @@
     hue_motion_sensor_last_changed:
       friendly_name: Bedroom last motion
       value_template: "{{ as_timestamp(states.binary_sensor.presence_5.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
+    bathroom_temperature:
+      friendly_name: Bathroom Temperature
+      value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
+      unit_of_measurement: "°C"

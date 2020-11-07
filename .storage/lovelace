@@ -402,6 +402,9 @@
                                 },
                                 {
                                     "entity": "sensor.temperature"
+                                },
+                                {
+                                    "entity": "sensor.bathroom_temperature"
                                 }
                             ],
                             "title": "Temperatures",

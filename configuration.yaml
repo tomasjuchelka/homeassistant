@@ -140,6 +140,21 @@ recorder:
       - sensor.vacuum*
       - sensor.sm_*
 
+influxdb:
+  host: 192.168.11.100
+  port: 8086
+  include:
+    entities:
+       - sensor.co2
+       - sensor.temperature
+       - sensor.humidity
+       - sensor.siemens_ag
+       - sensor.eur_czk
+       - sensor.waqi_pha10_prumyslova_prague_czech_republic
+       - sensor.temperature_6
+       - sensor.fibaro_system_fgsd002_smoke_sensor_temperature
+       - sensor.bathroom_temperature
+
 binary_sensor:
   - platform: school
     name: School news
