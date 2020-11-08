@@ -119,6 +119,19 @@
                             ],
                             "title": "WC",
                             "type": "entities"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.current_version_homeassistant",
+                                    "name": "HA current version"
+                                },
+                                {
+                                    "entity": "sensor.latest_version_homeassistant",
+                                    "name": "HA available version"
+                                }
+                            ]
                         }
                     ]
                 },

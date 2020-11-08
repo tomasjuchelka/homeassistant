@@ -111,6 +111,7 @@
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
+# Motion sensors
 - platform: template
   sensors:
     tradfri_motion_sensor_last_changed:
@@ -126,3 +127,10 @@
       friendly_name: Bathroom Temperature
       value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
       unit_of_measurement: "°C"
+# Home Assistant
+- platform: version
+  name: latest_version_homeassistant
+  source: docker
+  beta: true
+- platform: version
+  name: current_version_homeassistant

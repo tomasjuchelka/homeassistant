@@ -536,10 +536,10 @@
   description: Notify about new HA releases
   trigger:
   - platform: state
-    entity_id: binary_sensor.updater
-    from: 'off'
-    to: 'on'
-  condition: []
+    entity_id: sensor.latest_version_homeassistant
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.latest_version_homeassistant'') > states(''sensor.current_version_homeassistant'') }}'
   action:
   - data:
       data:
@@ -547,13 +547,9 @@
         device: galaxys10
         url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
       title: New Home Assistant Release
-      message: Home Assistant  {{ state_attr('binary_sensor.updater', 'newest_version')
-        }}  is now available.
+      message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
+        now available.
     service: notify.pusher
-  - service: python_script.set_state
-    data:
-      entity_id: binary_sensor.updater
-      state: 'off'
   mode: single
 - id: '1601480894174'
   alias: 98_System Refresh sensors
