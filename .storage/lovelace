@@ -356,7 +356,7 @@
                                     "entity": "binary_sensor.water_sensor"
                                 },
                                 {
-                                    "entity": "binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor"
+                                    "entity": "binary_sensor.fgsd002_smoke_sensor_smoke_alarm_smoke_detected"
                                 }
                             ],
                             "title": "Sensors",
@@ -365,7 +365,7 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.fibaro_system_fgsd002_smoke_sensor_battery_level"
+                                    "entity": "sensor.fgsd002_smoke_sensor_battery_level"
                                 },
                                 {
                                     "entity": "sensor.motion_sensor_battery_level"
@@ -395,7 +395,7 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.fibaro_system_fgsd002_smoke_sensor_temperature"
+                                    "entity": "sensor.fgsd002_smoke_sensor_air_temperature"
                                 },
                                 {
                                     "entity": "sensor.temperature_6"

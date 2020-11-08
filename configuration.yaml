@@ -24,9 +24,6 @@ homeassistant:
           - f1a0d51bf81a474b846ab33537af3496
           - e6ead2ebf33f45508df3c592e06292d7
 
-zwave:
-  usb_path: /dev/serial/by-id/usb-0658_0200-if00
-
 tts:
   - platform: google_translate
 
@@ -152,7 +149,7 @@ influxdb:
        - sensor.eur_czk
        - sensor.waqi_pha10_prumyslova_prague_czech_republic
        - sensor.temperature_6
-       - sensor.fibaro_system_fgsd002_smoke_sensor_temperature
+       - sensor.fgsd002_smoke_sensor_air_temperature
        - sensor.bathroom_temperature
 
 binary_sensor:

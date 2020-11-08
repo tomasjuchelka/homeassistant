@@ -249,8 +249,8 @@
   trigger:
   - type: turned_on
     platform: device
-    device_id: d7c95ac9d0bdb86e35271925be26e0b5
-    entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor
+    device_id: 9c7f4915dd6d1526f28aae5defea84a0
+    entity_id: binary_sensor.fgsd002_smoke_sensor_sensor
     domain: binary_sensor
   condition: []
   action:

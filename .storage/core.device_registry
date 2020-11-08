@@ -101,30 +101,9 @@
                 "manufacturer": "hacs.xyz",
                 "model": "",
                 "name": "HACS",
-                "sw_version": "1.6.1",
+                "sw_version": "1.6.2",
                 "entry_type": "service",
                 "id": "d236a1600f6f407c9678f6ae873814b8",
-                "via_device_id": null,
-                "area_id": null,
-                "name_by_user": null
-            },
-            {
-                "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "zwave",
-                        1
-                    ]
-                ],
-                "manufacturer": "AEON Labs",
-                "model": "ZW090 Z-Stick Gen5 EU",
-                "name": "AEON Labs ZW090 Z-Stick Gen5 EU",
-                "sw_version": null,
-                "entry_type": null,
-                "id": "a5c3953afe314a3e8eacbdb81679ef85",
                 "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null
@@ -618,66 +597,89 @@
             },
             {
                 "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "dc:a6:32:d1:ff:75"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": null,
+                "model": null,
+                "name": null,
+                "sw_version": null,
+                "entry_type": null,
+                "id": "4b8fcb15d82e36f736544b6a47993c8b",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
                 ],
                 "connections": [],
                 "identifiers": [
                     [
-                        "zwave",
-                        7
+                        "deconz",
+                        "00212E05D777-/groups/1"
+                    ]
+                ],
+                "manufacturer": "Dresden Elektronik",
+                "model": "deCONZ group",
+                "name": "All",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "bb3f155dc9ad087ffc041358d53553a4",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "9616ef5e3f84bcebbb0a925ffb79793c"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "ozw",
+                        "1.1.1"
+                    ]
+                ],
+                "manufacturer": "AEON Labs",
+                "model": "ZW090 Z-Stick Gen5 EU",
+                "name": "Z-Stick Gen5",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "0f9fc7fad40763fe6b9f2528861e0870",
+                "via_device_id": null,
+                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "9616ef5e3f84bcebbb0a925ffb79793c"
+                ],
+                "connections": [],
+                "identifiers": [
+                    [
+                        "ozw",
+                        "1.7.1"
                     ]
                 ],
                 "manufacturer": "FIBARO System",
                 "model": "FGSD002 Smoke Sensor",
-                "name": "FIBARO System FGSD002 Smoke Sensor",
-                "sw_version": null,
+                "name": "FGSD002 Smoke Sensor",
+                "sw_version": "3.03",
                 "entry_type": null,
-                "id": "d7c95ac9d0bdb86e35271925be26e0b5",
-                "via_device_id": "a5c3953afe314a3e8eacbdb81679ef85",
+                "id": "9c7f4915dd6d1526f28aae5defea84a0",
+                "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null
             }
         ],
-        "deleted_devices": [
-            {
-                "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "zwave",
-                        5
-                    ]
-                ],
-                "id": "d8e9226350dc47f3bd0fdba8b9fed19d"
-            },
-            {
-                "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "zwave",
-                        4
-                    ]
-                ],
-                "id": "eeee8fdbb2e548bfac7d1d9194a6d398"
-            },
-            {
-                "config_entries": [
-                    "c5955f9c6a5247608dfb91b2d0bde649"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "zwave",
-                        6
-                    ]
-                ],
-                "id": "25e2a0612a0686b4d4e83596a690325c"
-            }
-        ]
+        "deleted_devices": []
     }
 }
