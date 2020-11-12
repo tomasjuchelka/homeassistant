@@ -587,7 +587,7 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
-    above: '50'
+    above: '60'
   - platform: numeric_state
     entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
     above: '100'
@@ -606,7 +606,7 @@
     - conditions:
       - condition: template
         value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
-          | int > 50 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 60 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
           | int <= 100 }}'
       sequence:
       - data:
