@@ -157,7 +157,7 @@
                 "manufacturer": "Dresden Elektronik",
                 "model": "deCONZ",
                 "name": "Phoscon-GW",
-                "sw_version": "2.5.86",
+                "sw_version": "2.5.88",
                 "entry_type": null,
                 "id": "267bf9cf06c1403bacde750d61361f27",
                 "via_device_id": null,
@@ -671,7 +671,7 @@
                 ],
                 "manufacturer": "FIBARO System",
                 "model": "FGSD002 Smoke Sensor",
-                "name": "FGSD002 Smoke Sensor",
+                "name": "FIBARO Smoke Sensor",
                 "sw_version": "3.03",
                 "entry_type": null,
                 "id": "9c7f4915dd6d1526f28aae5defea84a0",
@@ -696,6 +696,27 @@
                 "sw_version": null,
                 "entry_type": null,
                 "id": "06fcdab721895927e6f5330e470293b3",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "02:42:ac:11:00:02"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": null,
+                "model": null,
+                "name": null,
+                "sw_version": null,
+                "entry_type": null,
+                "id": "dba0671cbf917432dab59d7002902384",
                 "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null

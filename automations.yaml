@@ -164,7 +164,7 @@
   alias: 2_Vacuum Daily clean up
   description: Run regular clean up based on a defined schedule
   trigger:
-  - minutes: '1'
+  - minutes: /15
     platform: time_pattern
   condition:
   - after: 09:00:00
@@ -539,7 +539,8 @@
     entity_id: sensor.latest_version_homeassistant
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.latest_version_homeassistant'') > states(''sensor.current_version_homeassistant'') }}'
+    value_template: '{{ states(''sensor.latest_version_homeassistant'') > states(''sensor.current_version_homeassistant'')
+      }}'
   action:
   - data:
       data:

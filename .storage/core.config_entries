@@ -106,7 +106,7 @@
                 "title": "00212E05D777",
                 "data": {
                     "api_key": "298221209D",
-                    "host": "172.17.0.7",
+                    "host": "192.168.11.100",
                     "port": 80
                 },
                 "options": {
@@ -146,7 +146,7 @@
                 "data": {
                     "app_id": "io.homeassistant.companion.android",
                     "app_name": "Home Assistant",
-                    "app_version": "3.0.0-full (504)",
+                    "app_version": "3.0.1-full (506)",
                     "device_name": "SM-G973F",
                     "manufacturer": "samsung",
                     "model": "SM-G973F",
@@ -177,7 +177,7 @@
                 "data": {
                     "app_id": "io.homeassistant.companion.android",
                     "app_name": "Home Assistant",
-                    "app_version": "3.0.0-full (504)",
+                    "app_version": "3.0.2-full (521)",
                     "device_name": "SM-A750FN",
                     "manufacturer": "samsung",
                     "model": "SM-A750FN",

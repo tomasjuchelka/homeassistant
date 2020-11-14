@@ -1394,7 +1394,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Basic",
+                "original_name": "FIBARO Smoke Sensor: Basic",
                 "original_icon": null
             },
             {
@@ -1410,7 +1410,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Basic Target",
+                "original_name": "FIBARO Smoke Sensor: Basic Target",
                 "original_icon": null
             },
             {
@@ -1426,7 +1426,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Basic Duration",
+                "original_name": "FIBARO Smoke Sensor: Basic Duration",
                 "original_icon": null
             },
             {
@@ -1442,7 +1442,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Sensor",
+                "original_name": "FIBARO Smoke Sensor: Sensor",
                 "original_icon": null
             },
             {
@@ -1458,7 +1458,7 @@
                 "supported_features": 0,
                 "device_class": "battery",
                 "unit_of_measurement": "%",
-                "original_name": "FGSD002 Smoke Sensor: Battery Level",
+                "original_name": "FIBARO Smoke Sensor: Battery Level",
                 "original_icon": null
             },
             {
@@ -1474,7 +1474,7 @@
                 "supported_features": 0,
                 "device_class": "temperature",
                 "unit_of_measurement": "\u00b0C",
-                "original_name": "FGSD002 Smoke Sensor: Air Temperature",
+                "original_name": "FIBARO Smoke Sensor: Air Temperature",
                 "original_icon": null
             },
             {
@@ -1490,7 +1490,7 @@
                 "supported_features": 0,
                 "device_class": "temperature",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Air Temperature Units",
+                "original_name": "FIBARO Smoke Sensor: Air Temperature Units",
                 "original_icon": null
             },
             {
@@ -1506,7 +1506,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Previous Event Cleared",
+                "original_name": "FIBARO Smoke Sensor: Previous Event Cleared",
                 "original_icon": null
             },
             {
@@ -1522,7 +1522,7 @@
                 "supported_features": 0,
                 "device_class": "smoke",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Smoke Alarm: Smoke Detected",
+                "original_name": "FIBARO Smoke Sensor: Smoke Alarm: Smoke Detected",
                 "original_icon": null
             },
             {
@@ -1538,7 +1538,7 @@
                 "supported_features": 0,
                 "device_class": "smoke",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Smoke Alarm: Smoke Test",
+                "original_name": "FIBARO Smoke Sensor: Smoke Alarm: Smoke Test",
                 "original_icon": null
             },
             {
@@ -1554,7 +1554,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Smoke Alarm",
+                "original_name": "FIBARO Smoke Sensor: Smoke Alarm",
                 "original_icon": null
             },
             {
@@ -1570,7 +1570,7 @@
                 "supported_features": 0,
                 "device_class": "heat",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Heat: OverHeat",
+                "original_name": "FIBARO Smoke Sensor: Heat: OverHeat",
                 "original_icon": null
             },
             {
@@ -1586,7 +1586,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Heat",
+                "original_name": "FIBARO Smoke Sensor: Heat",
                 "original_icon": null
             },
             {
@@ -1602,7 +1602,7 @@
                 "supported_features": 0,
                 "device_class": "safety",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Home Security: Tampering -  Cover Removed",
+                "original_name": "FIBARO Smoke Sensor: Home Security: Tampering -  Cover Removed",
                 "original_icon": null
             },
             {
@@ -1618,7 +1618,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Home Security",
+                "original_name": "FIBARO Smoke Sensor: Home Security",
                 "original_icon": null
             },
             {
@@ -1634,7 +1634,7 @@
                 "supported_features": 0,
                 "device_class": "power",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Power Management: Replace Battery Soon",
+                "original_name": "FIBARO Smoke Sensor: Power Management: Replace Battery Soon",
                 "original_icon": null
             },
             {
@@ -1650,7 +1650,7 @@
                 "supported_features": 0,
                 "device_class": "power",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: Power Management",
+                "original_name": "FIBARO Smoke Sensor: Power Management",
                 "original_icon": null
             },
             {
@@ -1666,7 +1666,7 @@
                 "supported_features": 0,
                 "device_class": "problem",
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: System: Hardware Failure",
+                "original_name": "FIBARO Smoke Sensor: System: Hardware Failure",
                 "original_icon": null
             },
             {
@@ -1682,7 +1682,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "FGSD002 Smoke Sensor: System",
+                "original_name": "FIBARO Smoke Sensor: System",
                 "original_icon": null
             },
             {
@@ -1698,7 +1698,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: General",
+                "original_name": "FIBARO Smoke Sensor: General",
                 "original_icon": null
             },
             {
@@ -1714,7 +1714,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Smoke",
+                "original_name": "FIBARO Smoke Sensor: Smoke",
                 "original_icon": null
             },
             {
@@ -1730,7 +1730,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "",
-                "original_name": "FGSD002 Smoke Sensor: Heat",
+                "original_name": "FIBARO Smoke Sensor: Heat",
                 "original_icon": null
             }
         ]
