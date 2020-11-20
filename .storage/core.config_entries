@@ -146,7 +146,7 @@
                 "data": {
                     "app_id": "io.homeassistant.companion.android",
                     "app_name": "Home Assistant",
-                    "app_version": "3.0.1-full (506)",
+                    "app_version": "3.0.2-full (521)",
                     "device_name": "SM-G973F",
                     "manufacturer": "samsung",
                     "model": "SM-G973F",
@@ -213,6 +213,23 @@
                 "source": "user",
                 "connection_class": "local_push",
                 "unique_id": null
+            },
+            {
+                "entry_id": "01a240d22cc8bb84e012241deb9fb53c",
+                "version": 1,
+                "domain": "hue",
+                "title": "Philips hue",
+                "data": {
+                    "host": "192.168.11.208",
+                    "username": "-9RfglqgDnZItV9DoP1CfxzKu4-Mi8p0g5pzXV1K"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "homekit",
+                "connection_class": "local_poll",
+                "unique_id": "ecb5fa2a35a7"
             }
         ]
     }
