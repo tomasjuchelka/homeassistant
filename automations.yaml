@@ -774,3 +774,20 @@
         entity_id: light.hall_lamp
         service: light.turn_on
   mode: single
+- id: '1605992501908'
+  alias: 5_Print job finished
+  description: Notify about end of 3D print
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.ender3_v2_printing
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 1
+      message: '3D print job is finished.'
+      title: 3D Printer
+    service: notify.pusher
+  mode: single

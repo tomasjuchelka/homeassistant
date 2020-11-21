@@ -3,6 +3,7 @@ secrets.yaml
 *.xml
 *.db
 *.sqlite
+*.gz
 .storage/hacs*
 .storage/core.restore_state
 .storage/mobile_app
@@ -10,7 +11,6 @@ secrets.yaml
 tts/
 custom_components/hacs/
 custom_components/sonoff/
-www/community
 core
 OZW_Log.txt
 known_devices.yaml

@@ -141,11 +141,11 @@
                 "connections": [
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ],
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ]
                 ],
                 "identifiers": [
@@ -232,10 +232,10 @@
                         "00:21:2e:ff:ff:05:d7:77"
                     ]
                 ],
-                "manufacturer": "Philips",
-                "model": "PHDL00",
-                "name": "Daylight",
-                "sw_version": "1.0",
+                "manufacturer": "dresden elektronik",
+                "model": "ConBee II",
+                "name": "Configuration tool 1",
+                "sw_version": "0x26660700",
                 "entry_type": null,
                 "id": "e22bd960ed6e4bd592ae34fe4bf25c59",
                 "via_device_id": "267bf9cf06c1403bacde750d61361f27",
@@ -787,6 +787,27 @@
                 "id": "4a037e48dcc1ba9cfc4b51164b9123a7",
                 "via_device_id": "5ea39e5c2a3ff3856ea9506034e2badb",
                 "area_id": "7bdb858fc72044aa907807baeebedaa3",
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "02:42:4d:92:2a:92"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": null,
+                "model": null,
+                "name": null,
+                "sw_version": null,
+                "entry_type": null,
+                "id": "f4d38a9406f409cf8be8edaf5b69517c",
+                "via_device_id": null,
+                "area_id": null,
                 "name_by_user": null
             }
         ],

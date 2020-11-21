@@ -18,3 +18,5 @@ sensor.fgsd002_smoke_sensor_battery_level:
   friendly_name: Smoke Sensor Battery Level
 sensor.fgsd002_smoke_sensor_air_temperature:
   friendly_name: Smoke Sensor Temperature
+sensor.ender3_v2_actual_tool0_temp:
+  friendly_name: Ender3 V2 actual nozzle temp

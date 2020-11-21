@@ -12,6 +12,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensor.yaml
+binary_sensor: !include binary_sensor.yaml
 
 homeassistant:
   customize: !include customize.yaml
@@ -152,7 +153,9 @@ influxdb:
        - sensor.fgsd002_smoke_sensor_air_temperature
        - sensor.bathroom_temperature
 
-binary_sensor:
-  - platform: school
-    name: School news
-    url: "https://www.zschvaleticka.cz"
+octoprint:
+  - host: 192.168.11.220
+    api_key: !secret octoprint_api_key
+    name: Ender3 V2
+    number_of_tools: 1
+    bed: True

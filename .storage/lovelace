@@ -474,6 +474,64 @@
                     ]
                 },
                 {
+                    "title": "3D_Print",
+                    "path": "3d-print",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.ender3_v2_printing"
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_current_state"
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_job_percentage",
+                                    "name": "Status",
+                                    "state_header": "Status",
+                                    "secondary_info": "last-changed",
+                                    "icon": "mdi:bullseye-arrow",
+                                    "type": "custom:multiple-entity-row",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.octoprint_job_percent",
+                                            "name": "Fortschritt"
+                                        },
+                                        {
+                                            "entity": "sensor.octoprint_job_percent",
+                                            "name": "Strom"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_time_elapsed"
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_time_remaining"
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_actual_tool0_temp"
+                                },
+                                {
+                                    "entity": "sensor.ender3_v2_actual_bed_temp"
+                                }
+                            ],
+                            "title": "3D Printer"
+                        },
+                        {
+                            "type": "button",
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "entity": "switch.sonoff_1000cc5d43",
+                            "icon": "mdi:power-plug",
+                            "icon_height": "28px"
+                        }
+                    ]
+                },
+                {
                     "badges": [],
                     "cards": [
                         {
