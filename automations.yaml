@@ -341,11 +341,11 @@
   alias: 1_Lights 2_ON Door lamp
   description: Automatic light in door area
   trigger:
-  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
-    domain: binary_sensor
-    entity_id: binary_sensor.tradfri_motion_sensor
+  - type: motion
     platform: device
-    type: motion
+    device_id: e626c93c26c6490c9d2a9e71de6bbc80
+    entity_id: binary_sensor.presence_5
+    domain: binary_sensor
   condition: []
   action:
   - data: {}
@@ -356,15 +356,15 @@
   alias: 1_Lights 2_OFF Door lamp
   description: Automatic light in door area
   trigger:
-  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+  - type: no_motion
+    platform: device
+    device_id: e626c93c26c6490c9d2a9e71de6bbc80
+    entity_id: binary_sensor.presence_5
     domain: binary_sensor
-    entity_id: binary_sensor.tradfri_motion_sensor
     for:
       hours: 0
-      minutes: 5
+      minutes: 3
       seconds: 0
-    platform: device
-    type: no_motion
   condition: []
   action:
   - data: {}
@@ -787,7 +787,7 @@
   - data:
       data:
         priority: 1
-      message: '3D print job is finished.'
+      message: 3D print job is finished.
       title: 3D Printer
     service: notify.pusher
   mode: single
