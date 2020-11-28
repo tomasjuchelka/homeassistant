@@ -164,7 +164,7 @@
   alias: 2_Vacuum Daily clean up
   description: Run regular clean up based on a defined schedule
   trigger:
-  - minutes: '1'
+  - minutes: /15
     platform: time_pattern
   condition:
   - after: 09:00:00
@@ -238,8 +238,8 @@
   action:
   - data:
       data:
-        device: galaxys10
         priority: -1
+      target: galaxys10
       message: Home Assistant has started.
     service: notify.pusher
   mode: single
@@ -247,11 +247,11 @@
   alias: 99_Notify Fire detection
   description: Executed in case of fire!
   trigger:
-  - device_id: eeee8fdbb2e548bfac7d1d9194a6d398
-    domain: binary_sensor
-    entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor
+  - type: turned_on
     platform: device
-    type: turned_on
+    device_id: 9c7f4915dd6d1526f28aae5defea84a0
+    entity_id: binary_sensor.fgsd002_smoke_sensor_sensor
+    domain: binary_sensor
   condition: []
   action:
   - data:
@@ -278,8 +278,8 @@
   condition: []
   action:
   - data:
-      brightness_pct: "{% if now().hour > 5 %}\n  80\n{%- else %}\n  10\n{% endif\
-        \ %}\n"
+      brightness_pct: "{% if now().hour > 6 and now().hour < 23 %}\n  80\n{%- else\
+        \ %}\n  10\n{% endif %}\n"
     entity_id: light.wc_lamp
     service: light.turn_on
   mode: single
@@ -341,11 +341,11 @@
   alias: 1_Lights 2_ON Door lamp
   description: Automatic light in door area
   trigger:
-  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
-    domain: binary_sensor
-    entity_id: binary_sensor.tradfri_motion_sensor
+  - type: motion
     platform: device
-    type: motion
+    device_id: e626c93c26c6490c9d2a9e71de6bbc80
+    entity_id: binary_sensor.presence_5
+    domain: binary_sensor
   condition: []
   action:
   - data: {}
@@ -356,15 +356,15 @@
   alias: 1_Lights 2_OFF Door lamp
   description: Automatic light in door area
   trigger:
-  - device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+  - type: no_motion
+    platform: device
+    device_id: e626c93c26c6490c9d2a9e71de6bbc80
+    entity_id: binary_sensor.presence_5
     domain: binary_sensor
-    entity_id: binary_sensor.tradfri_motion_sensor
     for:
       hours: 0
-      minutes: 5
+      minutes: 3
       seconds: 0
-    platform: device
-    type: no_motion
   condition: []
   action:
   - data: {}
@@ -436,6 +436,20 @@
             \ %}\n  1\n{% endif %}\n"
         entity_id: light.corner_lamp
         service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 5002 }}'
+      sequence:
+      - data: {}
+        entity_id: light.pc_lamp
+        service: light.toggle
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 4002 }}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.toggle
   mode: single
 - id: remote_control_2
   alias: 4_Remote button controller
@@ -522,24 +536,21 @@
   description: Notify about new HA releases
   trigger:
   - platform: state
-    entity_id: binary_sensor.updater
-    from: 'off'
-    to: 'on'
-  condition: []
+    entity_id: sensor.latest_version_homeassistant
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.latest_version_homeassistant'') > states(''sensor.current_version_homeassistant'')
+      }}'
   action:
   - data:
       data:
         priority: -1
-        device: galaxys10
-        url: "{{ state_attr('binary_sensor.updater', 'release_notes') }}"
+        url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
+      target: galaxys10
       title: New Home Assistant Release
-      message: 'Home Assistant  {{ state_attr(''binary_sensor.updater'', ''newest_version'')
-        }}  is now available.'
+      message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
+        now available.
     service: notify.pusher
-  - service: python_script.set_state
-    data:
-      entity_id: binary_sensor.updater
-      state: 'off'
   mode: single
 - id: '1601480894174'
   alias: 98_System Refresh sensors
@@ -566,9 +577,9 @@
   - data:
       data:
         priority: 0
-        url: "{{ state_attr('binary_sensor.school_news', 'link') }}"
+        url: '{{ state_attr(''binary_sensor.school_news'', ''link'') }}'
       title: New article on school webpage
-      message: "{{ state_attr('binary_sensor.school_news', 'header') }}"
+      message: '{{ state_attr(''binary_sensor.school_news'', ''header'') }}'
     service: notify.pusher
   mode: single
 - id: '1602089750353'
@@ -577,7 +588,7 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
-    above: '50'
+    above: '60'
   - platform: numeric_state
     entity_id: sensor.waqi_pha10_prumyslova_prague_czech_republic
     above: '100'
@@ -596,7 +607,7 @@
     - conditions:
       - condition: template
         value_template: '{{ states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
-          | int > 50 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
+          | int > 60 and states(''sensor.waqi_pha10_prumyslova_prague_czech_republic'')
           | int <= 100 }}'
       sequence:
       - data:
@@ -686,10 +697,11 @@
   - data:
       data:
         priority: 0
-        device: galaxys10
+      target: galaxys10
       title: Share price info
       message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'') |
-        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change percent'') | round(2) }}.'
+        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change
+        percent'') | round(2) }}.'
     service: notify.pusher
   mode: single
 - id: remote_control_dimmer
@@ -742,9 +754,9 @@
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
-            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ + 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
@@ -755,10 +767,28 @@
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct -\
-            \ 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n\
-            \  1\n{% endif %}\n"
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  1\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
+  mode: single
+- id: '1605992501908'
+  alias: 5_Print job finished
+  description: Notify about end of 3D print
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.ender3_v2_printing
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 1
+      target: galaxys10
+      message: '3D print job is finished after {{ states(''sensor.octoprint_time_elapsed'') }}.'
+      title: 3D Printer
+    service: notify.pusher
   mode: single
