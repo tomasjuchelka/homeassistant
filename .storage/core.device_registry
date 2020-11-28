@@ -232,10 +232,10 @@
                         "00:21:2e:ff:ff:05:d7:77"
                     ]
                 ],
-                "manufacturer": "dresden elektronik",
-                "model": "ConBee II",
-                "name": "Configuration tool 1",
-                "sw_version": "0x26660700",
+                "manufacturer": "Philips",
+                "model": "PHDL00",
+                "name": "Daylight",
+                "sw_version": "1.0",
                 "entry_type": null,
                 "id": "e22bd960ed6e4bd592ae34fe4bf25c59",
                 "via_device_id": "267bf9cf06c1403bacde750d61361f27",

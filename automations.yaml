@@ -238,8 +238,8 @@
   action:
   - data:
       data:
-        device: galaxys10
         priority: -1
+      target: galaxys10
       message: Home Assistant has started.
     service: notify.pusher
   mode: single
@@ -545,8 +545,8 @@
   - data:
       data:
         priority: -1
-        device: galaxys10
         url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
+      target: galaxys10
       title: New Home Assistant Release
       message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
         now available.
@@ -697,7 +697,7 @@
   - data:
       data:
         priority: 0
-        device: galaxys10
+      target: galaxys10
       title: Share price info
       message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'') |
         round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change
@@ -787,7 +787,8 @@
   - data:
       data:
         priority: 1
-      message: 3D print job is finished.
+      target: galaxys10
+      message: '3D print job is finished after {{ states(''sensor.octoprint_time_elapsed'') }}.'
       title: 3D Printer
     service: notify.pusher
   mode: single

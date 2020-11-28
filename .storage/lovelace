@@ -482,40 +482,52 @@
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "binary_sensor.ender3_v2_printing"
-                                },
-                                {
-                                    "entity": "sensor.ender3_v2_current_state"
-                                },
-                                {
                                     "entity": "sensor.ender3_v2_job_percentage",
                                     "name": "Status",
-                                    "state_header": "Status",
+                                    "state_header": "Progress",
                                     "secondary_info": "last-changed",
                                     "icon": "mdi:bullseye-arrow",
                                     "type": "custom:multiple-entity-row",
                                     "entities": [
                                         {
-                                            "entity": "sensor.octoprint_job_percent",
-                                            "name": "Fortschritt"
+                                            "entity": "binary_sensor.ender3_v2_printing",
+                                            "name": "Power"
                                         },
                                         {
-                                            "entity": "sensor.octoprint_job_percent",
-                                            "name": "Strom"
+                                            "entity": "sensor.ender3_v2_current_state",
+                                            "name": "State"
                                         }
                                     ]
                                 },
                                 {
-                                    "entity": "sensor.ender3_v2_time_elapsed"
+                                    "entity": "sensor.ender3_v2_actual_tool0_temp",
+                                    "name": "Temperature Nozzle",
+                                    "state_header": "Actual",
+                                    "type": "custom:multiple-entity-row",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ender3_v2_target_tool0_temp",
+                                            "name": "Target"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "entity": "sensor.ender3_v2_time_remaining"
+                                    "entity": "sensor.ender3_v2_actual_bed_temp",
+                                    "name": "Temperature Bed",
+                                    "state_header": "Actual",
+                                    "type": "custom:multiple-entity-row",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ender3_v2_target_bed_temp",
+                                            "name": "Target"
+                                        }
+                                    ]
                                 },
                                 {
-                                    "entity": "sensor.ender3_v2_actual_tool0_temp"
+                                    "entity": "sensor.octoprint_time_elapsed"
                                 },
                                 {
-                                    "entity": "sensor.ender3_v2_actual_bed_temp"
+                                    "entity": "sensor.octoprint_time_remaining"
                                 }
                             ],
                             "title": "3D Printer"
