@@ -3,7 +3,7 @@
   description: Turn on when above given treshold, but not withing quiet hours.
   trigger:
   - above: '1000'
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2_value
     platform: numeric_state
   condition:
   - condition: state
@@ -30,7 +30,7 @@
   description: Turn off when under given treshold and at certain times
   trigger:
   - below: '800'
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2_value
     platform: numeric_state
   - at: 06:00:00
     platform: time
@@ -151,7 +151,7 @@
     state: 'off'
   - above: '1000'
     condition: numeric_state
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2_value
   - condition: state
     entity_id: input_boolean.enable_automatic_ventilation
     state: 'on'
@@ -788,7 +788,8 @@
       data:
         priority: 1
       target: galaxys10
-      message: '3D print job is finished after {{ states(''sensor.octoprint_time_elapsed'') }}.'
+      message: 3D print job is finished after {{ states('sensor.octoprint_time_elapsed')
+        }}.
       title: 3D Printer
     service: notify.pusher
   mode: single

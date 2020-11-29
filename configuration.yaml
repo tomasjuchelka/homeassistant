@@ -143,9 +143,7 @@ influxdb:
   port: 8086
   include:
     entities:
-       - sensor.co2
-       - sensor.temperature
-       - sensor.humidity
+       - sensor.mh_z19_co2_value
        - sensor.siemens_ag
        - sensor.eur_czk
        - sensor.waqi_pha10_prumyslova_prague_czech_republic

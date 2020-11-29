@@ -1818,7 +1818,7 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
@@ -1835,12 +1835,29 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
                 "original_name": "5_Print job finished",
                 "original_icon": null
+            },
+            {
+                "entity_id": "sensor.mh_z19_co2_value",
+                "config_entry_id": "7f2a7a81c243bff469c49a5097ee8916",
+                "device_id": "cabb98429f8034b8c61b10133275a844",
+                "area_id": null,
+                "unique_id": "air_sensor_v1sensormh-z19_co2_value",
+                "platform": "esphome",
+                "name": "CO2",
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": null,
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": "ppm",
+                "original_name": "MH-Z19 CO2 Value",
+                "original_icon": "mdi:molecule-co2"
             }
         ]
     }

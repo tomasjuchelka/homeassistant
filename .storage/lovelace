@@ -16,13 +16,7 @@
                             "entity": "person.deniska"
                         },
                         {
-                            "entity": "sensor.humidity"
-                        },
-                        {
-                            "entity": "sensor.co2"
-                        },
-                        {
-                            "entity": "sensor.temperature"
+                            "entity": "sensor.mh_z19_co2_value"
                         }
                     ],
                     "cards": [
@@ -347,13 +341,7 @@
                     "title": "Sensors",
                     "badges": [
                         {
-                            "entity": "sensor.humidity"
-                        },
-                        {
-                            "entity": "sensor.co2"
-                        },
-                        {
-                            "entity": "sensor.temperature"
+                            "entity": "sensor.mh_z19_co2_value"
                         },
                         {
                             "entity": "sun.sun"
@@ -414,9 +402,6 @@
                                     "entity": "sensor.temperature_6"
                                 },
                                 {
-                                    "entity": "sensor.temperature"
-                                },
-                                {
                                     "entity": "sensor.bathroom_temperature"
                                 }
                             ],
@@ -454,7 +439,7 @@
                         {
                             "type": "sensor",
                             "graph": "line",
-                            "entity": "sensor.co2"
+                            "entity": "sensor.mh_z19_co2_value"
                         },
                         {
                             "type": "entities",

@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "key": "esphome.7f2a7a81c243bff469c49a5097ee8916",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "air_sensor_v1",
+            "mac_address": "A4:CF:12:DE:69:3B",
+            "compilation_time": "Nov 29 2020, 08:14:10",
+            "model": "PLATFORMIO_D1_MINI",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.3"
+        },
+        "services": [],
+        "sensor": [
+            {
+                "object_id": "mh-z19_co2_value",
+                "key": 399863118,
+                "name": "MH-Z19 CO2 Value",
+                "unique_id": "air_sensor_v1sensormh-z19_co2_value",
+                "icon": "mdi:molecule-co2",
+                "unit_of_measurement": "ppm",
+                "accuracy_decimals": 0,
+                "force_update": false
+            }
+        ],
+        "text_sensor": []
+    }
+}

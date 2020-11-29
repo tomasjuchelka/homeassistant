@@ -230,6 +230,24 @@
                 "source": "homekit",
                 "connection_class": "local_poll",
                 "unique_id": "ecb5fa2a35a7"
+            },
+            {
+                "entry_id": "7f2a7a81c243bff469c49a5097ee8916",
+                "version": 1,
+                "domain": "esphome",
+                "title": "air_sensor_v1",
+                "data": {
+                    "host": "192.168.11.191",
+                    "port": 6053,
+                    "password": ""
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "zeroconf",
+                "connection_class": "local_push",
+                "unique_id": "air_sensor_v1"
             }
         ]
     }
