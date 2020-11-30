@@ -96,22 +96,6 @@
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
-# Motion sensors
-- platform: template
-  sensors:
-    tradfri_motion_sensor_last_changed:
-      friendly_name: Hall last motion
-      value_template: "{{ as_timestamp(states.binary_sensor.tradfri_motion_sensor.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
-    mi_motion_sensor_last_changed:
-      friendly_name: WC last motion
-      value_template: "{{ as_timestamp(states.binary_sensor.motion_sensor.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
-    hue_motion_sensor_last_changed:
-      friendly_name: Bedroom last motion
-      value_template: "{{ as_timestamp(states.binary_sensor.presence_5.last_changed) | timestamp_custom('%H:%M:%S',True) }}"
-    bathroom_temperature:
-      friendly_name: Bathroom Temperature
-      value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
-      unit_of_measurement: "°C"
 # Home Assistant
 - platform: version
   name: latest_version_homeassistant
@@ -128,3 +112,25 @@
     octoprint_time_remaining:
       friendly_name: 'Printing Time Remaining'
       value_template: "{{ states('sensor.ender3_v2_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+#Weather
+- platform: template
+  sensors:
+    temperature_out:
+      friendly_name: 'Temperature'
+      value_template: "{{ state_attr('weather.domov', 'temperature') }}"
+      unit_of_measurement: "°C"
+    humidity_out:
+      friendly_name: 'Humidity'
+      value_template: "{{ state_attr('weather.domov', 'humidity') }}"
+      unit_of_measurement: "%"
+    pressure_out:
+      friendly_name: 'Pressure'
+      value_template: "{{ state_attr('weather.domov', 'pressure') }}"
+      unit_of_measurement: "hPa"
+    wind_out:
+      friendly_name: 'Wind speed'
+      value_template: "{{ state_attr('weather.domov', 'wind_speed') }}"
+      unit_of_measurement: "km/h"
+    bathroom_temperature:
+      value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
+      unit_of_measurement: "°C"
