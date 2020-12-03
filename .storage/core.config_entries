@@ -248,6 +248,24 @@
                 "source": "zeroconf",
                 "connection_class": "local_push",
                 "unique_id": "air_sensor_v1"
+            },
+            {
+                "entry_id": "6ccdeeb419d98f0867f1209d28de6e46",
+                "version": 1,
+                "domain": "esphome",
+                "title": "air_sensor_v2",
+                "data": {
+                    "host": "192.168.11.190",
+                    "port": 6053,
+                    "password": ""
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "zeroconf",
+                "connection_class": "local_push",
+                "unique_id": "air_sensor_v2"
             }
         ]
     }

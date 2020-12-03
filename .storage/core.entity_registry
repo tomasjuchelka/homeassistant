@@ -1858,6 +1858,40 @@
                 "unit_of_measurement": "ppm",
                 "original_name": "MH-Z19 CO2 Value",
                 "original_icon": "mdi:molecule-co2"
+            },
+            {
+                "entity_id": "sensor.sht31_temperature",
+                "config_entry_id": "6ccdeeb419d98f0867f1209d28de6e46",
+                "device_id": "850fc44809f8f3cf9545952e5fc8a390",
+                "area_id": null,
+                "unique_id": "air_sensor_v2sensorsht31_temperature",
+                "platform": "esphome",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": null,
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": "\u00b0C",
+                "original_name": "SHT31 Temperature",
+                "original_icon": "mdi:thermometer"
+            },
+            {
+                "entity_id": "sensor.sht31_humidity",
+                "config_entry_id": "6ccdeeb419d98f0867f1209d28de6e46",
+                "device_id": "850fc44809f8f3cf9545952e5fc8a390",
+                "area_id": null,
+                "unique_id": "air_sensor_v2sensorsht31_humidity",
+                "platform": "esphome",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": null,
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": "%",
+                "original_name": "SHT31 Humidity",
+                "original_icon": "mdi:water-percent"
             }
         ]
     }

@@ -479,9 +479,15 @@
                                 },
                                 {
                                     "entity": "sensor.bathroom_temperature"
+                                },
+                                {
+                                    "entity": "sensor.sht31_temperature"
+                                },
+                                {
+                                    "entity": "sensor.sht31_humidity"
                                 }
                             ],
-                            "title": "Temperatures",
+                            "title": "Temperature and humidity",
                             "type": "entities"
                         },
                         {

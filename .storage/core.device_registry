@@ -830,6 +830,27 @@
                 "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "6ccdeeb419d98f0867f1209d28de6e46"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "a4:cf:12:dc:b9:42"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "espressif",
+                "model": "PLATFORMIO_D1_MINI",
+                "name": "air_sensor_v2",
+                "sw_version": "1.15.3 (Dec  3 2020, 19:54:41)",
+                "entry_type": null,
+                "id": "850fc44809f8f3cf9545952e5fc8a390",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
             }
         ],
         "deleted_devices": []
