@@ -14,9 +14,6 @@
                         },
                         {
                             "entity": "person.deniska"
-                        },
-                        {
-                            "entity": "sensor.mh_z19_co2_value"
                         }
                     ],
                     "cards": [
@@ -324,9 +321,6 @@
                     "title": "Sensors",
                     "badges": [
                         {
-                            "entity": "sensor.mh_z19_co2_value"
-                        },
-                        {
                             "entity": "sun.sun"
                         },
                         {
@@ -466,7 +460,7 @@
                         {
                             "type": "sensor",
                             "graph": "line",
-                            "entity": "sensor.mh_z19_co2_value"
+                            "entity": "sensor.mh_z19_co2"
                         },
                         {
                             "entities": [
