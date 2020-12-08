@@ -479,6 +479,12 @@
                                 },
                                 {
                                     "entity": "sensor.sht31_humidity"
+                                },
+                                {
+                                    "entity": "sensor.dht22_temperature"
+                                },
+                                {
+                                    "entity": "sensor.dht22_humidity"
                                 }
                             ],
                             "title": "Temperature and humidity",

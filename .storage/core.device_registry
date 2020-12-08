@@ -141,11 +141,11 @@
                 "connections": [
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ],
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ]
                 ],
                 "identifiers": [
@@ -740,7 +740,7 @@
                 "manufacturer": "Signify",
                 "model": "BSB002",
                 "name": "Philips hue",
-                "sw_version": "1941056000",
+                "sw_version": "1941132070",
                 "entry_type": null,
                 "id": "5ea39e5c2a3ff3856ea9506034e2badb",
                 "via_device_id": null,
@@ -827,6 +827,27 @@
                 "sw_version": "1.15.3 (Dec  6 2020, 08:21:25)",
                 "entry_type": null,
                 "id": "850fc44809f8f3cf9545952e5fc8a390",
+                "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null
+            },
+            {
+                "config_entries": [
+                    "396d645f3b1141ae361ce813cbd3a08c"
+                ],
+                "connections": [
+                    [
+                        "mac",
+                        "a4:cf:12:de:69:3b"
+                    ]
+                ],
+                "identifiers": [],
+                "manufacturer": "espressif",
+                "model": "PLATFORMIO_D1_MINI",
+                "name": "air_sensor_v1",
+                "sw_version": "1.15.3 (Dec  6 2020, 19:11:25)",
+                "entry_type": null,
+                "id": "651f5bcc2ada7359884714054f6f1b88",
                 "via_device_id": null,
                 "area_id": null,
                 "name_by_user": null
