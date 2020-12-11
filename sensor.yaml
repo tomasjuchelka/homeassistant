@@ -77,7 +77,7 @@
       icon_template: "mdi:screwdriver"
 - platform: waze_travel_time
   origin: !secret waze_origin
-  destination: !secret waze_origin
+  destination: !secret waze_destination
   region: 'EU'
   name: "Travel time to work"
 - platform: waqi

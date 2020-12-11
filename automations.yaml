@@ -54,11 +54,17 @@
   trigger:
   - entity_id: switch.sonoff_ch2
     platform: state
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: switch.sonoff_ch2
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - entity_id: light.box_lamp
-    service: "{% if trigger.to_state.state == 'on' %}\n  script.bedroom_lamp_on\n\
-      {%- else %}\n  light.turn_off\n{% endif %}\n"
+    service: '{% if trigger.to_state.state == ''on'' %}  script.bedroom_lamp_on{%-
+      else %}  light.turn_off{% endif %}'
   mode: single
 - id: '1585325340725'
   alias: 1_Lights OFF All lights
