@@ -159,3 +159,19 @@ octoprint:
     name: Ender3 V2
     number_of_tools: 1
     bed: True
+
+wake_on_lan:
+ 
+webostv:
+  host: 192.168.11.147
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: 58-FD-B1-D9-4F-AB
+      broadcast_address: 192.168.11.255
+  customize:
+    sources:
+      - hdmi1
+      - 'SledovaniTV 2.0'
+      - Youtube
+      - Netflix

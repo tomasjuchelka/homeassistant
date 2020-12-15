@@ -1920,7 +1920,7 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "\u00b0C",
@@ -1937,12 +1937,29 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": "%",
                 "original_name": "DHT22 Humidity",
                 "original_icon": "mdi:water-percent"
+            },
+            {
+                "entity_id": "media_player.lg_webos_smart_tv",
+                "config_entry_id": null,
+                "device_id": null,
+                "area_id": null,
+                "unique_id": "62676f8851c7494c3688134b70e5efa1",
+                "platform": "webostv",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": {},
+                "supported_features": 20413,
+                "device_class": "tv",
+                "unit_of_measurement": null,
+                "original_name": "LG webOS Smart TV",
+                "original_icon": null
             }
         ]
     }

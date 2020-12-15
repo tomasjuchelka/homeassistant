@@ -6,7 +6,7 @@
             "uses_password": false,
             "name": "air_sensor_v2",
             "mac_address": "A4:CF:12:DC:B9:42",
-            "compilation_time": "Dec  6 2020, 08:21:25",
+            "compilation_time": "Dec 12 2020, 16:16:36",
             "model": "PLATFORMIO_D1_MINI",
             "has_deep_sleep": false,
             "esphome_version": "1.15.3"
