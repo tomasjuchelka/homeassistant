@@ -125,7 +125,7 @@ class School(BinarySensorEntity):
                 if self.url + path == self.last_link:
                     break
                 if i == 1:
-                    self.reset_to_last(True)
+                    self.initialize(True)
                     break
                 self.header = self._get_title(listx[w])
                 self.link = self.url + path
