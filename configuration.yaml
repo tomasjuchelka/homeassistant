@@ -70,10 +70,8 @@ notify:
 input_boolean:
   enable_daily_vacuum:
     name: Daily cleanup
-    initial: true
   enable_automatic_ventilation:
     name: Automatic
-    initial: true
 
 input_datetime:
   last_cleanup_time:
@@ -119,6 +117,11 @@ recorder:
       - sensor.hacs
       - sensor.travel_time_to_work
       - sensor.days_since_last_cleanup
+      - light.emergency_lights
+      - light.configuration_tool_1
+      - light.byt
+      - light.all_lights
+      - weather.domov
     domains:
       - updater
       - sun
@@ -131,12 +134,14 @@ recorder:
       - device_tracker
       - binary_sensor
     entity_globs:
-      - sensor*Battery*
       - input_*
       - sensor.archer*
       - sensor.fibaro*
       - sensor.vacuum*
       - sensor.sm_*
+      - sensor.ender*
+      - sensor.octoprint*
+      - sensor.fgsd*
 
 influxdb:
   host: 192.168.11.100
