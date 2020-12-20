@@ -529,7 +529,7 @@
           transition: '1'
           brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
             \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ + 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
@@ -619,7 +619,7 @@
           transition: '1'
           brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
             \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
-            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
         entity_id: light.box_lamp
         service: light.turn_on
