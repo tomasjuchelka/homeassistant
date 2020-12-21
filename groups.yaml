@@ -3,3 +3,18 @@ group_family:
   entities:
     - person.tomas_juchelka 
     - person.deniska
+group_all_lights:
+  name: All Lights
+  entities:
+    - light.hall_lamp
+    - light.corner_lamp
+    - light.ball_lamp
+    - light.wc_lamp
+    - light.door_lamp
+    - light.pc_lamp
+group_emergency_lights:
+  name: Emergency Lights
+  entities:
+    - light.hall_lamp
+    - light.corner_lamp
+    - light.door_lamp

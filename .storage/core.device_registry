@@ -147,11 +147,11 @@
                 "connections": [
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ],
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ]
                 ],
                 "identifiers": [
@@ -163,7 +163,7 @@
                 "manufacturer": "Dresden Elektronik",
                 "model": "deCONZ",
                 "name": "Phoscon-GW",
-                "sw_version": "2.5.88",
+                "sw_version": "2.8.0",
                 "entry_type": null,
                 "id": "267bf9cf06c1403bacde750d61361f27",
                 "via_device_id": null,
@@ -748,77 +748,6 @@
                 "id": "dba0671cbf917432dab59d7002902384",
                 "via_device_id": null,
                 "area_id": null,
-                "name_by_user": null,
-                "disabled_by": null
-            },
-            {
-                "config_entries": [
-                    "01a240d22cc8bb84e012241deb9fb53c"
-                ],
-                "connections": [
-                    [
-                        "mac",
-                        "ec:b5:fa:2a:35:a7"
-                    ]
-                ],
-                "identifiers": [
-                    [
-                        "hue",
-                        "ECB5FAFFFE2A35A7"
-                    ]
-                ],
-                "manufacturer": "Signify",
-                "model": "BSB002",
-                "name": "Philips hue",
-                "sw_version": "1941132080",
-                "entry_type": null,
-                "id": "5ea39e5c2a3ff3856ea9506034e2badb",
-                "via_device_id": null,
-                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
-                "name_by_user": null,
-                "disabled_by": null
-            },
-            {
-                "config_entries": [
-                    "01a240d22cc8bb84e012241deb9fb53c"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "hue",
-                        "00:15:8d:00:02:4f:4b:d6-01"
-                    ]
-                ],
-                "manufacturer": "Immax ",
-                "model": "Extended color light",
-                "name": "Ball Lamp",
-                "sw_version": "1000-0001",
-                "entry_type": null,
-                "id": "ce7ff2b0facfeab371f2e723c8cf37da",
-                "via_device_id": "5ea39e5c2a3ff3856ea9506034e2badb",
-                "area_id": "8a2b45d15568433aa9ce588a56dc6175",
-                "name_by_user": null,
-                "disabled_by": null
-            },
-            {
-                "config_entries": [
-                    "01a240d22cc8bb84e012241deb9fb53c"
-                ],
-                "connections": [],
-                "identifiers": [
-                    [
-                        "hue",
-                        "00:15:8d:00:02:4f:47:9d-01"
-                    ]
-                ],
-                "manufacturer": "Immax ",
-                "model": "Extended color light",
-                "name": "Box Lamp",
-                "sw_version": "1000-0001",
-                "entry_type": null,
-                "id": "4a037e48dcc1ba9cfc4b51164b9123a7",
-                "via_device_id": "5ea39e5c2a3ff3856ea9506034e2badb",
-                "area_id": "7bdb858fc72044aa907807baeebedaa3",
                 "name_by_user": null,
                 "disabled_by": null
             },

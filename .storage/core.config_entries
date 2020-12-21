@@ -215,23 +215,6 @@
                 "unique_id": "ozw"
             },
             {
-                "entry_id": "01a240d22cc8bb84e012241deb9fb53c",
-                "version": 1,
-                "domain": "hue",
-                "title": "Philips hue",
-                "data": {
-                    "host": "192.168.11.208",
-                    "username": "-9RfglqgDnZItV9DoP1CfxzKu4-Mi8p0g5pzXV1K"
-                },
-                "options": {},
-                "system_options": {
-                    "disable_new_entities": false
-                },
-                "source": "homekit",
-                "connection_class": "local_poll",
-                "unique_id": "ecb5fa2a35a7"
-            },
-            {
                 "entry_id": "6ccdeeb419d98f0867f1209d28de6e46",
                 "version": 1,
                 "domain": "esphome",

@@ -76,8 +76,8 @@
     to: 'on'
   condition: []
   action:
-  - entity_id: light.all_lights
-    service: light.turn_off
+  - entity_id: group.group_all_lights
+    service: homeassistant.turn_off
   - data: {}
     entity_id: switch.sonoff_b1,switch.sonoff_b2,switch.sonoff_ch1,switch.sonoff_ch3
     service: switch.turn_off
@@ -269,8 +269,8 @@
       title: Smoke detector
     service: notify.pusher
   - data: {}
-    entity_id: light.emergency_lights
-    service: light.turn_on
+    entity_id: group.group_emergency_lights
+    service: homeassistant.turn_on
   mode: single
 - id: '1596642967004'
   alias: 1_Lights 3_ON WC lamp
@@ -841,7 +841,7 @@
     service: notify.pusher
   mode: single
 - id: '1608567318963'
-  alias: 1_Lights Set Box lamp switch off
+  alias: 1_Lights SYNC Box lamp switch
   description: Synchronize relay switch with light state
   trigger:
   - platform: state

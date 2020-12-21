@@ -90,21 +90,6 @@ input_select:
       - Kitchen
       - Hall
 
-light:
-  - platform: group
-    name: All Lights
-    entities:
-      - light.box_lamp
-      - light.hall_lamp
-      - light.corner_lamp
-      - light.ball_lamp
-      - light.pc_lamp
-  - platform: group
-    name: Emergency Lights
-    entities:
-      - light.hall_lamp
-      - light.corner_lamp
-
 recorder:
   db_url: mysql://root:pi@127.0.0.1:3306/homeassistant?charset=utf8
   purge_keep_days: 7
@@ -117,8 +102,6 @@ recorder:
       - sensor.hacs
       - sensor.travel_time_to_work
       - sensor.days_since_last_cleanup
-      - light.emergency_lights
-      - light.configuration_tool_1
       - light.byt
       - light.all_lights
       - weather.domov
