@@ -840,3 +840,33 @@
       title: 3D Printer
     service: notify.pusher
   mode: single
+- id: '1608567318963'
+  alias: 1_Lights Set Box lamp switch off
+  description: Synchronize relay switch with light state
+  trigger:
+  - platform: state
+    entity_id: light.box_lamp
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.to_state.state == ''on'' }}'
+      - condition: state
+        entity_id: switch.sonoff_ch2
+        state: 'off'
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        entity_id: switch.sonoff_ch2
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.to_state.state == ''off'' }}'
+      - condition: state
+        entity_id: switch.sonoff_ch2
+        state: 'on'
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        entity_id: switch.sonoff_ch2
+  mode: single
