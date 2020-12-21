@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "key": "esphome.7f2a7a81c243bff469c49a5097ee8916",
+    "data": {
+        "device_info": {
+            "uses_password": false,
+            "name": "air_sensor_v1",
+            "mac_address": "A4:CF:12:DE:69:3B",
+            "compilation_time": "Dec  5 2020, 21:03:00",
+            "model": "PLATFORMIO_D1_MINI",
+            "has_deep_sleep": false,
+            "esphome_version": "1.15.3"
+        },
+        "services": [],
+        "sensor": [
+            {
+                "object_id": "sht31_temperature",
+                "key": 4180535735,
+                "name": "SHT31 Temperature",
+                "unique_id": "air_sensor_v1sensorsht31_temperature",
+                "icon": "mdi:thermometer",
+                "unit_of_measurement": "\u00b0C",
+                "accuracy_decimals": 1,
+                "force_update": false
+            },
+            {
+                "object_id": "sht31_humidity",
+                "key": 3261913856,
+                "name": "SHT31 Humidity",
+                "unique_id": "air_sensor_v1sensorsht31_humidity",
+                "icon": "mdi:water-percent",
+                "unit_of_measurement": "%",
+                "accuracy_decimals": 1,
+                "force_update": false
+            }
+        ],
+        "text_sensor": []
+    }
+}

@@ -70,10 +70,8 @@ notify:
 input_boolean:
   enable_daily_vacuum:
     name: Daily cleanup
-    initial: true
   enable_automatic_ventilation:
     name: Automatic
-    initial: true
 
 input_datetime:
   last_cleanup_time:
@@ -92,21 +90,6 @@ input_select:
       - Kitchen
       - Hall
 
-light:
-  - platform: group
-    name: All Lights
-    entities:
-      - light.box_lamp
-      - light.hall_lamp
-      - light.corner_lamp
-      - light.ball_lamp
-      - light.pc_lamp
-  - platform: group
-    name: Emergency Lights
-    entities:
-      - light.hall_lamp
-      - light.corner_lamp
-
 recorder:
   db_url: mysql://root:pi@127.0.0.1:3306/homeassistant?charset=utf8
   purge_keep_days: 7
@@ -119,6 +102,9 @@ recorder:
       - sensor.hacs
       - sensor.travel_time_to_work
       - sensor.days_since_last_cleanup
+      - light.byt
+      - light.all_lights
+      - weather.domov
     domains:
       - updater
       - sun
@@ -131,21 +117,23 @@ recorder:
       - device_tracker
       - binary_sensor
     entity_globs:
-      - sensor*Battery*
       - input_*
       - sensor.archer*
       - sensor.fibaro*
       - sensor.vacuum*
       - sensor.sm_*
+      - sensor.ender*
+      - sensor.octoprint*
+      - sensor.fgsd*
 
 influxdb:
   host: 192.168.11.100
   port: 8086
   include:
     entities:
-       - sensor.co2
-       - sensor.temperature
-       - sensor.humidity
+       - sensor.mh_z19_co2
+       - sensor.sht31_temperature
+       - sensor.sht31_humidity
        - sensor.siemens_ag
        - sensor.eur_czk
        - sensor.waqi_pha10_prumyslova_prague_czech_republic
@@ -159,3 +147,19 @@ octoprint:
     name: Ender3 V2
     number_of_tools: 1
     bed: True
+
+wake_on_lan:
+ 
+webostv:
+  host: 192.168.11.147
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: 58-FD-B1-D9-4F-AB
+      broadcast_address: 192.168.11.255
+  customize:
+    sources:
+      - hdmi1
+      - 'SledovaniTV 2.0'
+      - Youtube
+      - Netflix

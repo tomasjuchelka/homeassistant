@@ -48,7 +48,7 @@ class School(BinarySensorEntity):
         self.header = "N/A"
         self.link = "N/A"
         self.last_link = "N/A"
-        self.initialize()
+        self.initialize(False)
         self.update()
 
     @property
@@ -100,12 +100,15 @@ class School(BinarySensorEntity):
             _LOGGER.error("Page not found: " + url_link)
             return ""
 
-    def initialize(self):
+    def initialize(self, rest):
         content = self.get_url_content()
         listx = content.splitlines()
         for w in range(len(listx)):
             if listx[w].find("h3") > 0:
-                self.header = self._get_title(listx[w])
+                if rest is False:
+                    self.header = self._get_title(listx[w])
+                else:
+                    self.header = "Došlo k aktualizaci článků na webu školy. Restart na nejnovější článek."
                 self.link = self.url + self._get_path(listx[w])
                 self.last_link = self.link
                 break
@@ -115,14 +118,19 @@ class School(BinarySensorEntity):
         content = self.get_url_content()
         listx = content.splitlines()
         path = ""
+        i = 0
         for w in range(len(listx)):
             if listx[w].find("h3") > 0:
                 path = self._get_path(listx[w])
                 if self.url + path == self.last_link:
                     break
+                if i == 1:
+                    self.initialize(True)
+                    break
                 self.header = self._get_title(listx[w])
                 self.link = self.url + path
                 _LOGGER.info("link: " + self.link)
+                i = i + 1
         if path == "":
             self.header = "Stránka nenalezena nebo neobsahuje žádné informace."
             self.link = self.url + "/clanky"

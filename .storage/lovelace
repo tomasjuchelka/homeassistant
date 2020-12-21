@@ -14,15 +14,6 @@
                         },
                         {
                             "entity": "person.deniska"
-                        },
-                        {
-                            "entity": "sensor.humidity"
-                        },
-                        {
-                            "entity": "sensor.co2"
-                        },
-                        {
-                            "entity": "sensor.temperature"
                         }
                     ],
                     "cards": [
@@ -87,10 +78,6 @@
                             "type": "entities"
                         },
                         {
-                            "entity": "weather.domov",
-                            "type": "weather-forecast"
-                        },
-                        {
                             "entities": [
                                 {
                                     "entity": "switch.sonoff_b2"
@@ -119,19 +106,6 @@
                             ],
                             "title": "WC",
                             "type": "entities"
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "sensor.current_version_homeassistant",
-                                    "name": "HA current version"
-                                },
-                                {
-                                    "entity": "sensor.latest_version_homeassistant",
-                                    "name": "HA available version"
-                                }
-                            ]
                         }
                     ]
                 },
@@ -347,15 +321,6 @@
                     "title": "Sensors",
                     "badges": [
                         {
-                            "entity": "sensor.humidity"
-                        },
-                        {
-                            "entity": "sensor.co2"
-                        },
-                        {
-                            "entity": "sensor.temperature"
-                        },
-                        {
                             "entity": "sun.sun"
                         },
                         {
@@ -406,24 +371,6 @@
                             "type": "entities"
                         },
                         {
-                            "entities": [
-                                {
-                                    "entity": "sensor.fgsd002_smoke_sensor_air_temperature"
-                                },
-                                {
-                                    "entity": "sensor.temperature_6"
-                                },
-                                {
-                                    "entity": "sensor.temperature"
-                                },
-                                {
-                                    "entity": "sensor.bathroom_temperature"
-                                }
-                            ],
-                            "title": "Temperatures",
-                            "type": "entities"
-                        },
-                        {
                             "type": "entities",
                             "entities": [
                                 {
@@ -432,11 +379,6 @@
                             ],
                             "title": "School news",
                             "show_header_toggle": false
-                        },
-                        {
-                            "type": "sensor",
-                            "entity": "sensor.waqi_pha10_prumyslova_prague_czech_republic",
-                            "graph": "line"
                         },
                         {
                             "type": "entities",
@@ -452,24 +394,106 @@
                             "show_header_toggle": false
                         },
                         {
-                            "type": "sensor",
-                            "graph": "line",
-                            "entity": "sensor.co2"
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.tradfri_motion_sensor",
+                                    "name": "Tradfri motion sensor",
+                                    "secondary_info": "last-changed"
+                                },
+                                {
+                                    "entity": "binary_sensor.motion_sensor",
+                                    "name": "WC motion sensor",
+                                    "secondary_info": "last-changed"
+                                },
+                                {
+                                    "entity": "binary_sensor.presence_5",
+                                    "name": "Hall motion sensor",
+                                    "secondary_info": "last-changed"
+                                }
+                            ],
+                            "title": "Motion last triggered"
                         },
                         {
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "sensor.tradfri_motion_sensor_last_changed"
+                                    "entity": "sensor.current_version_homeassistant",
+                                    "name": "HA current version"
                                 },
                                 {
-                                    "entity": "sensor.mi_motion_sensor_last_changed"
+                                    "entity": "sensor.latest_version_homeassistant",
+                                    "name": "HA available version"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Weather",
+                    "path": "weather",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "weather.domov",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.temperature_out"
                                 },
                                 {
-                                    "entity": "sensor.hue_motion_sensor_last_changed"
+                                    "entity": "sensor.humidity_out"
+                                },
+                                {
+                                    "entity": "sensor.pressure_out"
+                                },
+                                {
+                                    "entity": "sensor.wind_out"
                                 }
                             ],
-                            "title": "Motion last triggered"
+                            "title": "Weather outside",
+                            "state_color": false
+                        },
+                        {
+                            "type": "sensor",
+                            "graph": "line",
+                            "entity": "sensor.mh_z19_co2"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.fgsd002_smoke_sensor_air_temperature"
+                                },
+                                {
+                                    "entity": "sensor.temperature_6",
+                                    "name": "Hall Temperature"
+                                },
+                                {
+                                    "entity": "sensor.bathroom_temperature"
+                                },
+                                {
+                                    "entity": "sensor.sht31_temperature"
+                                },
+                                {
+                                    "entity": "sensor.sht31_humidity"
+                                },
+                                {
+                                    "entity": "sensor.dht22_temperature"
+                                },
+                                {
+                                    "entity": "sensor.dht22_humidity"
+                                }
+                            ],
+                            "title": "Temperature and humidity",
+                            "type": "entities"
+                        },
+                        {
+                            "type": "sensor",
+                            "entity": "sensor.waqi_pha10_prumyslova_prague_czech_republic",
+                            "graph": "line"
                         }
                     ]
                 },
@@ -553,11 +577,6 @@
                             ]
                         },
                         {
-                            "type": "iframe",
-                            "url": "https://embed.waze.com/iframe?zoom=11&lat=50.061767&lon=14.501610&ct=livemap",
-                            "aspect_ratio": "80%"
-                        },
-                        {
                             "type": "entities",
                             "title": "Bookmark links",
                             "show_header_toggle": false,
@@ -592,12 +611,21 @@
                             ]
                         },
                         {
+                            "type": "iframe",
+                            "url": "https://embed.waze.com/iframe?zoom=11&lat=50.061767&lon=14.501610&ct=livemap",
+                            "aspect_ratio": "80%"
+                        },
+                        {
                             "entity": "media_player.google_assistent",
                             "type": "media-control"
                         },
                         {
-                            "entity": "media_player.tv",
-                            "type": "media-control"
+                            "type": "media-control",
+                            "entity": "media_player.lg_webos_smart_tv"
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.tv"
                         }
                     ],
                     "path": "media",

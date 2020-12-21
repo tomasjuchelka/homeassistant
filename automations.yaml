@@ -3,7 +3,7 @@
   description: Turn on when above given treshold, but not withing quiet hours.
   trigger:
   - above: '1000'
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2
     platform: numeric_state
   condition:
   - condition: state
@@ -30,7 +30,7 @@
   description: Turn off when under given treshold and at certain times
   trigger:
   - below: '800'
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2
     platform: numeric_state
   - at: 06:00:00
     platform: time
@@ -54,11 +54,17 @@
   trigger:
   - entity_id: switch.sonoff_ch2
     platform: state
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: switch.sonoff_ch2
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - entity_id: light.box_lamp
-    service: "{% if trigger.to_state.state == 'on' %}\n  script.bedroom_lamp_on\n\
-      {%- else %}\n  light.turn_off\n{% endif %}\n"
+    service: '{% if trigger.to_state.state == ''on'' %}  script.bedroom_lamp_on{%-
+      else %}  light.turn_off{% endif %}'
   mode: single
 - id: '1585325340725'
   alias: 1_Lights OFF All lights
@@ -70,8 +76,8 @@
     to: 'on'
   condition: []
   action:
-  - entity_id: light.all_lights
-    service: light.turn_off
+  - entity_id: group.group_all_lights
+    service: homeassistant.turn_off
   - data: {}
     entity_id: switch.sonoff_b1,switch.sonoff_b2,switch.sonoff_ch1,switch.sonoff_ch3
     service: switch.turn_off
@@ -151,7 +157,7 @@
     state: 'off'
   - above: '1000'
     condition: numeric_state
-    entity_id: sensor.co2
+    entity_id: sensor.mh_z19_co2
   - condition: state
     entity_id: input_boolean.enable_automatic_ventilation
     state: 'on'
@@ -263,8 +269,8 @@
       title: Smoke detector
     service: notify.pusher
   - data: {}
-    entity_id: light.emergency_lights
-    service: light.turn_on
+    entity_id: group.group_emergency_lights
+    service: homeassistant.turn_on
   mode: single
 - id: '1596642967004'
   alias: 1_Lights 3_ON WC lamp
@@ -425,6 +431,16 @@
         service: light.turn_on
     - conditions:
       - condition: template
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.corner_lamp",
+          "off") }}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: 100
+        entity_id: light.corner_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
         value_template: '{{ trigger.event.data.event == 3002 and is_state("light.corner_lamp",
           "on") }}'
       sequence:
@@ -434,6 +450,16 @@
             \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
             \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  1\n{% endif %}\n"
+        entity_id: light.corner_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.corner_lamp",
+          "off") }}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: 1
         entity_id: light.corner_lamp
         service: light.turn_on
     - conditions:
@@ -450,6 +476,96 @@
       - data: {}
         entity_id: light.hall_lamp
         service: light.toggle
+  mode: single
+- id: remote_control_dimmer
+  alias: 4_Remote dimmer controller
+  description: Actions performed by philips dimmer switch
+  trigger:
+  - event_data:
+      event: 1000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 3000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4000
+      id: dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 1000 and is_state("light.hall_lamp",
+          "off")}}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 4000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data: {}
+        entity_id: light.hall_lamp
+        service: light.turn_off
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  100\n{% endif %}\n"
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 2000 and is_state("light.hall_lamp",
+          "off")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: 100
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 3000 and is_state("light.hall_lamp",
+          "on")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
+            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
+            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
+            \ %}\n  1\n{% endif %}\n"
+        entity_id: light.hall_lamp
+        service: light.turn_on
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.event.data.event == 3000 and is_state("light.hall_lamp",
+          "off")}}'
+      sequence:
+      - data:
+          transition: '1'
+          brightness_pct: 1
+        entity_id: light.hall_lamp
+        service: light.turn_on
   mode: single
 - id: remote_control_2
   alias: 4_Remote button controller
@@ -503,7 +619,7 @@
           transition: '1'
           brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
             \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
-            \ 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
+            \ 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
         entity_id: light.box_lamp
         service: light.turn_on
@@ -704,76 +820,6 @@
         percent'') | round(2) }}.'
     service: notify.pusher
   mode: single
-- id: remote_control_dimmer
-  alias: 4_Remote dimmer controller
-  description: Actions performed by philips dimmer switch
-  trigger:
-  - event_data:
-      event: 1000
-      id: dimmer_switch
-    event_type: deconz_event
-    platform: event
-  - event_data:
-      event: 2000
-      id: dimmer_switch
-    event_type: deconz_event
-    platform: event
-  - event_data:
-      event: 3000
-      id: dimmer_switch
-    event_type: deconz_event
-    platform: event
-  - event_data:
-      event: 4000
-      id: dimmer_switch
-    event_type: deconz_event
-    platform: event
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 1000 and is_state("light.hall_lamp",
-          "off")}}'
-      sequence:
-      - data: {}
-        entity_id: light.hall_lamp
-        service: light.turn_on
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 4000 and is_state("light.hall_lamp",
-          "on")}}'
-      sequence:
-      - data: {}
-        entity_id: light.hall_lamp
-        service: light.turn_off
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 2000 and is_state("light.hall_lamp",
-          "on")}}'
-      sequence:
-      - data:
-          transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ + 15 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  100\n{% endif %}\n"
-        entity_id: light.hall_lamp
-        service: light.turn_on
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 3000 and is_state("light.hall_lamp",
-          "on")}}'
-      sequence:
-      - data:
-          transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  1\n{% endif %}\n"
-        entity_id: light.hall_lamp
-        service: light.turn_on
-  mode: single
 - id: '1605992501908'
   alias: 5_Print job finished
   description: Notify about end of 3D print
@@ -787,8 +833,40 @@
   - data:
       data:
         priority: 1
+        sound: magic
       target: galaxys10
-      message: '3D print job is finished after {{ states(''sensor.octoprint_time_elapsed'') }}.'
+      message: 3D print job is finished after {{ states('sensor.octoprint_time_elapsed')
+        }}.
       title: 3D Printer
     service: notify.pusher
+  mode: single
+- id: '1608567318963'
+  alias: 1_Lights SYNC Box lamp switch
+  description: Synchronize relay switch with light state
+  trigger:
+  - platform: state
+    entity_id: light.box_lamp
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.to_state.state == ''on'' }}'
+      - condition: state
+        entity_id: switch.sonoff_ch2
+        state: 'off'
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        entity_id: switch.sonoff_ch2
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.to_state.state == ''off'' }}'
+      - condition: state
+        entity_id: switch.sonoff_ch2
+        state: 'on'
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        entity_id: switch.sonoff_ch2
   mode: single
