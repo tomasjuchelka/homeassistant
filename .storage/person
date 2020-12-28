@@ -27,7 +27,7 @@
                     "device_tracker.nut_red"
                 ],
                 "user_id": null,
-                "picture": null,
+                "picture": "/api/image/serve/db22a20b7f4b25451d469648d6de7e39/512x512",
                 "id": "kiki"
             },
             {
@@ -36,7 +36,7 @@
                     "device_tracker.nut_green"
                 ],
                 "user_id": null,
-                "picture": null,
+                "picture": "/api/image/serve/a540857550f75c1528ee916aba4e496d/512x512",
                 "id": "adik"
             }
         ]
