@@ -5,7 +5,7 @@
         "items": [
             {
                 "device_trackers": [
-                    "device_tracker.a8_db_03_50_10_af"
+                    "device_tracker.nut_white"
                 ],
                 "id": "tomas_juchelka",
                 "name": "Tom\u00e1\u0161",
@@ -14,12 +14,30 @@
             },
             {
                 "device_trackers": [
-                    "device_tracker.cc_21_19_b7_84_af"
+                    "device_tracker.nut_grey"
                 ],
                 "id": "deniska",
                 "name": "Deniska",
                 "user_id": "e6ead2ebf33f45508df3c592e06292d7",
                 "picture": "/api/image/serve/c544781e517756979b0e2a50c648d07e/512x512"
+            },
+            {
+                "name": "Kiki",
+                "device_trackers": [
+                    "device_tracker.nut_red"
+                ],
+                "user_id": null,
+                "picture": null,
+                "id": "kiki"
+            },
+            {
+                "name": "Adik",
+                "device_trackers": [
+                    "device_tracker.nut_green"
+                ],
+                "user_id": null,
+                "picture": null,
+                "id": "adik"
             }
         ]
     }
