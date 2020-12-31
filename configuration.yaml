@@ -47,15 +47,15 @@ sonoff:
   username: !secret sonoff_username
   password: !secret sonoff_password
 
-device_tracker:
-  - platform: nmap_tracker
-    hosts: 192.168.11.10-11
-    interval_seconds: 60
-    consider_home: 900
-    home_interval: 10
-    new_device_defaults:
-      track_new_devices: false
-
+#device_tracker:
+#  - platform: nmap_tracker
+#    hosts: 192.168.11.10-11
+#    interval_seconds: 60
+#    consider_home: 900
+#    home_interval: 10
+#    new_device_defaults:
+#      track_new_devices: false
+    
 vacuum:
   - platform: xiaomi_miio
     host: 192.168.11.203

@@ -870,3 +870,59 @@
         data: {}
         entity_id: switch.sonoff_ch2
   mode: single
+- id: '1609158926242'
+  alias: Update presence tracker
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: room-assistant/device_tracker/ble-fabda2e11169-tracker/state
+    payload: 'true'
+  - platform: mqtt
+    topic: room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state
+    payload: 'true'
+  - platform: mqtt
+    topic: room-assistant/device_tracker/ble-c0aa65554771-tracker/state
+    payload: 'true'
+  - platform: mqtt
+    topic: room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state
+    payload: 'true'
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-fabda2e11169-tracker/state'' }}'
+      sequence:
+      - data:
+          dev_id: nut_white
+          consider_home: 300
+          source_type: bluetooth_le
+        service: device_tracker.see
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state'' }}'
+      sequence:
+      - data:
+          dev_id: nut_red
+          consider_home: 300
+          source_type: bluetooth_le
+        service: device_tracker.see
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-c0aa65554771-tracker/state'' }}'
+      sequence:
+      - data:
+          dev_id: nut_green
+          consider_home: 300
+          source_type: bluetooth_le
+        service: device_tracker.see
+    - conditions:
+      - condition: template
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state'' }}'
+      sequence:
+      - data:
+          dev_id: nut_grey
+          consider_home: 300
+          source_type: bluetooth_le
+        service: device_tracker.see
+  mode: parallel

@@ -105,7 +105,7 @@
                 "manufacturer": "hacs.xyz",
                 "model": "",
                 "name": "HACS",
-                "sw_version": "1.8.0",
+                "sw_version": "1.9.0",
                 "entry_type": "service",
                 "id": "d236a1600f6f407c9678f6ae873814b8",
                 "via_device_id": null,

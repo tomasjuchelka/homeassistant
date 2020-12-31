@@ -1935,6 +1935,57 @@
                 "unit_of_measurement": null,
                 "original_name": "1_Lights SYNC Box lamp switch",
                 "original_icon": null
+            },
+            {
+                "entity_id": "automation.update_presence_tracker",
+                "config_entry_id": null,
+                "device_id": null,
+                "area_id": null,
+                "unique_id": "1609158926242",
+                "platform": "automation",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": {},
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": null,
+                "original_name": "Update presence tracker",
+                "original_icon": null
+            },
+            {
+                "entity_id": "person.kiki",
+                "config_entry_id": null,
+                "device_id": null,
+                "area_id": null,
+                "unique_id": "kiki",
+                "platform": "person",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": null,
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": null,
+                "original_name": "Kiki",
+                "original_icon": null
+            },
+            {
+                "entity_id": "person.adik",
+                "config_entry_id": null,
+                "device_id": null,
+                "area_id": null,
+                "unique_id": "adik",
+                "platform": "person",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": null,
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": null,
+                "original_name": "Adik",
+                "original_icon": null
             }
         ]
     }
