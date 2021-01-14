@@ -82,48 +82,13 @@
     entity_id: switch.sonoff_b1,switch.sonoff_b2,switch.sonoff_ch1,switch.sonoff_ch3
     service: switch.turn_off
   mode: single
-- id: '1585401649964'
-  alias: 1_Lights 4_ON Cloud night light
-  description: Lighting on when dark outside
-  trigger:
-  - below: '2'
-    entity_id: sun.sun
-    platform: numeric_state
-    value_template: '{{ state_attr(''sun.sun'', ''elevation'') }}'
-  condition:
-  - condition: state
-    entity_id: switch.sonoff_b2
-    state: 'off'
-  - before: '20:30:00'
-    condition: time
-  action:
-  - data: {}
-    entity_id: switch.sonoff_b2
-    service: switch.turn_on
-  mode: single
-- id: '1585401838076'
-  alias: 1_Lights 4_OFF Cloud night light
-  description: ''
-  trigger:
-  - at: '21:15:00'
-    platform: time
-  condition:
-  - condition: state
-    entity_id: switch.sonoff_b2
-    state: 'on'
-  action:
-  - data: {}
-    entity_id: switch.sonoff_b2
-    service: switch.turn_off
-  mode: single
 - id: '1585502004382'
   alias: 1_Lights 5_ON Daily lights
   description: ''
   trigger:
-  - below: '2'
-    entity_id: sun.sun
-    platform: numeric_state
-    value_template: '{{ state_attr(''sun.sun'', ''elevation'') }}'
+  - platform: state
+    entity_id: binary_sensor.is_dark
+    to: 'on'
   condition: []
   action:
   - data: {}
@@ -224,14 +189,14 @@
   - condition: or
     conditions:
     - condition: state
-      entity_id: light.corner_lamp
+      entity_id: light.workplace_lamp
       state: 'on'
     - condition: state
       entity_id: light.hall_lamp
       state: 'on'
   action:
   - data: {}
-    entity_id: light.corner_lamp,light.hall_lamp
+    entity_id: light.workplace_lamp,light.hall_lamp
     service: light.turn_off
   mode: single
 - id: '1596491335249'
@@ -414,53 +379,53 @@
         value_template: '{{ trigger.event.data.event == 1002 }}'
       sequence:
       - data: {}
-        entity_id: light.corner_lamp
+        entity_id: light.workplace_lamp
         service: light.toggle
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.corner_lamp",
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.workplace_lamp",
           "on") }}'
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.corner_lamp',\
+          brightness_pct: "{% set brightness_pct = (state_attr('light.workplace_lamp',\
             \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
             \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  100\n{% endif %}\n"
-        entity_id: light.corner_lamp
+        entity_id: light.workplace_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.corner_lamp",
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.workplace_lamp",
           "off") }}'
       sequence:
       - data:
           transition: '1'
           brightness_pct: 100
-        entity_id: light.corner_lamp
+        entity_id: light.workplace_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.corner_lamp",
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.workplace_lamp",
           "on") }}'
       sequence:
       - data:
           transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.corner_lamp',\
+          brightness_pct: "{% set brightness_pct = (state_attr('light.workplace_lamp',\
             \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
             \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
             \ %}\n  1\n{% endif %}\n"
-        entity_id: light.corner_lamp
+        entity_id: light.workplace_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.corner_lamp",
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.workplace_lamp",
           "off") }}'
       sequence:
       - data:
           transition: '1'
           brightness_pct: 1
-        entity_id: light.corner_lamp
+        entity_id: light.workplace_lamp
         service: light.turn_on
     - conditions:
       - condition: template
@@ -891,7 +856,8 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-fabda2e11169-tracker/state'' }}'
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-fabda2e11169-tracker/state''
+          }}'
       sequence:
       - data:
           dev_id: nut_white
@@ -900,7 +866,8 @@
         service: device_tracker.see
     - conditions:
       - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state'' }}'
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state''
+          }}'
       sequence:
       - data:
           dev_id: nut_red
@@ -909,7 +876,8 @@
         service: device_tracker.see
     - conditions:
       - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-c0aa65554771-tracker/state'' }}'
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-c0aa65554771-tracker/state''
+          }}'
       sequence:
       - data:
           dev_id: nut_green
@@ -918,7 +886,8 @@
         service: device_tracker.see
     - conditions:
       - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state'' }}'
+        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state''
+          }}'
       sequence:
       - data:
           dev_id: nut_grey
@@ -926,3 +895,72 @@
           source_type: bluetooth_le
         service: device_tracker.see
   mode: parallel
+- id: '1610565528088'
+  alias: 1_Lights 1_Toogle TV LED Strip
+  description: Toogle TV LED Strip based on TV state
+  trigger:
+  - platform: state
+    entity_id: media_player.lg_webos_smart_tv
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: media_player.lg_webos_smart_tv
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          hs_color:
+          - '{{ range(360)|random }}'
+          - '{{ range(80,101)|random }}'
+        entity_id: light.tv_led_strip_lamp
+    - conditions:
+      - condition: state
+        entity_id: media_player.lg_webos_smart_tv
+        state: 'off'
+      sequence:
+      - service: light.turn_off
+        data: {}
+        entity_id: light.tv_led_strip_lamp
+    default: []
+  mode: single
+- id: '1610566131263'
+  alias: 1_Lights 1_Change TV LED Strip colors
+  description: Change colors continuously
+  trigger:
+  - platform: time_pattern
+    hours: /1
+  condition:
+  - condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      hs_color:
+      - '{{ range(360)|random }}'
+      - '{{ range(80,101)|random }}'
+    entity_id: light.tv_led_strip_lamp
+  mode: single
+- id: '1610662616419'
+  alias: '1_Lights 1_ON TV LED Strip '
+  description: Tun on LED Strip as daily light if TV is off
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.is_dark
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: 'off'
+  - condition: state
+    entity_id: group.group_family
+    state: home
+  action:
+  - service: light.turn_on
+    data:
+      brightness: 50
+      kelvin: 2700
+    entity_id: light.tv_led_strip_lamp
+  mode: single

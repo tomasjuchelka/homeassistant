@@ -147,11 +147,11 @@
                 "connections": [
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ],
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ]
                 ],
                 "identifiers": [
@@ -813,6 +813,60 @@
                 "entry_type": null,
                 "id": "651f5bcc2ada7359884714054f6f1b88",
                 "via_device_id": null,
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "60:a4:23:ff:fe:69:b7:e0"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "60:a4:23:ff:fe:69:b7:e0"
+                    ]
+                ],
+                "manufacturer": "_TZ3000_riwp3k79",
+                "model": "TS0505A",
+                "name": "TV LED Strip Lamp",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "8405b58a9a92f1979f5dcf9054f9b043",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
+                "area_id": null,
+                "name_by_user": null,
+                "disabled_by": null
+            },
+            {
+                "config_entries": [
+                    "543550d6b45d49498ebcb0356f531090"
+                ],
+                "connections": [
+                    [
+                        "zigbee",
+                        "58:8e:81:ff:fe:fb:07:f0"
+                    ]
+                ],
+                "identifiers": [
+                    [
+                        "deconz",
+                        "58:8e:81:ff:fe:fb:07:f0"
+                    ]
+                ],
+                "manufacturer": "_TZ3000_rylaozuc",
+                "model": "TS0502A",
+                "name": "Workplace Lamp",
+                "sw_version": null,
+                "entry_type": null,
+                "id": "7920a5d56d645b50782cd135388db496",
+                "via_device_id": "267bf9cf06c1403bacde750d61361f27",
                 "area_id": null,
                 "name_by_user": null,
                 "disabled_by": null

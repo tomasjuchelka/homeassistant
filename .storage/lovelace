@@ -39,7 +39,7 @@
                                     "entity": "light.hall_lamp"
                                 },
                                 {
-                                    "entity": "light.corner_lamp"
+                                    "entity": "light.workplace_lamp"
                                 }
                             ],
                             "title": "Chodba",
@@ -52,6 +52,9 @@
                                 },
                                 {
                                     "entity": "switch.sonoff_b1"
+                                },
+                                {
+                                    "entity": "light.tv_led_strip_lamp"
                                 }
                             ],
                             "show_header_toggle": true,
