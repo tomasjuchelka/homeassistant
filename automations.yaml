@@ -254,6 +254,23 @@
     entity_id: light.wc_lamp
     service: light.turn_on
   mode: single
+- id: bathroom_light_on
+  alias: 1_Lights 4_ON Bathroom lamp
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+    entity_id: binary_sensor.tradfri_motion_sensor
+    domain: binary_sensor
+  condition: []
+  action:
+  - data:
+      brightness_pct: "{% if now().hour > 6 and now().hour < 23 %}\n  100\n{%- else\
+        \ %}\n  10\n{% endif %}\n"
+    entity_id: light.bathroom_lamp
+    service: light.turn_on
+  mode: single
 - id: '1596644035996'
   alias: 99_Notify Water detection
   description: Notifies about water leaks.
@@ -290,6 +307,25 @@
   action:
   - data: {}
     entity_id: light.wc_lamp
+    service: light.turn_off
+  mode: single
+- id: bathroom_light_off
+  alias: 1_Lights 4_OFF bathroom lamp
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+    entity_id: binary_sensor.tradfri_motion_sensor
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.bathroom_lamp
     service: light.turn_off
   mode: single
 - id: '1596993559449'
@@ -438,9 +474,12 @@
       - condition: template
         value_template: '{{ trigger.event.data.event == 4002 }}'
       sequence:
-      - data: {}
-        entity_id: light.hall_lamp
-        service: light.toggle
+      - data:
+          transition: '1'
+          color_temp: "{% set color = state_attr('light.workplace_lamp', 'color_temp')\
+            \ %}  {% if color > 400 %}\n  400 \n{% else %}\n  650\n{% endif %}\n"
+        entity_id: light.workplace_lamp
+        service: light.turn_on
   mode: single
 - id: remote_control_dimmer
   alias: 4_Remote dimmer controller
@@ -901,6 +940,12 @@
   trigger:
   - platform: state
     entity_id: media_player.lg_webos_smart_tv
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - choose:
@@ -908,6 +953,12 @@
       - condition: state
         entity_id: media_player.lg_webos_smart_tv
         state: 'on'
+      - condition: state
+        entity_id: binary_sensor.is_dark
+        state: 'on'
+      - condition: state
+        entity_id: light.tv_led_strip_lamp
+        state: 'off'
       sequence:
       - service: light.turn_on
         data:
@@ -919,6 +970,9 @@
       - condition: state
         entity_id: media_player.lg_webos_smart_tv
         state: 'off'
+      - condition: state
+        entity_id: light.tv_led_strip_lamp
+        state: 'on'
       sequence:
       - service: light.turn_off
         data: {}
@@ -931,9 +985,16 @@
   trigger:
   - platform: time_pattern
     hours: /1
+  - platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    from: 'off'
+    to: 'on'
   condition:
   - condition: state
     entity_id: media_player.lg_webos_smart_tv
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.is_dark
     state: 'on'
   action:
   - service: light.turn_on
