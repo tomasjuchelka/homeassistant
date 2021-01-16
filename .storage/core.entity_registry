@@ -153,7 +153,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "1_Lights Toogle Box lamp",
+                "original_name": "1_Lights 6_Toogle Box lamp",
                 "original_icon": null
             },
             {
@@ -459,7 +459,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "1_Lights OFF Hallway if not home",
+                "original_name": "1_Lights OFF if not home",
                 "original_icon": null
             },
             {
@@ -1882,7 +1882,7 @@
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "1_Lights SYNC Box lamp switch",
+                "original_name": "1_Lights 6_SYNC Box lamp switch",
                 "original_icon": null
             },
             {

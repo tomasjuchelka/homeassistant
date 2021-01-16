@@ -49,7 +49,7 @@
     service: switch.turn_off
   mode: single
 - id: '1585251952484'
-  alias: 1_Lights Toogle Box lamp
+  alias: 1_Lights 6_Toogle Box lamp
   description: Manual trigger for bedroom lamp
   trigger:
   - entity_id: switch.sonoff_ch2
@@ -178,7 +178,7 @@
     service: input_select.select_option
   mode: single
 - id: '1589699960298'
-  alias: 1_Lights OFF Hallway if not home
+  alias: 1_Lights OFF if not home
   description: ''
   trigger:
   - entity_id: group.group_family
@@ -845,7 +845,7 @@
     service: notify.pusher
   mode: single
 - id: '1608567318963'
-  alias: 1_Lights SYNC Box lamp switch
+  alias: 1_Lights 6_SYNC Box lamp switch
   description: Synchronize relay switch with light state
   trigger:
   - platform: state
@@ -936,7 +936,7 @@
   mode: parallel
 - id: '1610565528088'
   alias: 1_Lights 1_Toogle TV LED Strip
-  description: Toogle TV LED Strip based on TV state
+  description: Toogle TV LED Strip based on TV state and light outside
   trigger:
   - platform: state
     entity_id: media_player.lg_webos_smart_tv
@@ -946,6 +946,8 @@
     entity_id: media_player.lg_webos_smart_tv
     from: 'on'
     to: 'off'
+  - platform: state
+    entity_id: binary_sensor.is_dark
   condition: []
   action:
   - choose:
@@ -969,6 +971,17 @@
     - conditions:
       - condition: state
         entity_id: media_player.lg_webos_smart_tv
+        state: 'off'
+      - condition: state
+        entity_id: light.tv_led_strip_lamp
+        state: 'on'
+      sequence:
+      - service: light.turn_off
+        data: {}
+        entity_id: light.tv_led_strip_lamp
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.is_dark
         state: 'off'
       - condition: state
         entity_id: light.tv_led_strip_lamp
