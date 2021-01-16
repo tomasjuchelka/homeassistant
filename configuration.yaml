@@ -44,8 +44,8 @@ panel_iframe:
     icon: mdi:weather-windy
 
 sonoff:
-  username: !secret sonoff_username
-  password: !secret sonoff_password
+  username: !secret default_username
+  password: !secret default_password
 
 #device_tracker:
 #  - platform: nmap_tracker
@@ -60,6 +60,16 @@ vacuum:
   - platform: xiaomi_miio
     host: 192.168.11.203
     token: !secret mi_token
+
+camera:
+  - platform: xiaomi_cloud_map_extractor
+    host: 192.168.11.203
+    token: !secret mi_token
+    username: !secret default_username
+    password: !secret default_password
+    draw: ['all']
+    attributes:
+      - calibration_points  
 
 notify:
   - platform: pushover

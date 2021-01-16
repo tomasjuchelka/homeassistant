@@ -310,6 +310,11 @@
                             "type": "custom:vertical-stack-in-card"
                         },
                         {
+                            "type": "picture-entity",
+                            "entity": "camera.xiaomi_cloud_map_extractor",
+                            "name": "Vacuum map"
+                        },
+                        {
                             "entities": [
                                 {
                                     "entity": "input_boolean.enable_daily_vacuum"

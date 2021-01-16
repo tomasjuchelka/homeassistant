@@ -1,28 +1,28 @@
 {
+    "version": 1,
+    "key": "core.area_registry",
     "data": {
         "areas": [
             {
-                "id": "8a2b45d15568433aa9ce588a56dc6175",
-                "name": "Ob\u00fdv\u00e1k"
+                "name": "Ob\u00fdv\u00e1k",
+                "id": "8a2b45d15568433aa9ce588a56dc6175"
             },
             {
-                "id": "52484610dded42d9affea5a291ae57b7",
-                "name": "Kuchyn\u011b"
+                "name": "Kuchyn\u011b",
+                "id": "52484610dded42d9affea5a291ae57b7"
             },
             {
-                "id": "7bdb858fc72044aa907807baeebedaa3",
-                "name": "Lo\u017enice"
+                "name": "Lo\u017enice",
+                "id": "7bdb858fc72044aa907807baeebedaa3"
             },
             {
-                "id": "f37ac4648b694173a61b807ae0d7f73d",
-                "name": "Chodba"
+                "name": "Chodba",
+                "id": "f37ac4648b694173a61b807ae0d7f73d"
             },
             {
-                "id": "c409004b6be04f89a9f74a9ac13eb9f5",
-                "name": "Koupelna"
+                "name": "Koupelna",
+                "id": "c409004b6be04f89a9f74a9ac13eb9f5"
             }
         ]
-    },
-    "key": "core.area_registry",
-    "version": 1
+    }
 }

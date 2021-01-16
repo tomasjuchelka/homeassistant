@@ -2023,7 +2023,7 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
@@ -2044,7 +2044,7 @@
                 "supported_features": 41,
                 "device_class": null,
                 "unit_of_measurement": null,
-                "original_name": "Corner Lamp",
+                "original_name": "Bathroom Lamp",
                 "original_icon": null
             },
             {
@@ -2057,7 +2057,7 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
@@ -2074,11 +2074,28 @@
                 "name": null,
                 "icon": null,
                 "disabled_by": null,
-                "capabilities": null,
+                "capabilities": {},
                 "supported_features": 0,
                 "device_class": null,
                 "unit_of_measurement": null,
                 "original_name": "1_Lights 4_OFF bathroom lamp",
+                "original_icon": null
+            },
+            {
+                "entity_id": "automation.1_lights_4_dim_bathroom_lamp",
+                "config_entry_id": null,
+                "device_id": null,
+                "area_id": null,
+                "unique_id": "1610820878204",
+                "platform": "automation",
+                "name": null,
+                "icon": null,
+                "disabled_by": null,
+                "capabilities": {},
+                "supported_features": 0,
+                "device_class": null,
+                "unit_of_measurement": null,
+                "original_name": "1_Lights 4_DIM bathroom lamp",
                 "original_icon": null
             }
         ]

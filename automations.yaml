@@ -320,7 +320,7 @@
     domain: binary_sensor
     for:
       hours: 0
-      minutes: 5
+      minutes: 6
       seconds: 0
   condition: []
   action:
@@ -1037,4 +1037,24 @@
       brightness: 50
       kelvin: 2700
     entity_id: light.tv_led_strip_lamp
+  mode: single
+- id: '1610820878204'
+  alias: 1_Lights 4_DIM bathroom lamp
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 90c09b1f4e4f499daf07ce6f280a4f31
+    entity_id: binary_sensor.tradfri_motion_sensor
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 10
+    entity_id: light.bathroom_lamp
   mode: single

@@ -105,7 +105,7 @@
                 "manufacturer": "hacs.xyz",
                 "model": "",
                 "name": "HACS",
-                "sw_version": "1.9.0",
+                "sw_version": "1.10.0",
                 "entry_type": "service",
                 "id": "d236a1600f6f407c9678f6ae873814b8",
                 "via_device_id": null,
@@ -147,11 +147,11 @@
                 "connections": [
                     [
                         "mac",
-                        "b8:27:eb:69:d7:fc"
+                        "38:60:77:7c:53:18"
                     ],
                     [
                         "mac",
-                        "38:60:77:7c:53:18"
+                        "b8:27:eb:69:d7:fc"
                     ]
                 ],
                 "identifiers": [
@@ -513,7 +513,7 @@
                 ],
                 "manufacturer": "Philips",
                 "model": "LWA001",
-                "name": "Corner Lamp",
+                "name": "Bathroom Lamp",
                 "sw_version": "1.65.9_hB3217DF4",
                 "entry_type": null,
                 "id": "e0cf3a250bb311eb8e6d0f3af31cb892",
