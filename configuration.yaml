@@ -46,24 +46,15 @@ panel_iframe:
 sonoff:
   username: !secret default_username
   password: !secret default_password
-
-#device_tracker:
-#  - platform: nmap_tracker
-#    hosts: 192.168.11.10-11
-#    interval_seconds: 60
-#    consider_home: 900
-#    home_interval: 10
-#    new_device_defaults:
-#      track_new_devices: false
-    
+   
 vacuum:
   - platform: xiaomi_miio
-    host: 192.168.11.203
+    host: !secret ip_vacuum
     token: !secret mi_token
 
 camera:
   - platform: xiaomi_cloud_map_extractor
-    host: 192.168.11.203
+    host: !secret ip_vacuum
     token: !secret mi_token
     username: !secret default_username
     password: !secret default_password
@@ -104,40 +95,16 @@ recorder:
   db_url: mysql://root:pi@127.0.0.1:3306/homeassistant?charset=utf8
   purge_keep_days: 7
   commit_interval: 60
-  exclude:
+  include:
     entities:
-      - sensor.time
-      - sensor.date
-      - sensor.date_time
-      - sensor.hacs
-      - sensor.travel_time_to_work
-      - sensor.days_since_last_cleanup
-      - light.byt
-      - light.all_lights
-      - weather.domov
-    domains:
-      - updater
-      - sun
-      - media_player
-      - automation
-      - script
-      - lock
-      - zwave
-      - group
-      - device_tracker
-      - binary_sensor
+      - sensor.sht31_temperature
+      - sensor.sht31_humidity
+      - sensor.mh_z19_co2
     entity_globs:
-      - input_*
-      - sensor.archer*
-      - sensor.fibaro*
-      - sensor.vacuum*
-      - sensor.sm_*
-      - sensor.ender*
-      - sensor.octoprint*
-      - sensor.fgsd*
+      - person.*
 
 influxdb:
-  host: 192.168.11.100
+  host: !secret ip_hass
   port: 8086
   include:
     entities:
@@ -152,7 +119,7 @@ influxdb:
        - sensor.bathroom_temperature
 
 octoprint:
-  - host: 192.168.11.220
+  - host: !secret ip_octoprint
     api_key: !secret octoprint_api_key
     name: Ender3 V2
     number_of_tools: 1
@@ -161,11 +128,11 @@ octoprint:
 wake_on_lan:
  
 webostv:
-  host: 192.168.11.147
+  host: !secret ip_tv
   turn_on_action:
     service: wake_on_lan.send_magic_packet
     data:
-      mac: 58-FD-B1-D9-4F-AB
+      mac: !secret mac_tv
       broadcast_address: 192.168.11.255
   customize:
     sources:
