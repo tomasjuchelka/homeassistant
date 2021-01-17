@@ -7,7 +7,7 @@ group_all_lights:
   name: All Lights
   entities:
     - light.hall_lamp
-    - light.corner_lamp
+    - light.workplace_lamp
     - light.ball_lamp
     - light.wc_lamp
     - light.door_lamp
@@ -16,5 +16,5 @@ group_emergency_lights:
   name: Emergency Lights
   entities:
     - light.hall_lamp
-    - light.corner_lamp
+    - light.workplace_lamp
     - light.door_lamp

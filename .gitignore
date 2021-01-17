@@ -4,9 +4,7 @@ secrets.yaml
 *.db
 *.sqlite
 *.gz
-.storage/hacs*
-.storage/core.restore_state
-.storage/mobile_app
+.storage
 .sonoff.json
 tts/
 custom_components/hacs/

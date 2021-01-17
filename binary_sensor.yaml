@@ -3,3 +3,8 @@
 - platform: school
   name: School news
   url: "https://www.zschvaleticka.cz"
+- platform: template
+  sensors:
+    is_dark:
+      friendly_name: "It is dark"
+      value_template: "{{ state_attr('sun.sun', 'elevation')|float < 2 }}"
