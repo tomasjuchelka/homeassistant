@@ -1012,6 +1012,7 @@
   action:
   - service: light.turn_on
     data:
+      brightness_pct: 50
       hs_color:
       - '{{ range(360)|random }}'
       - '{{ range(80,101)|random }}'
@@ -1024,6 +1025,7 @@
   - platform: state
     entity_id: binary_sensor.is_dark
     to: 'on'
+    from: 'off'
   condition:
   - condition: state
     entity_id: media_player.lg_webos_smart_tv
@@ -1034,7 +1036,7 @@
   action:
   - service: light.turn_on
     data:
-      brightness: 50
+      brightness_pct: 30
       kelvin: 2700
     entity_id: light.tv_led_strip_lamp
   mode: single

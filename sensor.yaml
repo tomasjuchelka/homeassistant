@@ -112,3 +112,9 @@
     octoprint_time_remaining:
       friendly_name: 'Printing Time Remaining'
       value_template: "{{ states('sensor.ender3_v2_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+#Weather
+- platform: template
+  sensors:
+    bathroom_temperature:
+      value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
+      unit_of_measurement: "°C"
