@@ -1060,3 +1060,19 @@
       brightness_pct: 10
     entity_id: light.bathroom_lamp
   mode: single
+- id: '1611427108068'
+  alias: Low battery level detection & notification for all battery sensors
+  description: ''
+  use_blueprint:
+    path: low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      day: 6
+      actions:
+      - service: notify.pusher
+        data:
+          data:
+            priority: 1
+          message: Battery of {{sensors}} is low!
+          title: Battery level alert!
+          target: galaxys10
+      threshold: 30
