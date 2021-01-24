@@ -1,0 +1,10 @@
+# defines other integrations (e.g. switch) as light entities
+- platform: switch
+  name: Ikea lamp
+  entity_id: switch.sonoff_b1
+- platform: switch
+  name: Cloud lamp
+  entity_id: switch.sonoff_b2
+- platform: switch
+  name: Bedroom lamp
+  entity_id: switch.sonoff_ch1

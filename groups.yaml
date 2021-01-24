@@ -12,6 +12,9 @@ group_all_lights:
     - light.wc_lamp
     - light.door_lamp
     - light.pc_lamp
+    - light.ikea_lamp
+    - light.cloud_lamp
+    - light.bedroom_lamp
 group_emergency_lights:
   name: Emergency Lights
   entities:

@@ -79,7 +79,7 @@
   - entity_id: group.group_all_lights
     service: homeassistant.turn_off
   - data: {}
-    entity_id: switch.sonoff_b1,switch.sonoff_b2,switch.sonoff_ch1,switch.sonoff_ch3
+    entity_id: switch.sonoff_ch3
     service: switch.turn_off
   mode: single
 - id: '1585502004382'
@@ -92,8 +92,8 @@
   condition: []
   action:
   - data: {}
-    entity_id: switch.sonoff_b1
-    service: switch.turn_on
+    entity_id: light.ikea_lamp
+    service: light.turn_on
   mode: single
 - id: '1585676836818'
   alias: 1_Lights 5_OFF Daily lights
@@ -104,8 +104,8 @@
   condition: []
   action:
   - data: {}
-    entity_id: switch.sonoff_b1
-    service: switch.turn_off
+    entity_id: light.ikea_lamp
+    service: light.turn_off
   mode: single
 - id: '1585935683696'
   alias: 3_Clima CO2 high time based

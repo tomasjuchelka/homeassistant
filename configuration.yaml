@@ -13,6 +13,7 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
+light: !include light.yaml
 
 homeassistant:
   customize: !include customize.yaml
