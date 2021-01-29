@@ -79,12 +79,3 @@ vacuum_start:
   - data: {}
     entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.start
-bedroom_lamp_on:
-  alias: Bedroom CH2 ON
-  sequence:
-  - data:
-      brightness_pct: 80
-      kelvin: 2700
-    entity_id: light.box_lamp
-    service: light.turn_on
-  mode: single

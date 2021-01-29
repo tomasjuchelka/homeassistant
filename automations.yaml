@@ -62,9 +62,30 @@
     to: 'off'
   condition: []
   action:
-  - entity_id: light.box_lamp
-    service: '{% if trigger.to_state.state == ''on'' %}  script.bedroom_lamp_on{%-
-      else %}  light.turn_off{% endif %}'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{  trigger.to_state.state == ''on''  }}'
+      - condition: state
+        entity_id: light.box_lamp
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 80
+          kelvin: 2700
+        entity_id: light.box_lamp
+    - conditions:
+      - condition: template
+        value_template: '{{  trigger.to_state.state == ''off''  }}'
+      - condition: state
+        entity_id: light.box_lamp
+        state: 'on'
+      sequence:
+      - service: light.turn_off
+        data: {}
+        entity_id: light.box_lamp
+    default: []
   mode: single
 - id: '1585325340725'
   alias: 1_Lights OFF All lights
@@ -603,7 +624,12 @@
         value_template: '{{ trigger.event.data.event == 1002 and is_state("light.box_lamp",
           "off")}}'
       sequence:
-      - data: {}
+      - data:
+          rgb_color:
+          - '255'
+          - '75'
+          - '75'
+          brightness_pct: 80
         entity_id: light.box_lamp
         service: light.turn_on
     - conditions:
@@ -614,32 +640,6 @@
       - data: {}
         entity_id: light.box_lamp
         service: light.turn_off
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 1002 and is_state("light.box_lamp",
-          "on")}}'
-      sequence:
-      - data:
-          transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct +\
-            \ 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  100\n{% endif %}\n"
-        entity_id: light.box_lamp
-        service: light.turn_on
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.event.data.event == 2003 and is_state("light.box_lamp",
-          "on")}}'
-      sequence:
-      - data:
-          transition: '1'
-          brightness_pct: "{% set brightness_pct = (state_attr('light.box_lamp', 'brightness')\
-            \ / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct -\
-            \ 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n\
-            \  1\n{% endif %}\n"
-        entity_id: light.box_lamp
-        service: light.turn_on
     - conditions:
       - condition: template
         value_template: '{{ trigger.event.data.event == 1003}}'
@@ -850,6 +850,13 @@
   trigger:
   - platform: state
     entity_id: light.box_lamp
+    from: 'off'
+    to: 'on'
+    for: 00:00:01
+  - platform: state
+    entity_id: light.box_lamp
+    from: 'on'
+    to: 'off'
   condition: []
   action:
   - choose:
@@ -1017,6 +1024,13 @@
       - '{{ range(360)|random }}'
       - '{{ range(80,101)|random }}'
     entity_id: light.tv_led_strip_lamp
+  - service: light.turn_on
+    data:
+      brightness_pct: 50
+      hs_color:
+      - '{{ state_attr(''light.tv_led_strip_lamp'', ''hs_color'')[0] | float }}'
+      - '{{ state_attr(''light.tv_led_strip_lamp'', ''hs_color'')[1] | float }}'
+    entity_id: light.ball_lamp
   mode: single
 - id: '1610662616419'
   alias: '1_Lights 1_ON TV LED Strip '
