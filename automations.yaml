@@ -665,11 +665,11 @@
   - data:
       data:
         priority: -1
-        url: '{{ state_attr(''binary_sensor.updater'', ''release_notes'') }}'
+        url: https://github.com/home-assistant/core/releases
       target: galaxys10
       title: New Home Assistant Release
       message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
-        now available.
+        now available. 
     service: notify.pusher
   mode: single
 - id: '1601480894174'
@@ -1024,13 +1024,6 @@
       - '{{ range(360)|random }}'
       - '{{ range(80,101)|random }}'
     entity_id: light.tv_led_strip_lamp
-  - service: light.turn_on
-    data:
-      brightness_pct: 50
-      hs_color:
-      - '{{ state_attr(''light.tv_led_strip_lamp'', ''hs_color'')[0] | float }}'
-      - '{{ state_attr(''light.tv_led_strip_lamp'', ''hs_color'')[1] | float }}'
-    entity_id: light.ball_lamp
   mode: single
 - id: '1610662616419'
   alias: '1_Lights 1_ON TV LED Strip '
@@ -1051,7 +1044,7 @@
   - service: light.turn_on
     data:
       brightness_pct: 30
-      kelvin: 2700
+      color_temp: 450
     entity_id: light.tv_led_strip_lamp
   mode: single
 - id: '1610820878204'
