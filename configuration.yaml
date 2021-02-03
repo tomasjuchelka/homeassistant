@@ -1,8 +1,8 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 logger:
-  default: debug
+  default: info
   logs:
-    custom_components.school: info
+    custom_components.school: debug
 
 frontend:
   themes: !include_dir_merge_named themes
