@@ -3,6 +3,7 @@ logger:
   default: info
   logs:
     custom_components.school: debug
+    homeassistant.components.automation.update_presence_tracker: warning
 
 frontend:
   themes: !include_dir_merge_named themes
