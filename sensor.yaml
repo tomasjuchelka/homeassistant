@@ -75,28 +75,31 @@
       unit_of_measurement: "h"
       value_template: "Sensor: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.sensor_dirty_left }}"
       icon_template: "mdi:screwdriver"
-- platform: waze_travel_time
-  origin: !secret waze_origin
-  destination: !secret waze_destination
-  region: 'EU'
-  name: "Travel time to work"
-- platform: waqi
-  token: !secret waqi_token
-  locations:
-    - pha10-prumyslova
+#WAZE - disabled until usage found
+#- platform: waze_travel_time
+#  origin: !secret waze_origin
+#  destination: !secret waze_destination
+#  region: 'EU'
+#  name: "Travel time to work"
+#WAQI - not working anymore
+#- platform: waqi
+#  token: !secret waqi_token
+#  locations:
+#    - pha10-prumyslova
 - platform: alpha_vantage
   api_key: !secret alpha_vantage_api_key
   foreign_exchange:
     - name: EUR_CZK
       from: EUR
       to: CZK
+#Stocks
 - platform: stock_price
   api_key: !secret alpha_vantage_api_key
   symbols:
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
-# Home Assistant
+#Home Assistant
 - platform: version
   name: latest_version_homeassistant
   source: docker
