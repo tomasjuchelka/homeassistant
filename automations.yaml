@@ -284,6 +284,11 @@
     device_id: 90c09b1f4e4f499daf07ce6f280a4f31
     entity_id: binary_sensor.tradfri_motion_sensor
     domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: 0211166bd85cbb1413f51a4e44fa09ae
+    entity_id: binary_sensor.presence_13
+    domain: binary_sensor
   condition: []
   action:
   - data:
@@ -296,9 +301,13 @@
   alias: 99_Notify Water detection
   description: Notifies about water leaks.
   trigger:
-  - entity_id: binary_sensor.water_sensor
+  - entity_id: binary_sensor.water_bathroom
     from: 'off'
     platform: state
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.water_kitchen
+    from: 'off'
     to: 'on'
   condition: []
   action:
@@ -669,7 +678,7 @@
       target: galaxys10
       title: New Home Assistant Release
       message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
-        now available. 
+        now available.
     service: notify.pusher
   mode: single
 - id: '1601480894174'
@@ -703,7 +712,7 @@
     service: notify.pusher
   mode: single
 - id: '1602089750353'
-  alias: 99_System Notify about Air pollution
+  alias: 99_Notify about Air pollution
   description: Notify when AQI index goes over 100
   trigger:
   - platform: numeric_state
@@ -882,7 +891,7 @@
         entity_id: switch.sonoff_ch2
   mode: single
 - id: '1609158926242'
-  alias: Update presence tracker
+  alias: 6_Presence Update presence tracker
   description: ''
   trigger:
   - platform: mqtt
@@ -941,6 +950,7 @@
           source_type: bluetooth_le
         service: device_tracker.see
   mode: parallel
+  max: 10
 - id: '1610565528088'
   alias: 1_Lights 1_Toogle TV LED Strip
   description: Toogle TV LED Strip based on TV state and light outside
@@ -1068,12 +1078,12 @@
     entity_id: light.bathroom_lamp
   mode: single
 - id: '1611427108068'
-  alias: Low battery level detection & notification for all battery sensors
+  alias: 99_Notify Low battery level detection
   description: ''
   use_blueprint:
     path: low-battery-level-detection-notification-for-all-battery-sensors.yaml
     input:
-      day: 6
+      day: '6'
       actions:
       - service: notify.pusher
         data:
