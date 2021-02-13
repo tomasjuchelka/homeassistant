@@ -84,6 +84,16 @@ input_datetime:
     name: Last time of clean up
     has_date: true
     has_time: true
+  hours_night:
+    name: Night hours
+    has_date: false
+    has_time: true
+    initial: "23:00"
+  hours_day:
+    name: Day hours
+    has_date: false
+    has_time: true
+    initial: "07:00"
 
 input_select:
   vacuum_room:

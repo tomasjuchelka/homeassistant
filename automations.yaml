@@ -275,8 +275,8 @@
   - choose:
     - conditions:
       - condition: time
-        after: '23:00:00'
-        before: 07:00:00
+        after: input_datetime.hours_night
+        before: input_datetime.hours_day
       sequence:
       - service: light.turn_on
         data:
@@ -310,8 +310,8 @@
   - choose:
     - conditions:
       - condition: time
-        after: '23:00:00'
-        before: 07:00:00
+        after: input_datetime.hours_night
+        before: input_datetime.hours_day
       sequence:
       - service: light.turn_on
         data:
@@ -418,8 +418,8 @@
   - choose:
     - conditions:
       - condition: time
-        after: '23:00:00'
-        before: 07:00:00
+        after: input_datetime.hours_night
+        before: input_datetime.hours_day
       sequence:
       - service: light.turn_on
         data:
