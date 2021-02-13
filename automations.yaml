@@ -236,7 +236,7 @@
     service: notify.pusher
   mode: single
 - id: '1596572554050'
-  alias: 99_Notify Fire detection
+  alias: 80_Emergency Fire detection
   description: Executed in case of fire!
   trigger:
   - type: turned_on
@@ -251,8 +251,8 @@
         expire: 3600
         priority: 2
         retry: 60
-      message: Fire alarm!
-      title: Smoke detector
+      message: Detekován kouř v bytě.
+      title: Fire alarm!
     service: notify.pusher
   - data: {}
     entity_id: group.group_emergency_lights
@@ -324,7 +324,7 @@
       entity_id: light.bathroom_lamp
   mode: single
 - id: '1596644035996'
-  alias: 99_Notify Water detection
+  alias: 80_Emergency Water detection
   description: Notifies about water leaks.
   trigger:
   - entity_id: binary_sensor.water_bathroom
@@ -342,8 +342,8 @@
         expire: 3600
         priority: 2
         retry: 60
-      message: Water alarm!
-      title: Water leak detector
+      message: Detekován únik vody. Zařízení {{ trigger.entity_id }}
+      title: Water alarm!
     service: notify.pusher
   mode: single
 - id: '1596657200251'
@@ -386,7 +386,7 @@
     service: light.turn_off
   mode: single
 - id: '1596993559449'
-  alias: 99_Notify Vacuum state
+  alias: 2_Vacuum Notify Vacuum state
   description: ''
   trigger:
   - entity_id: sensor.vacuum_error
@@ -703,7 +703,7 @@
         service: light.turn_on
   mode: single
 - id: '1601296769489'
-  alias: 98_System HA releases
+  alias: 70_Info HA releases
   description: Notify about new HA releases
   trigger:
   - platform: state
@@ -736,7 +736,7 @@
     entity_id: sensor.days_since_last_cleanup
   mode: single
 - id: school_news
-  alias: 98_School news
+  alias: 70_Info School news
   description: Notify about new article on school webpage
   trigger:
   - platform: state
@@ -852,7 +852,7 @@
         service: notify.pusher
   mode: single
 - id: '1602357978047'
-  alias: 99_Notify Inform about stock price
+  alias: 70_Info Stock price
   description: Notify about significant loss in the share price
   trigger:
   - platform: numeric_state
