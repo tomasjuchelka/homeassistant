@@ -9,8 +9,6 @@ group_all_lights:
     - light.hall_lamp
     - light.workplace_lamp
     - light.ball_lamp
-    - light.wc_lamp
-    - light.door_lamp
     - light.pc_lamp
     - light.ikea_lamp
     - light.cloud_lamp
