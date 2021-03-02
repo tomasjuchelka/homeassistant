@@ -1,9 +1,4 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
-logger:
-  default: info
-  logs:
-    custom_components.school: debug
-    homeassistant.components.automation.update_presence_tracker: warning
 
 frontend:
   themes: !include_dir_merge_named themes
@@ -11,6 +6,7 @@ frontend:
 default_config:
 python_script:
 
+logger: !include logger.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

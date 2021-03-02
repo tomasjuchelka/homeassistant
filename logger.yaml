@@ -1,0 +1,6 @@
+default: info
+logs:
+  custom_components.school: debug
+  homeassistant.components.automation.update_presence_tracker: warning
+  homeassistant.components.automation.98_system_refresh_sensors: warning
+  homeassistant.components.esphome: warning
