@@ -81,11 +81,6 @@
 #  destination: !secret waze_destination
 #  region: 'EU'
 #  name: "Travel time to work"
-#WAQI - not working anymore
-#- platform: waqi
-#  token: !secret waqi_token
-#  locations:
-#    - pha10-prumyslova
 - platform: alpha_vantage
   api_key: !secret alpha_vantage_api_key
   foreign_exchange:

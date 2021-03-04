@@ -1,0 +1,9 @@
+{
+  "domain": "school",
+  "name": "School news",
+  "documentation": [],
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [],
+  "version": "v1.0.0"
+}

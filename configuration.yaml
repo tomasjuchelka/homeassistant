@@ -106,6 +106,7 @@ recorder:
       - sensor.sht31_temperature
       - sensor.sht31_humidity
       - sensor.mh_z19_co2
+      - sensor.u_s_air_quality_index
     entity_globs:
       - person.*
 
@@ -123,6 +124,7 @@ influxdb:
        - sensor.temperature_6
        - sensor.fgsd002_smoke_sensor_air_temperature
        - sensor.bathroom_temperature
+       - sensor.u_s_air_quality_index
 
 octoprint:
   - host: !secret ip_octoprint
