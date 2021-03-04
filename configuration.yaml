@@ -48,11 +48,6 @@ sonoff:
   username: !secret default_username
   password: !secret default_password
    
-vacuum:
-  - platform: xiaomi_miio
-    host: !secret ip_vacuum
-    token: !secret mi_token
-
 #camera:
 #  - platform: xiaomi_cloud_map_extractor
 #    host: !secret ip_vacuum
