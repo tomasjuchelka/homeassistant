@@ -875,7 +875,10 @@
     from: 'on'
     to: 'off'
     for: 00:01:00
-  condition: []
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.octoprint_time_elapsed'') != ''00:00:00''
+      }}'
   action:
   - data:
       data:
