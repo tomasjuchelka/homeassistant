@@ -777,63 +777,59 @@
   - choose:
     - conditions:
       - condition: template
-        value_template: '{{ states(''sensor.u_s_air_quality_index'')
-          | int > 60 and states(''sensor.u_s_air_quality_index'')
-          | int <= 100 }}'
+        value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > 60 and
+          states(''sensor.u_s_air_quality_index'') | int <= 100 }}'
       sequence:
       - data:
           data:
             priority: -1
           title: Měřítko kvality ovzduší
-          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'')
-            }}. {{- ''\n'' -}} Stav: mírné znečištění {{- ''\n'' -}} Primární zdroj:
+          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'') }}. {{-
+            ''\n'' -}} Stav: mírné znečištění {{- ''\n'' -}} Primární zdroj: {{ states(''sensor.u_s_main_pollutant'')
+            }}.'
+        service: notify.pusher
+    - conditions:
+      - condition: template
+        value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > 100 and
+          states(''sensor.u_s_air_quality_index'') | int <= 150 }}'
+      sequence:
+      - data:
+          data:
+            priority: 0
+          title: Měřítko kvality ovzduší
+          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'') }}. {{-
+            ''\n'' -}} Stav: nezdravé pro určité skupiny {{- ''\n'' -}} Primární zdroj:
             {{ states(''sensor.u_s_main_pollutant'') }}.'
         service: notify.pusher
     - conditions:
       - condition: template
-        value_template: '{{ states(''sensor.u_s_air_quality_index'')
-          | int > 100 and states(''sensor.u_s_air_quality_index'')
-          | int <= 150 }}'
+        value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > 150 and
+          states(''sensor.u_s_air_quality_index'') | int <= 200 }}'
       sequence:
       - data:
           data:
             priority: 0
           title: Měřítko kvality ovzduší
-          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'')
-            }}. {{- ''\n'' -}} Stav: nezdravé pro určité skupiny {{- ''\n'' -}} Primární
-            zdroj: {{ states(''sensor.u_s_main_pollutant'') }}.'
+          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'') }}. {{-
+            ''\n'' -}} Stav: nezdravé {{- ''\n'' -}} Primární zdroj: {{ states(''sensor.u_s_main_pollutant'')
+            }}.'
         service: notify.pusher
     - conditions:
       - condition: template
-        value_template: '{{ states(''sensor.u_s_air_quality_index'')
-          | int > 150 and states(''sensor.u_s_air_quality_index'')
-          | int <= 200 }}'
-      sequence:
-      - data:
-          data:
-            priority: 0
-          title: Měřítko kvality ovzduší
-          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'')
-            }}. {{- ''\n'' -}} Stav: nezdravé {{- ''\n'' -}} Primární zdroj: {{ states(''sensor.u_s_main_pollutant'') }}.'
-        service: notify.pusher
-    - conditions:
-      - condition: template
-        value_template: '{{ states(''sensor.u_s_air_quality_index'')
-          | int > 200 and states(''sensor.u_s_air_quality_index'')
-          | int <= 300 }}'
+        value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > 200 and
+          states(''sensor.u_s_air_quality_index'') | int <= 300 }}'
       sequence:
       - data:
           data:
             priority: 1
           title: Měřítko kvality ovzduší
-          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'')
-            }}. {{- ''\n'' -}} Stav: velmi nezdravé (havarijní) {{- ''\n'' -}} Primární
-            zdroj: {{ states(''sensor.u_s_main_pollutant'') }}.'
+          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'') }}. {{-
+            ''\n'' -}} Stav: velmi nezdravé (havarijní) {{- ''\n'' -}} Primární zdroj:
+            {{ states(''sensor.u_s_main_pollutant'') }}.'
         service: notify.pusher
     - conditions:
       - condition: template
-        value_template: '{{ states(''sensor.u_s_air_quality_index'')
-          | int > 300 }}'
+        value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > 300 }}'
       sequence:
       - data:
           data:
@@ -841,9 +837,9 @@
             priority: 2
             retry: 60
           title: Měřítko kvality ovzduší
-          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'')
-            }}. {{- ''\n'' -}} Stav: nebezpečné (hazardní) {{- ''\n'' -}} Primární
-            zdroj: {{states(''sensor.u_s_main_pollutant'') }}.'
+          message: 'Praha AQI: {{ states(''sensor.u_s_air_quality_index'') }}. {{-
+            ''\n'' -}} Stav: nebezpečné (hazardní) {{- ''\n'' -}} Primární zdroj:
+            {{states(''sensor.u_s_main_pollutant'') }}.'
         service: notify.pusher
   mode: single
 - id: '1602357978047'
@@ -878,6 +874,7 @@
     entity_id: binary_sensor.ender3_v2_printing
     from: 'on'
     to: 'off'
+    for: 00:01:00
   condition: []
   action:
   - data:
