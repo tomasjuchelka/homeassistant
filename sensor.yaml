@@ -119,3 +119,8 @@
     bathroom_temperature:
       value_template: "{{ state_attr('binary_sensor.water_sensor', 'temperature') }}"
       unit_of_measurement: "°C"
+#Steam
+- platform: steam_online
+  api_key: !secret steam_api_key
+  accounts:
+    - 76561198254663953

@@ -759,9 +759,6 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.u_s_air_quality_index
-    above: '60'
-  - platform: numeric_state
-    entity_id: sensor.u_s_air_quality_index
     above: '100'
   - platform: numeric_state
     entity_id: sensor.u_s_air_quality_index
@@ -854,17 +851,46 @@
     entity_id: sensor.siemens_ag
     attribute: 09. change
     below: '-3.0'
+  - platform: numeric_state
+    entity_id: sensor.market_price
+    below: '50000'
   condition: []
   action:
-  - data:
-      data:
-        priority: 0
-      target: galaxys10
-      title: Share price info
-      message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'') |
-        round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10. change
-        percent'') | round(2) }}.'
-    service: notify.pusher
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: numeric_state
+          entity_id: sensor.siemens_ag
+          below: '100'
+          attribute: 05. price
+        - condition: numeric_state
+          entity_id: sensor.siemens_ag
+          attribute: 09. change
+          below: '-3.0'
+      sequence:
+      - service: notify.pusher
+        data:
+          target: galaxys10
+          message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'')
+            | round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10.
+            change percent'') | round(2) }}.'
+          title: Siemens Share Info
+          data:
+            priority: 0
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.market_price
+        below: '50000'
+      sequence:
+      - service: notify.pusher
+        data:
+          target: galaxys10
+          message: 'Bitcoin price: {{ states(''sensor.market_price'') }} USD.'
+          title: Bitcoin Info
+          data:
+            priority: 0
+    default: []
   mode: single
 - id: '1605992501908'
   alias: 5_Print job finished
@@ -1131,3 +1157,48 @@
           title: Battery level alert!
           target: galaxys10
       threshold: 30
+- id: '1615068825913'
+  alias: Stop print
+  description: Stop print at a defined time
+  trigger:
+  - platform: time
+    at: 03:00:00
+  condition:
+  - condition: state
+    entity_id: binary_sensor.ender3_v2_printing
+    state: 'off'
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.sonoff_1000cc5d43
+  mode: single
+- id: '1616955811109'
+  alias: 7_Mining stop when gaming
+  description: Stop mining when gaming and resume afterwards
+  trigger:
+  - platform: state
+    entity_id: sensor.steam_76561198254663953
+    attribute: game
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.steam_76561198254663953
+        state: None
+        attribute: game
+      - condition: state
+        entity_id: switch.nh_mypc_power
+        state: 'off'
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.nh_mypc_power
+    default:
+    - condition: state
+      entity_id: switch.nh_mypc_power
+      state: 'on'
+    - service: switch.turn_off
+      target:
+        entity_id: switch.nh_mypc_power
+  mode: single
