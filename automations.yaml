@@ -854,6 +854,9 @@
   - platform: numeric_state
     entity_id: sensor.market_price
     below: '50000'
+  - platform: numeric_state
+    entity_id: sensor.market_price
+    above: '60000'
   condition: []
   action:
   - choose:
@@ -879,9 +882,14 @@
           data:
             priority: 0
     - conditions:
-      - condition: numeric_state
-        entity_id: sensor.market_price
-        below: '50000'
+      - condition: or
+        conditions:
+        - condition: numeric_state
+          entity_id: sensor.market_price
+          below: '50000'
+        - condition: numeric_state
+          entity_id: sensor.market_price
+          above: '60000'
       sequence:
       - service: notify.pusher
         data:
