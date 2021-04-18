@@ -84,7 +84,7 @@ input_datetime:
     name: Day hours
     has_date: false
     has_time: true
-    initial: "07:00"
+    initial: "06:00"
 
 input_select:
   vacuum_room:
@@ -148,3 +148,11 @@ webostv:
       - 'SledovaniTV 2.0'
       - Youtube
       - Netflix
+      
+coinbase:
+  api_key: !secret coinbase_api_key
+  api_secret: !secret coinbase_api_secret
+  account_balance_currencies:
+    - BTC
+  exchange_rate_currencies:
+    - BTC

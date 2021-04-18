@@ -852,10 +852,10 @@
     attribute: 09. change
     below: '-3.0'
   - platform: numeric_state
-    entity_id: sensor.market_price
+    entity_id: sensor.btc_exchange_rate
     below: '50000'
   - platform: numeric_state
-    entity_id: sensor.market_price
+    entity_id: sensor.btc_exchange_rate
     above: '60000'
   condition: []
   action:
@@ -885,16 +885,16 @@
       - condition: or
         conditions:
         - condition: numeric_state
-          entity_id: sensor.market_price
+          entity_id: sensor.btc_exchange_rate
           below: '50000'
         - condition: numeric_state
-          entity_id: sensor.market_price
+          entity_id: sensor.btc_exchange_rate
           above: '60000'
       sequence:
       - service: notify.pusher
         data:
           target: galaxys10
-          message: 'Bitcoin price: {{ states(''sensor.market_price'') }} USD.'
+          message: 'Bitcoin price: {{ states(''sensor.btc_exchange_rate'') }} USD.'
           title: Bitcoin Info
           data:
             priority: 0

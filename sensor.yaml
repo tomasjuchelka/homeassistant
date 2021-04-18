@@ -94,13 +94,13 @@
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
-- platform: bitcoin
-  display_options:
-    - market_price_usd
+#- platform: bitcoin
+#  display_options:
+#    - market_price_usd
 #Home Assistant
 - platform: version
   name: latest_version_homeassistant
-  source: docker
+  source: container
   beta: true
 - platform: version
   name: current_version_homeassistant
