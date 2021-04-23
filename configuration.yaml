@@ -107,6 +107,9 @@ recorder:
       - sensor.sht31_humidity
       - sensor.mh_z19_co2
       - sensor.u_s_air_quality_index
+      - sensor.siemens_ag
+      - sensor.eur_czk
+      - sensor.btc_exchange_rate
     entity_globs:
       - person.*
 
@@ -116,15 +119,9 @@ influxdb:
   include:
     entities:
        - sensor.mh_z19_co2
-       - sensor.sht31_temperature
-       - sensor.sht31_humidity
        - sensor.siemens_ag
        - sensor.eur_czk
-       - sensor.waqi_pha10_prumyslova_prague_czech_republic
-       - sensor.temperature_6
-       - sensor.fgsd002_smoke_sensor_air_temperature
-       - sensor.bathroom_temperature
-       - sensor.u_s_air_quality_index
+       - sensor.btc_exchange_rate
 
 octoprint:
   - host: !secret ip_octoprint
