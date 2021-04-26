@@ -124,3 +124,26 @@
   api_key: !secret steam_api_key
   accounts:
     - 76561198254663953
+# SystemMonitor
+- platform: systemmonitor
+  resources:
+  - type: disk_use_percent
+  - type: disk_use
+  - type: disk_free
+  - type: memory_free
+  - type: memory_use
+  - type: memory_use_percent
+  - type: throughput_network_in
+    arg: eth0
+  - type: throughput_network_out
+    arg: eth0
+  - type: ipv4_address
+    arg: eth0
+  - type: processor_use
+  - type: last_boot
+- platform: command_line
+  name: processor_temp
+  command: "cat /thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  scan_interval: 300
+  value_template: "{{ value | multiply(0.001) | round(1) }}"
