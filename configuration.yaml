@@ -153,3 +153,34 @@ coinbase:
     - BTC
   exchange_rate_currencies:
     - BTC
+    
+monitor_docker:
+  - name: Docker
+    scan_interval: 60
+    containers:
+      - home-assistant
+      - deconz
+      - openzwave
+      - influxdb
+      - home-assistant-mariadb
+      - portainer
+      - minidlna
+      - esphome
+      - grafana
+      - diun
+    rename:
+      deconz: DeCONZ
+      home-assistant-mariadb: MariaDB
+      home-assistant: Home Assistant
+      openzwave: OpenZWave
+      influxdb: InfluxDB
+      grafana: Grafana
+      portainer: Portainer
+      diun: Docker Notifier
+      minidlna: MiniDLNA
+      esphome: ESPHome
+    monitored_conditions:
+      - version
+      - state
+      - status
+      - image
