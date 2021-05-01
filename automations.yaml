@@ -1211,3 +1211,21 @@
         }}.
     service: notify.pusher
   mode: single
+- id: '1619803793551'
+  alias: 97_Info Docker image update
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.docker_update_version
+  condition: []
+  action:
+  - service: notify.pusher
+    data:
+      data:
+        priority: -1
+      message: New docker image available {{ states('sensor.docker_update_version')
+        }}
+      title: Docker image update
+      target: galaxys10
+  mode: parallel
+  max: 10
