@@ -1219,13 +1219,19 @@
     entity_id: sensor.docker_update_version
   condition: []
   action:
-  - service: notify.pusher
-    data:
-      data:
-        priority: -1
-      message: New docker image available {{ states('sensor.docker_update_version')
-        }}
-      title: Docker image update
-      target: galaxys10
-  mode: parallel
+  - service: var.set
+    data_template:
+      entity_id: "{% if 'homeassistant' in trigger.to_state.state %}\n  var.version_ha\n\
+        {% elif 'deconz' in trigger.to_state.state %}\n  var.version_deconz\n{% elif\
+        \ 'ozwdaemon' in trigger.to_state.state %}\n  var.version_openzwave\n{% elif\
+        \ 'mariadb' in trigger.to_state.state %}\n  var.version_mariadb\n{% elif 'portainer'\
+        \ in trigger.to_state.state %}\n  var.version_portainer\n{% elif 'minidlna'\
+        \ in trigger.to_state.state %}\n  var.version_minidlna\n{% elif 'esphome'\
+        \ in trigger.to_state.state %}\n  var.version_esphome\n{% elif 'grafana' in\
+        \ trigger.to_state.state %}\n  var.version_grafana\n{% elif 'influxdb' in\
+        \ trigger.to_state.state %}\n  var.version_influxdb\n{% elif 'diun' in trigger.to_state.state\
+        \ %}\n  var.version_diun\n{% else %}\n  var.version_temp\n{% endif %}"
+      value: "{% set s = states('sensor.docker_update_version') %}   {% set version\
+        \ = s.split(':')[1] %}\n  {{ version }}"
+  mode: queued
   max: 10
