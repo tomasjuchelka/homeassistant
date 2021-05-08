@@ -1235,3 +1235,21 @@
         \ = s.split(':')[1] %}\n  {{ version }}"
   mode: queued
   max: 10
+- id: '1620478871087'
+  alias: 82_Emergency Under-voltage
+  description: Check for under-voltage.
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.rpi_power_status
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 1
+      target: galaxys10
+      message: "Under-voltage was detected. Consider getting a uninterruptible power supply for your Raspberry Pi."
+      title: RPi power status
+    service: notify.pusher
+  mode: single
