@@ -1,0 +1,6 @@
+# Some examples not used, but maybe useful in the future
+- platform: mqtt
+  name: "docker_update_version"
+  state_topic: "diun/docker_version"
+  json_attributes_topic: "diun/docker_version" 
+  value_template: "{{ value_json.image }}"

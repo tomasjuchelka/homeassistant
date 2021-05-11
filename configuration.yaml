@@ -1,18 +1,20 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
-logger:
-  default: debug
-  logs:
-    custom_components.school: info
+
+frontend:
+  themes: !include_dir_merge_named themes
 
 default_config:
 python_script:
 
+logger: !include logger.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include sensor.yaml
 binary_sensor: !include binary_sensor.yaml
+light: !include light.yaml
+var: !include variables.yaml
 
 homeassistant:
   customize: !include customize.yaml
@@ -47,20 +49,15 @@ sonoff:
   username: !secret default_username
   password: !secret default_password
    
-vacuum:
-  - platform: xiaomi_miio
-    host: !secret ip_vacuum
-    token: !secret mi_token
-
-camera:
-  - platform: xiaomi_cloud_map_extractor
-    host: !secret ip_vacuum
-    token: !secret mi_token
-    username: !secret default_username
-    password: !secret default_password
-    draw: ['all']
-    attributes:
-      - calibration_points  
+#camera:
+#  - platform: xiaomi_cloud_map_extractor
+#    host: !secret ip_vacuum
+#    token: !secret mi_token
+#    username: !secret default_username
+#    password: !secret default_password
+#    draw: ['all']
+#    attributes:
+#      - calibration_points  
 
 notify:
   - platform: pushover
@@ -79,6 +76,16 @@ input_datetime:
     name: Last time of clean up
     has_date: true
     has_time: true
+  hours_night:
+    name: Night hours
+    has_date: false
+    has_time: true
+    initial: "23:00"
+  hours_day:
+    name: Day hours
+    has_date: false
+    has_time: true
+    initial: "06:00"
 
 input_select:
   vacuum_room:
@@ -100,6 +107,10 @@ recorder:
       - sensor.sht31_temperature
       - sensor.sht31_humidity
       - sensor.mh_z19_co2
+      - sensor.u_s_air_quality_index
+      - sensor.siemens_ag
+      - sensor.eur_czk
+      - sensor.btc_exchange_rate
     entity_globs:
       - person.*
 
@@ -109,14 +120,9 @@ influxdb:
   include:
     entities:
        - sensor.mh_z19_co2
-       - sensor.sht31_temperature
-       - sensor.sht31_humidity
        - sensor.siemens_ag
        - sensor.eur_czk
-       - sensor.waqi_pha10_prumyslova_prague_czech_republic
-       - sensor.temperature_6
-       - sensor.fgsd002_smoke_sensor_air_temperature
-       - sensor.bathroom_temperature
+       - sensor.btc_exchange_rate
 
 octoprint:
   - host: !secret ip_octoprint
@@ -140,3 +146,42 @@ webostv:
       - 'SledovaniTV 2.0'
       - Youtube
       - Netflix
+      
+coinbase:
+  api_key: !secret coinbase_api_key
+  api_secret: !secret coinbase_api_secret
+  account_balance_currencies:
+    - BTC
+  exchange_rate_currencies:
+    - BTC
+    
+monitor_docker:
+  - name: Docker
+    scan_interval: 60
+    containers:
+      - home-assistant
+      - deconz
+      - openzwave
+      - influxdb
+      - home-assistant-mariadb
+      - portainer
+      - minidlna
+      - esphome
+      - grafana
+      - diun
+    rename:
+      deconz: DeCONZ
+      home-assistant-mariadb: MariaDB
+      home-assistant: Home Assistant
+      openzwave: OpenZWave
+      influxdb: InfluxDB
+      grafana: Grafana
+      portainer: Portainer
+      diun: Docker Notifier
+      minidlna: MiniDLNA
+      esphome: ESPHome
+    monitored_conditions:
+      - version
+      - state
+      - status
+      - image

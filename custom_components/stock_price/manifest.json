@@ -1,0 +1,9 @@
+{
+  "domain": "stock_price",
+  "name": "stock_price",
+  "documentation": [],
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [],
+  "version": "v1.0.0"
+}
