@@ -1215,25 +1215,26 @@
   alias: 97_Info Docker image update
   description: ''
   trigger:
-  - platform: state
-    entity_id: sensor.docker_update_version
+  - platform: mqtt
+    topic: diun/docker_version
   condition: []
   action:
   - service: var.set
     data_template:
-      entity_id: "{% if 'homeassistant' in trigger.to_state.state %}\n  var.version_ha\n\
-        {% elif 'deconz' in trigger.to_state.state %}\n  var.version_deconz\n{% elif\
-        \ 'ozwdaemon' in trigger.to_state.state %}\n  var.version_openzwave\n{% elif\
-        \ 'mariadb' in trigger.to_state.state %}\n  var.version_mariadb\n{% elif 'portainer'\
-        \ in trigger.to_state.state %}\n  var.version_portainer\n{% elif 'minidlna'\
-        \ in trigger.to_state.state %}\n  var.version_minidlna\n{% elif 'esphome'\
-        \ in trigger.to_state.state %}\n  var.version_esphome\n{% elif 'grafana' in\
-        \ trigger.to_state.state %}\n  var.version_grafana\n{% elif 'influxdb' in\
-        \ trigger.to_state.state %}\n  var.version_influxdb\n{% elif 'diun' in trigger.to_state.state\
-        \ %}\n  var.version_diun\n{% else %}\n  var.version_temp\n{% endif %}"
-      value: "{% set s = states('sensor.docker_update_version') %}   {% set version\
-        \ = s.split(':')[1] %}\n  {{ version }}"
-  mode: queued
+      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha\n\
+        {% elif 'deconz' in trigger.payload_json.image %}\n  var.version_deconz\n\
+        {% elif 'ozwdaemon' in trigger.payload_json.image %}\n  var.version_openzwave\n\
+        {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb\n\
+        {% elif 'portainer' in trigger.payload_json.image %}\n  var.version_portainer\n\
+        {% elif 'minidlna' in trigger.payload_json.image %}\n  var.version_minidlna\n\
+        {% elif 'esphome' in trigger.payload_json.image %}\n  var.version_esphome\n\
+        {% elif 'grafana' in trigger.payload_json.image %}\n  var.version_grafana\n\
+        {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb\n\
+        {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun\n{% else\
+        \ %}\n  var.version_temp\n{% endif %}"
+      value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
+        \ %}\n  {{ version }}"
+  mode: parallel
   max: 10
 - id: '1620478871087'
   alias: 82_Emergency Under-voltage
@@ -1249,7 +1250,8 @@
       data:
         priority: 1
       target: galaxys10
-      message: "Under-voltage was detected. Consider getting a uninterruptible power supply for your Raspberry Pi."
+      message: Under-voltage was detected. Consider getting a uninterruptible power
+        supply for your Raspberry Pi.
       title: RPi power status
     service: notify.pusher
   mode: single

@@ -148,8 +148,3 @@
   unit_of_measurement: "°C"
   scan_interval: 300
   value_template: "{{ value | multiply(0.001) | round(1) }}"
-- platform: mqtt
-  name: "docker_update_version"
-  state_topic: "diun/docker_version"
-  json_attributes_topic: "diun/docker_version" 
-  value_template: "{{ value_json.image }}"
