@@ -703,7 +703,7 @@
         service: light.turn_on
   mode: single
 - id: '1601296769489'
-  alias: 70_Info HA releases
+  alias: 97_Info HA releases
   description: Notify about new HA releases
   trigger:
   - platform: state
@@ -736,7 +736,7 @@
     entity_id: sensor.days_since_last_cleanup
   mode: single
 - id: school_news
-  alias: 70_Info School news
+  alias: 97_Info School news
   description: Notify about new article on school webpage
   trigger:
   - platform: state
@@ -754,7 +754,7 @@
     service: notify.pusher
   mode: single
 - id: '1602089750353'
-  alias: 99_Notify about Air pollution
+  alias: 81_Emergency Air pollution
   description: Notify when AQI index goes over 100
   trigger:
   - platform: numeric_state
@@ -840,7 +840,7 @@
         service: notify.pusher
   mode: single
 - id: '1602357978047'
-  alias: 70_Info Stock price
+  alias: 97_Info Stock price
   description: Notify about significant loss in the share price
   trigger:
   - platform: numeric_state
@@ -851,12 +851,6 @@
     entity_id: sensor.siemens_ag
     attribute: 09. change
     below: '-3.0'
-  - platform: numeric_state
-    entity_id: sensor.btc_exchange_rate
-    below: '50000'
-  - platform: numeric_state
-    entity_id: sensor.btc_exchange_rate
-    above: '60000'
   condition: []
   action:
   - choose:
@@ -879,23 +873,6 @@
             | round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10.
             change percent'') | round(2) }}.'
           title: Siemens Share Info
-          data:
-            priority: 0
-    - conditions:
-      - condition: or
-        conditions:
-        - condition: numeric_state
-          entity_id: sensor.btc_exchange_rate
-          below: '50000'
-        - condition: numeric_state
-          entity_id: sensor.btc_exchange_rate
-          above: '60000'
-      sequence:
-      - service: notify.pusher
-        data:
-          target: galaxys10
-          message: 'Bitcoin price: {{ states(''sensor.btc_exchange_rate'') }} USD.'
-          title: Bitcoin Info
           data:
             priority: 0
     default: []
@@ -1150,12 +1127,12 @@
     entity_id: light.bathroom_lamp
   mode: single
 - id: '1611427108068'
-  alias: 99_Notify Low battery level detection
+  alias: 82_Emergency Battery level
   description: ''
   use_blueprint:
     path: low-battery-level-detection-notification-for-all-battery-sensors.yaml
     input:
-      day: '6'
+      day: 6
       actions:
       - service: notify.pusher
         data:
@@ -1166,7 +1143,7 @@
           target: galaxys10
       threshold: 30
 - id: '1615068825913'
-  alias: Stop print
+  alias: 5_Print Stop print in time
   description: Stop print at a defined time
   trigger:
   - platform: time
@@ -1209,4 +1186,72 @@
     - service: switch.turn_off
       target:
         entity_id: switch.nh_mypc_power
+  mode: single
+- id: '1619802100471'
+  alias: 7_Mining Rig status change
+  description: Report if there is unexpected minier status change when not home
+  trigger:
+  - platform: state
+    entity_id: sensor.nh_fractalbox_minerstatus
+  - platform: state
+    entity_id: sensor.nh_battlebox_minerstatus
+  condition:
+  - condition: state
+    entity_id: person.tomas_juchelka
+    state: not_home
+  action:
+  - data:
+      data:
+        priority: 1
+        url: https://www.nicehash.com/my/dashboard
+      target: galaxys10
+      title: Mining status change
+      message: Status of FractalBox is {{ states('sensor.nh_fractalbox_minerstatus')
+        }} {{- '\n' -}}  Status of BattleBox is {{ states('sensor.nh_battlebox_minerstatus')
+        }}.
+    service: notify.pusher
+  mode: single
+- id: '1619803793551'
+  alias: 97_Info Docker image update
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: diun/docker_version
+  condition: []
+  action:
+  - service: var.set
+    data_template:
+      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha\n\
+        {% elif 'deconz' in trigger.payload_json.image %}\n  var.version_deconz\n\
+        {% elif 'ozwdaemon' in trigger.payload_json.image %}\n  var.version_openzwave\n\
+        {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb\n\
+        {% elif 'portainer' in trigger.payload_json.image %}\n  var.version_portainer\n\
+        {% elif 'minidlna' in trigger.payload_json.image %}\n  var.version_minidlna\n\
+        {% elif 'esphome' in trigger.payload_json.image %}\n  var.version_esphome\n\
+        {% elif 'grafana' in trigger.payload_json.image %}\n  var.version_grafana\n\
+        {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb\n\
+        {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun\n{% else\
+        \ %}\n  var.version_temp\n{% endif %}"
+      value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
+        \ %}\n  {{ version }}"
+  mode: parallel
+  max: 10
+- id: '1620478871087'
+  alias: 82_Emergency Under-voltage
+  description: Check for under-voltage.
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.rpi_power_status
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      data:
+        priority: 1
+      target: galaxys10
+      message: Under-voltage was detected. Consider getting a uninterruptible power
+        supply for your Raspberry Pi.
+      title: RPi power status
+    service: notify.pusher
   mode: single
