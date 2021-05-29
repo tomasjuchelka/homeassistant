@@ -154,6 +154,7 @@ coinbase:
     - BTC
   exchange_rate_currencies:
     - BTC
+    - ETH
     
 monitor_docker:
   - name: Docker
@@ -169,6 +170,7 @@ monitor_docker:
       - esphome
       - grafana
       - diun
+      - pihole
     rename:
       deconz: DeCONZ
       home-assistant-mariadb: MariaDB
@@ -180,6 +182,7 @@ monitor_docker:
       diun: Docker Notifier
       minidlna: MiniDLNA
       esphome: ESPHome
+      pihole: Pi-hole
     monitored_conditions:
       - version
       - state

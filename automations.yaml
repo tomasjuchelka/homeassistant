@@ -110,7 +110,9 @@
   - platform: state
     entity_id: binary_sensor.is_dark
     to: 'on'
-  condition: []
+  condition:
+  - condition: time
+    after: '12:00:00'
   action:
   - data: {}
     entity_id: light.ikea_lamp
@@ -1084,7 +1086,7 @@
     entity_id: light.tv_led_strip_lamp
   mode: single
 - id: '1610662616419'
-  alias: '1_Lights 1_ON TV LED Strip '
+  alias: '1_Lights 1_ON Daily TV LED Strip '
   description: Tun on LED Strip as daily light if TV is off
   trigger:
   - platform: state
@@ -1098,6 +1100,8 @@
   - condition: state
     entity_id: group.group_family
     state: home
+  - condition: time
+    after: '12:00:00'
   action:
   - service: light.turn_on
     data:
