@@ -1177,28 +1177,28 @@
         state: None
         attribute: game
       - condition: state
-        entity_id: switch.nh_mypc_power
+        entity_id: switch.nh_battlebox_power
         state: 'off'
       sequence:
       - service: switch.turn_on
         target:
-          entity_id: switch.nh_mypc_power
+          entity_id: switch.nh_battlebox_power
     default:
     - condition: state
-      entity_id: switch.nh_mypc_power
+      entity_id: switch.nh_battlebox_power
       state: 'on'
     - service: switch.turn_off
       target:
-        entity_id: switch.nh_mypc_power
+        entity_id: switch.nh_battlebox_power
   mode: single
 - id: '1619802100471'
   alias: 7_Mining Rig status change
   description: Report if there is unexpected minier status change when not home
   trigger:
   - platform: state
-    entity_id: sensor.nh_fractalbox_minerstatus
-  - platform: state
     entity_id: sensor.nh_battlebox_minerstatus
+    from: MINING
+    to: OFFLINE
   condition:
   - condition: state
     entity_id: person.tomas_juchelka
