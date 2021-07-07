@@ -75,12 +75,6 @@
       unit_of_measurement: "h"
       value_template: "Sensor: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.sensor_dirty_left }}"
       icon_template: "mdi:screwdriver"
-#WAZE - disabled until usage found
-#- platform: waze_travel_time
-#  origin: !secret waze_origin
-#  destination: !secret waze_destination
-#  region: 'EU'
-#  name: "Travel time to work"
 #Stocks
 - platform: alpha_vantage
   api_key: !secret alpha_vantage_api_key
@@ -94,9 +88,6 @@
     - symbol: SIE.DEX
       currency: EUR
       name: Siemens AG
-#- platform: bitcoin
-#  display_options:
-#    - market_price_usd
 #Home Assistant
 - platform: version
   name: latest_version_homeassistant

@@ -146,15 +146,6 @@ webostv:
       - 'SledovaniTV 2.0'
       - Youtube
       - Netflix
-      
-coinbase:
-  api_key: !secret coinbase_api_key
-  api_secret: !secret coinbase_api_secret
-  account_balance_currencies:
-    - BTC
-  exchange_rate_currencies:
-    - BTC
-    - ETH
     
 monitor_docker:
   - name: Docker
