@@ -19,3 +19,8 @@ group_emergency_lights:
     - light.hall_lamp
     - light.workplace_lamp
     - light.door_lamp
+group_bathroom_motion_sensors:
+  name: Bathroom Motion Sensors
+  entities:
+    - binary_sensor.presence_13
+    - binary_sensor.tradfri_motion_sensor

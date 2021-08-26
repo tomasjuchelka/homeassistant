@@ -294,11 +294,10 @@
   alias: 1_Lights 4_ON Bathroom lamp
   description: ''
   trigger:
-  - type: motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'off'
+    to: 'on'
   condition:
   - condition: or
     conditions:
@@ -371,16 +370,11 @@
   alias: 1_Lights 4_OFF Bathroom lamp
   description: ''
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 6
-      seconds: 0
-      milliseconds: 0
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'on'
+    to: 'off'
+    for: 00:06:00
   condition: []
   action:
   - data: {}
@@ -1113,16 +1107,11 @@
   alias: 1_Lights 4_DIM Bathroom lamp
   description: Set brightness to 20 percent
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-      milliseconds: 0
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'on'
+    to: 'off'
+    for: 00:05:00
   condition: []
   action:
   - service: light.turn_on
