@@ -1248,3 +1248,27 @@
       title: RPi power status
     service: notify.pusher
   mode: single
+- id: '1631039956107'
+  alias: 98_System Status Report
+  description: Regular status report
+  trigger:
+  - platform: time
+    at: '20:00'
+  condition:
+  - condition: time
+    after: '19:00'
+    before: '21:00'
+    weekday:
+    - sun
+  action:
+  - service: notify.pusher
+    data:
+      target: galaxys10
+      message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}  EUR/CZK: {{
+        states(''sensor.eur_czk'') }} {{ ''\n'' -}}  Siemens AG: {{ state_attr(''sensor.siemens_ag'',
+        ''05. price'') | round(2) }} EUR {{ ''\n'' -}}  Home Assistant:  {{ states(''sensor.current_version_homeassistant'')
+        }} | {{ states(''sensor.latest_version_homeassistant'') }}'
+      title: Weekly status report
+      data:
+        priority: 0
+  mode: single
