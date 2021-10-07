@@ -1264,10 +1264,13 @@
   - service: notify.pusher
     data:
       target: galaxys10
-      message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}  EUR/CZK: {{
-        states(''sensor.eur_czk'') }} {{ ''\n'' -}}  Siemens AG: {{ state_attr(''sensor.siemens_ag'',
-        ''05. price'') | round(2) }} EUR {{ ''\n'' -}}  Home Assistant:  {{ states(''sensor.current_version_homeassistant'')
-        }} | {{ states(''sensor.latest_version_homeassistant'') }}'
+      message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}   Temp: {{
+        states(''sensor.openweathermap_temperature'') }} °C {{ ''\n'' -}}   EUR/CZK:
+        {{ states(''sensor.eur_czk'') }} {{ ''\n'' -}}   BTC/USD: {{ states(''sensor.btc_exchange_rate'')
+        }} USD {{ ''\n'' -}}   Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05.
+        price'') | round(2) }} EUR {{ ''\n'' -}}  Home Assistant: {{ states(''sensor.current_version_homeassistant'')
+        }} | {{ states(''sensor.latest_version_homeassistant'') }} Vacuum: {{ states(''sensor.days_since_last_cleanup'')
+        }} days ago {{ ''\n'' -}}'
       title: Weekly status report
       data:
         priority: 0
