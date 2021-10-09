@@ -3,71 +3,76 @@ kids_room_zone_cleanup:
   sequence:
   - data:
       command: app_zoned_clean
-      entity_id: vacuum.xiaomi_vacuum_cleaner
       params:
       - - 17510
         - 26300
         - 22000
         - 29300
         - 1
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.send_command
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single
 hall_zone_cleanup:
   alias: Hall zone cleanup
   sequence:
   - data:
       command: app_zoned_clean
-      entity_id: vacuum.xiaomi_vacuum_cleaner
       params:
       - - 22100
         - 26000
         - 29000
         - 29300
         - 1
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.send_command
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single
 bedroom_zone_cleanup:
   alias: Bedroom zone cleanup
   sequence:
   - data:
       command: app_zoned_clean
-      entity_id: vacuum.xiaomi_vacuum_cleaner
       params:
       - - 17510
         - 22500
         - 20500
         - 25600
         - 1
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.send_command
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single
 kitchen_zone_cleanup:
   alias: Kitchen zone cleanup
   sequence:
   - data:
       command: app_zoned_clean
-      entity_id: vacuum.xiaomi_vacuum_cleaner
       params:
       - - 21800
         - 22500
         - 25500
         - 24900
         - 1
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.send_command
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single
 living_room_zone_cleanup:
   alias: Livingroom zone cleanup
   sequence:
   - data:
       command: app_zoned_clean
-      entity_id: vacuum.xiaomi_vacuum_cleaner
       params:
       - - 25500
         - 23500
         - 29000
         - 25900
         - 1
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.send_command
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single
 vacuum_start:
   alias: Start Vacuum
   sequence:
@@ -77,5 +82,7 @@ vacuum_start:
     entity_id: input_datetime.last_cleanup_time
     service: input_datetime.set_datetime
   - data: {}
-    entity_id: vacuum.xiaomi_vacuum_cleaner
     service: vacuum.start
+    target:
+      device_id: e757ad2f61e7b2481370dc6c29516619
+  mode: single

@@ -1,5 +1,6 @@
 secrets.yaml
 *.log
+*.log.*
 *.xml
 *.db
 *.sqlite
