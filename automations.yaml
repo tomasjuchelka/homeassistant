@@ -112,23 +112,25 @@
     to: 'on'
   condition:
   - condition: time
-    after: '12:00:00'
+    after: '12:00'
   action:
   - data: {}
-    entity_id: light.ikea_lamp
     service: light.turn_on
+    target:
+      entity_id: light.ikea_lamp
   mode: single
 - id: '1585676836818'
   alias: 1_Lights 5_OFF Daily lights
   description: ''
   trigger:
-  - at: 00:00:00
+  - at: 00:00
     platform: time
   condition: []
   action:
   - data: {}
-    entity_id: light.ikea_lamp
     service: light.turn_off
+    target:
+      entity_id: light.ikea_lamp
   mode: single
 - id: '1585935683696'
   alias: 3_Clima CO2 high time based

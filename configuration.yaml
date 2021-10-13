@@ -49,16 +49,6 @@ sonoff:
   username: !secret default_username
   password: !secret default_password
    
-#camera:
-#  - platform: xiaomi_cloud_map_extractor
-#    host: !secret ip_vacuum
-#    token: !secret mi_token
-#    username: !secret default_username
-#    password: !secret default_password
-#    draw: ['all']
-#    attributes:
-#      - calibration_points  
-
 notify:
   - platform: pushover
     name: Pusher
