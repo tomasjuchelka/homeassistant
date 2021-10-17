@@ -243,10 +243,10 @@
   alias: 80_Emergency Fire detection
   description: Executed in case of fire!
   trigger:
-  - type: turned_on
+  - type: smoke
     platform: device
-    device_id: 9c7f4915dd6d1526f28aae5defea84a0
-    entity_id: binary_sensor.fgsd002_smoke_sensor_sensor
+    device_id: bed023ff1ef15460840ed28c1b5ffb76
+    entity_id: binary_sensor.smoke_detector_smoke_alarm_smoke_detected
     domain: binary_sensor
   condition: []
   action:
