@@ -1,5 +1,3 @@
-- platform: octoprint
-  monitored_conditions:
 - platform: school
   name: School news
   url: "https://www.zschvaleticka.cz"

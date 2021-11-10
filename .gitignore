@@ -8,6 +8,7 @@ secrets.yaml
 .storage
 .sonoff.json
 tts/
+docker/
 custom_components/hacs/
 custom_components/sonoff/
 core

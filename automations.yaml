@@ -15,7 +15,7 @@
       before: 06:00:00
       condition: time
     - after: 08:00:00
-      before: '19:00:00'
+      before: '19:00'
       condition: time
   - condition: state
     entity_id: input_boolean.enable_automatic_ventilation
@@ -210,6 +210,11 @@
     from: home
     platform: state
     to: not_home
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
   condition:
   - condition: or
     conditions:
@@ -880,22 +885,18 @@
   description: Notify about end of 3D print
   trigger:
   - platform: state
-    entity_id: binary_sensor.ender3_v2_printing
+    entity_id: binary_sensor.octoprint_printing
     from: 'on'
     to: 'off'
     for: 00:01:00
-  condition:
-  - condition: template
-    value_template: '{{ states(''sensor.octoprint_time_elapsed'') != ''00:00:00''
-      }}'
+  condition: []
   action:
   - data:
       data:
         priority: 1
         sound: magic
       target: galaxys10
-      message: 3D print job is finished after {{ states('sensor.octoprint_time_elapsed')
-        }}.
+      message: 3D print job is finished now!
       title: 3D Printer
     service: notify.pusher
   mode: single
@@ -936,67 +937,6 @@
         data: {}
         entity_id: switch.sonoff_ch2
   mode: single
-- id: '1609158926242'
-  alias: 6_Presence Update presence tracker
-  description: ''
-  trigger:
-  - platform: mqtt
-    topic: room-assistant/device_tracker/ble-fabda2e11169-tracker/state
-    payload: 'true'
-  - platform: mqtt
-    topic: room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state
-    payload: 'true'
-  - platform: mqtt
-    topic: room-assistant/device_tracker/ble-c0aa65554771-tracker/state
-    payload: 'true'
-  - platform: mqtt
-    topic: room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state
-    payload: 'true'
-  condition: []
-  action:
-  - choose:
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-fabda2e11169-tracker/state''
-          }}'
-      sequence:
-      - data:
-          dev_id: nut_white
-          consider_home: 300
-          source_type: bluetooth_le
-        service: device_tracker.see
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-e2d8a51cadf2-tracker/state''
-          }}'
-      sequence:
-      - data:
-          dev_id: nut_red
-          consider_home: 300
-          source_type: bluetooth_le
-        service: device_tracker.see
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-c0aa65554771-tracker/state''
-          }}'
-      sequence:
-      - data:
-          dev_id: nut_green
-          consider_home: 300
-          source_type: bluetooth_le
-        service: device_tracker.see
-    - conditions:
-      - condition: template
-        value_template: '{{ trigger.topic == ''room-assistant/device_tracker/ble-de9f0b27ae6c-tracker/state''
-          }}'
-      sequence:
-      - data:
-          dev_id: nut_grey
-          consider_home: 300
-          source_type: bluetooth_le
-        service: device_tracker.see
-  mode: parallel
-  max: 10
 - id: '1610565528088'
   alias: 1_Lights 1_Toogle TV LED Strip
   description: Toogle TV LED Strip based on TV state and light outside
@@ -1137,21 +1077,6 @@
           title: Battery level alert!
           target: galaxys10
       threshold: 30
-- id: '1615068825913'
-  alias: 5_Print Stop print in time
-  description: Stop print at a defined time
-  trigger:
-  - platform: time
-    at: 03:00:00
-  condition:
-  - condition: state
-    entity_id: binary_sensor.ender3_v2_printing
-    state: 'off'
-  action:
-  - service: switch.turn_off
-    target:
-      entity_id: switch.sonoff_1000cc5d43
-  mode: single
 - id: '1616955811109'
   alias: 7_Mining stop when gaming
   description: Stop mining when gaming and resume afterwards

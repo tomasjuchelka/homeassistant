@@ -22,6 +22,7 @@ homeassistant:
     - type: trusted_networks
       trusted_networks:
         - 192.168.0.0/16
+        - 10.0.0.0/24
       trusted_users:
         192.168.0.0/16:
           - f1a0d51bf81a474b846ab33537af3496
@@ -89,7 +90,7 @@ input_select:
       - Hall
 
 recorder:
-  db_url: mysql://root:pi@127.0.0.1:3306/homeassistant?charset=utf8
+  db_url: !secret db_conn_string
   purge_keep_days: 7
   commit_interval: 60
   include:
@@ -97,10 +98,10 @@ recorder:
       - sensor.sht31_temperature
       - sensor.sht31_humidity
       - sensor.mh_z19_co2
-      - sensor.u_s_air_quality_index
-      - sensor.siemens_ag
-      - sensor.eur_czk
-      - sensor.btc_exchange_rate
+#      - sensor.u_s_air_quality_index
+#      - sensor.siemens_ag
+#      - sensor.eur_czk
+#      - sensor.btc_exchange_rate
     entity_globs:
       - person.*
 
@@ -110,18 +111,6 @@ influxdb:
   include:
     entities:
        - sensor.mh_z19_co2
-       - sensor.siemens_ag
-       - sensor.eur_czk
-       - sensor.btc_exchange_rate
-
-octoprint:
-  - host: !secret ip_octoprint
-    api_key: !secret octoprint_api_key
-    name: Ender3 V2
-    number_of_tools: 1
-    bed: True
-
-wake_on_lan:
  
 webostv:
   host: !secret ip_tv
@@ -129,43 +118,10 @@ webostv:
     service: wake_on_lan.send_magic_packet
     data:
       mac: !secret mac_tv
-      broadcast_address: 192.168.11.255
+      broadcast_address: !secret broadcast_address
   customize:
     sources:
       - hdmi1
       - 'SledovaniTV 2.0'
       - Youtube
       - Netflix
-    
-monitor_docker:
-  - name: Docker
-    scan_interval: 60
-    containers:
-      - home-assistant
-      - deconz
-      - openzwave
-      - influxdb
-      - home-assistant-mariadb
-      - portainer
-      - minidlna
-      - esphome
-      - grafana
-      - diun
-      - pihole
-    rename:
-      deconz: DeCONZ
-      home-assistant-mariadb: MariaDB
-      home-assistant: Home Assistant
-      openzwave: OpenZWave
-      influxdb: InfluxDB
-      grafana: Grafana
-      portainer: Portainer
-      diun: Docker Notifier
-      minidlna: MiniDLNA
-      esphome: ESPHome
-      pihole: Pi-hole
-    monitored_conditions:
-      - version
-      - state
-      - status
-      - image
