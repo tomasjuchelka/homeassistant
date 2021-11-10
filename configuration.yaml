@@ -49,16 +49,6 @@ sonoff:
   username: !secret default_username
   password: !secret default_password
    
-#camera:
-#  - platform: xiaomi_cloud_map_extractor
-#    host: !secret ip_vacuum
-#    token: !secret mi_token
-#    username: !secret default_username
-#    password: !secret default_password
-#    draw: ['all']
-#    attributes:
-#      - calibration_points  
-
 notify:
   - platform: pushover
     name: Pusher
@@ -146,14 +136,6 @@ webostv:
       - 'SledovaniTV 2.0'
       - Youtube
       - Netflix
-      
-coinbase:
-  api_key: !secret coinbase_api_key
-  api_secret: !secret coinbase_api_secret
-  account_balance_currencies:
-    - BTC
-  exchange_rate_currencies:
-    - BTC
     
 monitor_docker:
   - name: Docker
@@ -169,6 +151,7 @@ monitor_docker:
       - esphome
       - grafana
       - diun
+      - pihole
     rename:
       deconz: DeCONZ
       home-assistant-mariadb: MariaDB
@@ -180,6 +163,7 @@ monitor_docker:
       diun: Docker Notifier
       minidlna: MiniDLNA
       esphome: ESPHome
+      pihole: Pi-hole
     monitored_conditions:
       - version
       - state

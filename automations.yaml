@@ -110,23 +110,27 @@
   - platform: state
     entity_id: binary_sensor.is_dark
     to: 'on'
-  condition: []
+  condition:
+  - condition: time
+    after: '12:00'
   action:
   - data: {}
-    entity_id: light.ikea_lamp
     service: light.turn_on
+    target:
+      entity_id: light.ikea_lamp
   mode: single
 - id: '1585676836818'
   alias: 1_Lights 5_OFF Daily lights
   description: ''
   trigger:
-  - at: 00:00:00
+  - at: 00:00
     platform: time
   condition: []
   action:
   - data: {}
-    entity_id: light.ikea_lamp
     service: light.turn_off
+    target:
+      entity_id: light.ikea_lamp
   mode: single
 - id: '1585935683696'
   alias: 3_Clima CO2 high time based
@@ -239,10 +243,10 @@
   alias: 80_Emergency Fire detection
   description: Executed in case of fire!
   trigger:
-  - type: turned_on
+  - type: smoke
     platform: device
-    device_id: 9c7f4915dd6d1526f28aae5defea84a0
-    entity_id: binary_sensor.fgsd002_smoke_sensor_sensor
+    device_id: bed023ff1ef15460840ed28c1b5ffb76
+    entity_id: binary_sensor.smoke_detector_smoke_alarm_smoke_detected
     domain: binary_sensor
   condition: []
   action:
@@ -292,11 +296,10 @@
   alias: 1_Lights 4_ON Bathroom lamp
   description: ''
   trigger:
-  - type: motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'off'
+    to: 'on'
   condition:
   - condition: or
     conditions:
@@ -369,16 +372,11 @@
   alias: 1_Lights 4_OFF Bathroom lamp
   description: ''
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 6
-      seconds: 0
-      milliseconds: 0
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'on'
+    to: 'off'
+    for: 00:06:00
   condition: []
   action:
   - data: {}
@@ -1084,7 +1082,7 @@
     entity_id: light.tv_led_strip_lamp
   mode: single
 - id: '1610662616419'
-  alias: '1_Lights 1_ON TV LED Strip '
+  alias: '1_Lights 1_ON Daily TV LED Strip '
   description: Tun on LED Strip as daily light if TV is off
   trigger:
   - platform: state
@@ -1098,6 +1096,8 @@
   - condition: state
     entity_id: group.group_family
     state: home
+  - condition: time
+    after: '12:00:00'
   action:
   - service: light.turn_on
     data:
@@ -1109,16 +1109,11 @@
   alias: 1_Lights 4_DIM Bathroom lamp
   description: Set brightness to 20 percent
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 0211166bd85cbb1413f51a4e44fa09ae
-    entity_id: binary_sensor.presence_13
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-      milliseconds: 0
+  - platform: state
+    entity_id: group.group_bathroom_motion_sensors
+    from: 'on'
+    to: 'off'
+    for: 00:05:00
   condition: []
   action:
   - service: light.turn_on
@@ -1173,28 +1168,28 @@
         state: None
         attribute: game
       - condition: state
-        entity_id: switch.nh_mypc_power
+        entity_id: switch.nh_battlebox_power
         state: 'off'
       sequence:
       - service: switch.turn_on
         target:
-          entity_id: switch.nh_mypc_power
+          entity_id: switch.nh_battlebox_power
     default:
     - condition: state
-      entity_id: switch.nh_mypc_power
+      entity_id: switch.nh_battlebox_power
       state: 'on'
     - service: switch.turn_off
       target:
-        entity_id: switch.nh_mypc_power
+        entity_id: switch.nh_battlebox_power
   mode: single
 - id: '1619802100471'
   alias: 7_Mining Rig status change
   description: Report if there is unexpected minier status change when not home
   trigger:
   - platform: state
-    entity_id: sensor.nh_fractalbox_minerstatus
-  - platform: state
     entity_id: sensor.nh_battlebox_minerstatus
+    from: MINING
+    to: OFFLINE
   condition:
   - condition: state
     entity_id: person.tomas_juchelka
@@ -1254,4 +1249,31 @@
         supply for your Raspberry Pi.
       title: RPi power status
     service: notify.pusher
+  mode: single
+- id: '1631039956107'
+  alias: 98_System Status Report
+  description: Regular status report
+  trigger:
+  - platform: time
+    at: '20:00'
+  condition:
+  - condition: time
+    after: '19:00'
+    before: '21:00'
+    weekday:
+    - sun
+  action:
+  - service: notify.pusher
+    data:
+      target: galaxys10
+      message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}   Temp: {{
+        states(''sensor.openweathermap_temperature'') }} °C {{ ''\n'' -}}   EUR/CZK:
+        {{ states(''sensor.eur_czk'') }} {{ ''\n'' -}}   BTC/USD: {{ states(''sensor.btc_exchange_rate'')
+        }} USD {{ ''\n'' -}}   Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05.
+        price'') | round(2) }} EUR {{ ''\n'' -}}  Home Assistant: {{ states(''sensor.current_version_homeassistant'')
+        }} | {{ states(''sensor.latest_version_homeassistant'') }} Vacuum: {{ states(''sensor.days_since_last_cleanup'')
+        }} days ago {{ ''\n'' -}}'
+      title: Weekly status report
+      data:
+        priority: 0
   mode: single

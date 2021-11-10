@@ -7,4 +7,4 @@
   sensors:
     is_dark:
       friendly_name: "It is dark"
-      value_template: "{{ state_attr('sun.sun', 'elevation')|float < 2 }}"
+      value_template: "{{ state_attr('sun.sun', 'elevation')|float < 2.0 + 0.08*(states('sensor.openweathermap_cloud_coverage')|float) }}"
