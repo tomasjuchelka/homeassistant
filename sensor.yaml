@@ -96,15 +96,6 @@
   image: raspberrypi4
 - platform: version
   name: current_version_homeassistant
-#OctoPrint
-- platform: template
-  sensors:
-    octoprint_time_elapsed:
-      friendly_name: 'Printing Time Elapsed'
-      value_template: "{{ states('sensor.ender3_v2_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
-    octoprint_time_remaining:
-      friendly_name: 'Printing Time Remaining'
-      value_template: "{{ states('sensor.ender3_v2_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
 #Weather
 - platform: template
   sensors:
