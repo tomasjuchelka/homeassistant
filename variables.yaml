@@ -1,23 +1,27 @@
 # defines variables used by HACS VAR integration
+version_deconz:
+  friendly_name: "DeCONZ version"
+version_zwavejs:
+  friendly_name: "ZWaveJS version"
 version_ha:
   friendly_name: "Home Assistant version"
   icon: mdi:home-assistant
-version_deconz:
-  friendly_name: "DeCONZ version"
-version_openzwave:
-  friendly_name: "OpenZWave version"
 version_mariadb:
   friendly_name: "MariaDB version"
 version_portainer:
   friendly_name: "Portainer version"
-version_minidlna:
-  friendly_name: "MiniDLNA version"
-version_esphome:
-  friendly_name: "ESPHome version"
-version_grafana:
-  friendly_name: "Grafana version"
+version_roomassistant:
+  friendly_name: "Room-assistant version"
+version_pihole:
+  friendly_name: "PiHole version"
+version_mosquitto:
+  friendly_name: "Mosquitto version"
 version_influxdb:
   friendly_name: "InfluxDB version"
+version_agent:
+  friendly_name: "Portainer Agent version"
+version_chronograf:
+  friendly_name: "Chronograf version"
 version_diun:
-  friendly_name: "Docker Notifier version"
+  friendly_name: "DIUN version"
 version_temp:

@@ -98,10 +98,10 @@ recorder:
       - sensor.sht31_temperature
       - sensor.sht31_humidity
       - sensor.mh_z19_co2
-#      - sensor.u_s_air_quality_index
-#      - sensor.siemens_ag
-#      - sensor.eur_czk
-#      - sensor.btc_exchange_rate
+      - sensor.u_s_air_quality_index
+      - sensor.siemens_ag
+      - sensor.eur_czk
+      - sensor.btc_exchange_rate
     entity_globs:
       - person.*
 
@@ -110,8 +110,11 @@ influxdb:
   port: 8086
   include:
     entities:
-       - sensor.mh_z19_co2
- 
+      - sensor.mh_z19_co2
+      - sensor.sht31_temperature
+      - sensor.sht31_humidity
+      - sensor.mh_z19_co2
+
 webostv:
   host: !secret ip_tv
   turn_on_action:

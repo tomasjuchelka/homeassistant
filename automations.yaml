@@ -1142,14 +1142,14 @@
   - service: var.set
     data_template:
       entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha\n\
-        {% elif 'deconz' in trigger.payload_json.image %}\n  var.version_deconz\n\
-        {% elif 'ozwdaemon' in trigger.payload_json.image %}\n  var.version_openzwave\n\
+        {% elif 'agent' in trigger.payload_json.image %}\n  var.version_agent\n{%\
+        \ elif 'room-assistant' in trigger.payload_json.image %}\n  var.version_roomassistant\n\
         {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb\n\
-        {% elif 'portainer' in trigger.payload_json.image %}\n  var.version_portainer\n\
-        {% elif 'minidlna' in trigger.payload_json.image %}\n  var.version_minidlna\n\
-        {% elif 'esphome' in trigger.payload_json.image %}\n  var.version_esphome\n\
-        {% elif 'grafana' in trigger.payload_json.image %}\n  var.version_grafana\n\
+        {% elif 'portainer-ce' in trigger.payload_json.image %}\n  var.version_portainer\n\
+        {% elif 'pihole' in trigger.payload_json.image %}\n  var.version_pihole\n\
+        {% elif 'mosquitto' in trigger.payload_json.image %}\n  var.version_mosquitto\n\
         {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb\n\
+        {% elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf\n\
         {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun\n{% else\
         \ %}\n  var.version_temp\n{% endif %}"
       value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
