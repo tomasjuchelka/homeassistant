@@ -1,27 +1,30 @@
 # defines variables used by HACS VAR integration
-version_deconz:
-  friendly_name: "DeCONZ version"
-version_zwavejs:
-  friendly_name: "ZWaveJS version"
-version_ha:
-  friendly_name: "Home Assistant version"
-  icon: mdi:home-assistant
-version_mariadb:
-  friendly_name: "MariaDB version"
-version_portainer:
-  friendly_name: "Portainer version"
-version_roomassistant:
-  friendly_name: "Room-assistant version"
-version_pihole:
-  friendly_name: "PiHole version"
-version_mosquitto:
-  friendly_name: "Mosquitto version"
-version_influxdb:
-  friendly_name: "InfluxDB version"
-version_agent:
-  friendly_name: "Portainer Agent version"
-version_chronograf:
-  friendly_name: "Chronograf version"
-version_diun:
-  friendly_name: "DIUN version"
+# variables for docker image version check using DIUN
+version_deconz_new:
+version_deconz_curr:
+version_zwavejs_new:
+version_zwavejs_curr:
+version_ha_new:
+version_ha_curr:
+version_mariadb_new:
+version_mariadb_curr:
+version_portainer_new:
+version_portainer_curr:
+version_roomassistant_new:
+version_roomassistant_curr:
+version_pihole_new:
+version_pihole_curr:
+version_mosquitto_new:
+version_mosquitto_curr:
+version_influxdb_new:
+version_influxdb_curr:
+version_agent_new:
+version_agent_curr:
+version_chronograf_new:
+version_chronograf_curr:
+version_diun_new:
+version_diun_curr:
 version_temp:
+# variable for storing the highest air polution value to limit notification rate
+air_quality_index_max:
+  initial_value: 0

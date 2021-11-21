@@ -104,6 +104,7 @@ recorder:
       - sensor.btc_exchange_rate
     entity_globs:
       - person.*
+      - light.*
 
 influxdb:
   host: !secret ip_hass

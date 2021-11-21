@@ -772,7 +772,10 @@
   - platform: numeric_state
     entity_id: sensor.u_s_air_quality_index
     above: '300'
-  condition: []
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > states(''var.air_quality_index_max'')
+      | int }}'
   action:
   - choose:
     - conditions:
@@ -841,6 +844,10 @@
             ''\n'' -}} Stav: nebezpečné (hazardní) {{- ''\n'' -}} Primární zdroj:
             {{states(''sensor.u_s_main_pollutant'') }}.'
         service: notify.pusher
+  - service: var.set
+    data_template:
+      entity_id: var.air_quality_index_max
+      value: '{{ states(''sensor.u_s_air_quality_index'') }}'
   mode: single
 - id: '1602357978047'
   alias: 97_Info Stock price
@@ -1141,17 +1148,17 @@
   action:
   - service: var.set
     data_template:
-      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha\n\
-        {% elif 'agent' in trigger.payload_json.image %}\n  var.version_agent\n{%\
-        \ elif 'room-assistant' in trigger.payload_json.image %}\n  var.version_roomassistant\n\
-        {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb\n\
-        {% elif 'portainer-ce' in trigger.payload_json.image %}\n  var.version_portainer\n\
-        {% elif 'pihole' in trigger.payload_json.image %}\n  var.version_pihole\n\
-        {% elif 'mosquitto' in trigger.payload_json.image %}\n  var.version_mosquitto\n\
-        {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb\n\
-        {% elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf\n\
-        {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun\n{% else\
-        \ %}\n  var.version_temp\n{% endif %}"
+      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha_new\n\
+        {% elif 'agent' in trigger.payload_json.image %}\n  var.version_agent_new\n\
+        {% elif 'room-assistant' in trigger.payload_json.image %}\n  var.version_roomassistant_new\n\
+        {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb_new\n\
+        {% elif 'portainer-ce' in trigger.payload_json.image %}\n  var.version_portainer_new\n\
+        {% elif 'pihole' in trigger.payload_json.image %}\n  var.version_pihole_new\n\
+        {% elif 'mosquitto' in trigger.payload_json.image %}\n  var.version_mosquitto_new\n\
+        {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb_new\n\
+        {% elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf_new\n\
+        {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun_new\n\
+        {% else %}\n  var.version_temp\n{% endif %}"
       value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
         \ %}\n  {{ version }}"
   mode: parallel
@@ -1201,4 +1208,17 @@
       title: Weekly status report
       data:
         priority: 0
+  mode: single
+- id: '1637508890877'
+  alias: 98_System Daily Reset
+  description: Resets or initialize some values on a daily basis at midnight.
+  trigger:
+  - platform: time
+    at: 00:00
+  condition: []
+  action:
+  - service: var.set
+    data:
+      entity_id: var.air_quality_index_max
+      value: 0
   mode: single
