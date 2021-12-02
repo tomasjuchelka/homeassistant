@@ -1,0 +1,8 @@
+exclude:
+    domains:
+      - automation
+    entities:
+      - sensor.u_s_air_quality_index
+      - sensor.siemens_ag
+      - sensor.eur_czk
+      - sensor.btc_exchange_rate

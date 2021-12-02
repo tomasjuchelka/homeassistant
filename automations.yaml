@@ -1222,3 +1222,36 @@
       entity_id: var.air_quality_index_max
       value: 0
   mode: single
+- id: '1638386823974'
+  alias: 6_Security Recording FTP upload
+  description: Switch on FTP upload to NAS after motion detection
+  trigger:
+  - platform: state
+    entity_id: group.group_family
+    from: home
+    to: not_home
+  - platform: state
+    entity_id: group.group_family
+    from: not_home
+    to: home
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: group.group_family
+        state: not_home
+      sequence:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.reolink520a_ftp
+    - conditions:
+      - condition: state
+        entity_id: group.group_family
+        state: home
+      sequence:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.reolink520a_ftp
+    default: []
+  mode: single
