@@ -1228,12 +1228,6 @@
   trigger:
   - platform: state
     entity_id: group.group_family
-    from: home
-    to: not_home
-  - platform: state
-    entity_id: group.group_family
-    from: not_home
-    to: home
   condition: []
   action:
   - choose:
@@ -1244,7 +1238,10 @@
       sequence:
       - service: switch.turn_on
         target:
-          entity_id: switch.reolink520a_ftp
+          entity_id:
+          - switch.reolink520a_ftp
+          - switch.reolink520a_recording
+          - switch.reolink520a_ir_lights
     - conditions:
       - condition: state
         entity_id: group.group_family
@@ -1252,6 +1249,9 @@
       sequence:
       - service: switch.turn_off
         target:
-          entity_id: switch.reolink520a_ftp
+          entity_id:
+          - switch.reolink520a_ftp
+          - switch.reolink520a_recording
+          - switch.reolink520a_ir_lights
     default: []
   mode: single

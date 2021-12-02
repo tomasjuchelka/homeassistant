@@ -1,0 +1,3 @@
+exclude:
+    entities:
+      - automation.98_system_refresh_sensors
