@@ -9,8 +9,6 @@ secrets.yaml
 .sonoff.json
 tts/
 docker/
-custom_components/hacs/
-custom_components/sonoff/
 core
 OZW_Log.txt
 known_devices.yaml
@@ -20,3 +18,8 @@ known_devices.yaml
 .storage/core.config
 .storage/auth
 .storage/http
+custom_components/hacs/
+custom_components/sonoff/
+custom_components/var/
+custom_components/nicehash/
+custom_components/reolink_dev/
