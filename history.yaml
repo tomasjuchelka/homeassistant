@@ -6,3 +6,4 @@ exclude:
       - sensor.siemens_ag
       - sensor.eur_czk
       - sensor.btc_exchange_rate
+      - sensor.eth_exchange_rate

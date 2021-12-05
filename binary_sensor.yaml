@@ -6,5 +6,3 @@
     is_dark:
       friendly_name: "It is dark"
       value_template: "{{ state_attr('sun.sun', 'elevation')|float < 2.0 + 0.08*(states('sensor.openweathermap_cloud_coverage')|float) }}"
-    camera_motion:
-      value_template: "{{ state_attr('binary_sensor.reolink520a_motion', 'people_state') }}"

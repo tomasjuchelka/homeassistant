@@ -399,7 +399,7 @@
   action:
   - data:
       data:
-        priority: 1
+        priority: 0
       message: '{{states.sensor.vacuum_error.state}}'
       title: Vacuum cleaner
     service: notify.pusher
@@ -1223,8 +1223,8 @@
       value: 0
   mode: single
 - id: '1638386823974'
-  alias: 6_Security Recording FTP upload
-  description: Switch on FTP upload to NAS after motion detection
+  alias: 6_Security Set security mode
+  description: Switch on or off security mode based on presence
   trigger:
   - platform: state
     entity_id: group.group_family
@@ -1240,8 +1240,10 @@
         target:
           entity_id:
           - switch.reolink520a_ftp
-          - switch.reolink520a_recording
           - switch.reolink520a_ir_lights
+      - service: automation.turn_on
+        target:
+          entity_id: automation.6_security_camera_snapshot
     - conditions:
       - condition: state
         entity_id: group.group_family
@@ -1251,7 +1253,41 @@
         target:
           entity_id:
           - switch.reolink520a_ftp
-          - switch.reolink520a_recording
           - switch.reolink520a_ir_lights
+      - service: automation.turn_off
+        target:
+          entity_id: automation.6_security_camera_snapshot
     default: []
+  mode: single
+- id: '1638709511274'
+  alias: 6_Security Camera Snapshot
+  description: Make snapshot if a motion is detected and nobody home
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.reolink520a_person_detected
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: group.group_family
+    state: not_home
+  action:
+  - service: camera.snapshot
+    target:
+      device_id: 865f8b84173262aa71d086be7dbf29eb
+    data:
+      filename: /media/cam/reolink520a_motion_detected.jpg
+  - service: camera.snapshot
+    target:
+      device_id: 865f8b84173262aa71d086be7dbf29eb
+    data:
+      filename: /media/cam/reolink520a_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
+  - service: notify.pusher
+    data:
+      target: galaxys10
+      message: Camera detected motion.
+      title: Security alert!
+      data:
+        priority: 1
+        attachment: /media/cam/reolink520a_motion_detected.jpg
   mode: single
