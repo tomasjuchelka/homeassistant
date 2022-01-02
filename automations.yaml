@@ -1236,29 +1236,15 @@
         entity_id: group.group_family
         state: not_home
       sequence:
-      - service: switch.turn_on
-        target:
-          entity_id:
-          - switch.reolink520a_ftp
-          - switch.reolink520a_ir_lights
-      - service: automation.turn_on
-        target:
-          entity_id: automation.6_security_camera_snapshot
+      - service: script.start_surveila
     - conditions:
       - condition: state
         entity_id: group.group_family
         state: home
       sequence:
-      - service: switch.turn_off
-        target:
-          entity_id:
-          - switch.reolink520a_ftp
-          - switch.reolink520a_ir_lights
-      - service: automation.turn_off
-        target:
-          entity_id: automation.6_security_camera_snapshot
+      - service: script.stop_surveillance
     default: []
-  mode: single
+  mode: restart
 - id: '1638709511274'
   alias: 6_Security Camera Snapshot
   description: Make snapshot if a motion is detected and nobody home
@@ -1291,3 +1277,32 @@
         priority: 1
         attachment: /media/cam/reolink520a_motion_detected.jpg
   mode: single
+- id: '1638720083318'
+  alias: 6_Security Vacation Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.vacation_mode
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      sequence:
+      - service: script.start_surveila
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.enable_daily_vacuum
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+      sequence:
+      - service: script.stop_surveillance
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.enable_daily_vacuum
+    default: []
+  mode: restart

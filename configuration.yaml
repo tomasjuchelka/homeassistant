@@ -63,6 +63,8 @@ input_boolean:
     name: Daily cleanup
   enable_automatic_ventilation:
     name: Automatic
+  vacation_mode:
+    name: Vacation mode
 
 input_datetime:
   last_cleanup_time:

@@ -22,3 +22,5 @@ sensor.ender3_v2_actual_tool0_temp:
   friendly_name: Ender3 V2 actual nozzle temp
 sensor.market_price:
   friendly_name: Bitcoin price
+input_boolean.vacation_mode:
+  icon: mdi:beach
