@@ -8,6 +8,7 @@ sensor:
 
 
 import logging
+import sys
 import voluptuous as vol
 from datetime import timedelta, datetime
 from homeassistant.components.sensor import PLATFORM_SCHEMA
@@ -97,7 +98,7 @@ class School(BinarySensorEntity):
             content = req.content.decode('utf8')
             return content
         except:
-            _LOGGER.error("Page not found: " + url_link)
+            LOGGER.error("Page not found: " + sys.exc_info()[0])
             return ""
 
     def initialize(self, rest):
@@ -116,6 +117,8 @@ class School(BinarySensorEntity):
     @Throttle(MIN_TIME_BETWEEN_SCANS)
     def update(self):
         content = self.get_url_content()
+        if content == "":
+            return
         listx = content.splitlines()
         path = ""
         i = 0

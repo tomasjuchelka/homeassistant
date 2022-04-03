@@ -1276,6 +1276,11 @@
       data:
         priority: 1
         attachment: /media/cam/reolink520a_motion_detected.jpg
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
   mode: single
 - id: '1638720083318'
   alias: 6_Security Vacation Mode
