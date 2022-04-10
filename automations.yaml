@@ -775,7 +775,7 @@
   condition:
   - condition: template
     value_template: '{{ states(''sensor.u_s_air_quality_index'') | int > states(''var.air_quality_index_max'')
-      | int }}'
+      | int + 10 }}'
   action:
   - choose:
     - conditions:
@@ -1158,6 +1158,9 @@
         {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb_new\n\
         {% elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf_new\n\
         {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun_new\n\
+        {% elif 'deconz' in trigger.payload_json.image %}\n  var.version_deconz_new\n\
+        {% elif 'unifi' in trigger.payload_json.image %}\n  var.version_unifi_new\n\
+        {% elif 'zwavejs2mqtt' in trigger.payload_json.image %}\n  var.version_zwavejs_new\n\
         {% else %}\n  var.version_temp\n{% endif %}"
       value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
         \ %}\n  {{ version }}"

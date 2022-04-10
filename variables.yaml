@@ -24,6 +24,8 @@ version_chronograf_new:
 version_chronograf_curr:
 version_diun_new:
 version_diun_curr:
+version_unifi_new:
+version_unifi_curr:
 version_temp:
 # variable for storing the highest air polution value to limit notification rate
 air_quality_index_max:
