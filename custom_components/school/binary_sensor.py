@@ -71,7 +71,7 @@ class School(BinarySensorEntity):
             return True
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         attributes = {}
         attributes['header'] = self.header
         attributes['link'] = self.link

@@ -1,0 +1,98 @@
+- id: '1650663852494'
+  name: Evening movie
+  entities:
+    switch.ikea_lamp:
+      icon: hass:lightbulb
+      friendly_name: Ikea Lamp
+      state: 'off'
+    cover.livingroom_blind:
+      current_position: 0
+      device_class: shade
+      friendly_name: LivingRoom Blind
+      supported_features: 15
+      state: closed
+    light.tv_led_strip_lamp:
+      min_mireds: 140
+      max_mireds: 650
+      supported_color_modes:
+      - color_temp
+      - xy
+      color_mode: xy
+      brightness: 128
+      hs_color:
+      - 344.409
+      - 99.608
+      rgb_color:
+      - 255
+      - 1
+      - 67
+      xy_color:
+      - 0.667
+      - 0.284
+      is_deconz_group: false
+      friendly_name: TV LED Strip
+      supported_features: 40
+      state: 'on'
+    media_player.lg_webos_smart_tv:
+      source_list:
+      - Amazon Prime Video
+      - Apple TV
+      - FilmBox+
+      - Filmy a TV Google Play
+      - Fotografie a video
+      - Galerie umění
+      - HBO Max
+      - HDMI 1
+      - HDMI 2
+      - HDMI 3
+      - HDMI 4
+      - Hudba
+      - LG Content Store
+      - Live TV
+      - Netflix
+      - Rakuten TV
+      - SledovaniTV 2.0
+      - Spotify – hudba a podcasty
+      - Upozornění na sporty
+      - Webový prohlížeč
+      - YouTube
+      volume_level: 0.09
+      is_volume_muted: false
+      source: SledovaniTV 2.0
+      sound_output: tv_speaker
+      assumed_state: true
+      device_class: tv
+      entity_picture: /api/media_player_proxy/media_player.lg_webos_smart_tv?token=da98af74f78cce4793da7a8ba709a14ed5898e046a70d827eb5a751da3d8ef8b&cache=93cbfb12e6314915
+      friendly_name: LG webOS Smart TV
+      supported_features: 24381
+      state: 'on'
+    light.hall_lamp:
+      supported_color_modes:
+      - brightness
+      is_deconz_group: false
+      friendly_name: Hall Lamp
+      supported_features: 40
+      state: 'off'
+    light.workplace_lamp:
+      min_mireds: 140
+      max_mireds: 650
+      supported_color_modes:
+      - color_temp
+      is_deconz_group: false
+      friendly_name: Workplace lamp
+      supported_features: 40
+      state: 'off'
+    light.pc_lamp:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      supported_color_modes:
+      - color_temp
+      - hs
+      - xy
+      is_deconz_group: false
+      friendly_name: PC Lamp
+      supported_features: 44
+      state: 'off'
+  icon: mdi:movie-open

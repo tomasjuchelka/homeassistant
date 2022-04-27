@@ -240,7 +240,7 @@
   - data:
       data:
         priority: -1
-      target: galaxys10
+      target: galaxys22
       message: Home Assistant has started.
     service: notify.pusher
   mode: single
@@ -709,18 +709,21 @@
   alias: 97_Info HA releases
   description: Notify about new HA releases
   trigger:
-  - platform: state
-    entity_id: sensor.latest_version_homeassistant
+  - type: update
+    platform: device
+    device_id: 215a20a374bbf29c688946a75b44ab9b
+    entity_id: binary_sensor.latest_version_homeassistant_update_available
+    domain: binary_sensor
   condition:
   - condition: template
-    value_template: '{{ states(''sensor.latest_version_homeassistant'') > states(''sensor.current_version_homeassistant'')
+    value_template: '{{ states(''var.version_ha_new'') != states(''sensor.latest_version_homeassistant'')
       }}'
   action:
   - data:
       data:
         priority: -1
         url: https://github.com/home-assistant/core/releases
-      target: galaxys10
+      target: galaxys22
       title: New Home Assistant Release
       message: Home Assistant  {{ states('sensor.latest_version_homeassistant') }}  is
         now available.
@@ -878,7 +881,7 @@
       sequence:
       - service: notify.pusher
         data:
-          target: galaxys10
+          target: galaxys22
           message: 'Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05. price'')
             | round(2) }} EUR, pokles o {{ state_attr(''sensor.siemens_ag'', ''10.
             change percent'') | round(2) }}.'
@@ -902,7 +905,7 @@
       data:
         priority: 1
         sound: magic
-      target: galaxys10
+      target: galaxys22
       message: 3D print job is finished now!
       title: 3D Printer
     service: notify.pusher
@@ -1082,7 +1085,7 @@
             priority: 1
           message: Battery of {{sensors}} is low!
           title: Battery level alert!
-          target: galaxys10
+          target: galaxys22
       threshold: 30
 - id: '1616955811109'
   alias: 7_Mining stop when gaming
@@ -1131,7 +1134,7 @@
       data:
         priority: 1
         url: https://www.nicehash.com/my/dashboard
-      target: galaxys10
+      target: galaxys22
       title: Mining status change
       message: Status of FractalBox is {{ states('sensor.nh_fractalbox_minerstatus')
         }} {{- '\n' -}}  Status of BattleBox is {{ states('sensor.nh_battlebox_minerstatus')
@@ -1179,7 +1182,7 @@
   - data:
       data:
         priority: 1
-      target: galaxys10
+      target: galaxys22
       message: Under-voltage was detected. Consider getting a uninterruptible power
         supply for your Raspberry Pi.
       title: RPi power status
@@ -1200,7 +1203,7 @@
   action:
   - service: notify.pusher
     data:
-      target: galaxys10
+      target: galaxys22
       message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}   Temp: {{
         states(''sensor.openweathermap_temperature'') }} °C {{ ''\n'' -}}   EUR/CZK:
         {{ states(''sensor.eur_czk'') }} {{ ''\n'' -}}   BTC/USD: {{ states(''sensor.btc_exchange_rate'')
@@ -1273,7 +1276,7 @@
       filename: /media/cam/reolink520a_{{ now().strftime("%Y%m%d-%H%M%S") }}.jpg
   - service: notify.pusher
     data:
-      target: galaxys10
+      target: galaxys22
       message: Camera detected motion.
       title: Security alert!
       data:
@@ -1314,3 +1317,110 @@
           entity_id: input_boolean.enable_daily_vacuum
     default: []
   mode: restart
+- id: '1650472627845'
+  alias: 4_Remote blind controller
+  description: ''
+  trigger:
+  - device_id: 522828642c926959d28f52533600d1f0
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: open
+    id: '1000'
+  - device_id: 522828642c926959d28f52533600d1f0
+    domain: deconz
+    platform: device
+    type: remote_button_short_press
+    subtype: close
+    id: '1001'
+  - device_id: 522828642c926959d28f52533600d1f0
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: open
+  - device_id: 522828642c926959d28f52533600d1f0
+    domain: deconz
+    platform: device
+    type: remote_button_long_press
+    subtype: close
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: '1000'
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        target:
+          device_id: 141720a6fb203578bce06eeff9e14b54
+    - conditions:
+      - condition: trigger
+        id: '1001'
+      sequence:
+      - service: cover.close_cover
+        data: {}
+        target:
+          device_id: 141720a6fb203578bce06eeff9e14b54
+    default:
+    - service: cover.stop_cover
+      data: {}
+      target:
+        device_id: 141720a6fb203578bce06eeff9e14b54
+  mode: single
+- id: '1650733960408'
+  alias: 8_Blind cover when sunny
+  description: Control the Blind based on weather. If set to a specific position do
+    not do anything.
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: be1ba3e46f2e9b98a1888616be95fbd5
+    entity_id: sensor.openweathermap_temperature
+    domain: sensor
+    above: 25
+  - platform: state
+    entity_id: sensor.openweathermap_condition
+    to: sunny
+  condition:
+  - condition: state
+    entity_id: sensor.openweathermap_condition
+    state: sunny
+  - condition: numeric_state
+    entity_id: sensor.openweathermap_temperature
+    above: '25'
+  - condition: device
+    device_id: 141720a6fb203578bce06eeff9e14b54
+    domain: cover
+    entity_id: cover.livingroom_blind
+    type: is_position
+    above: 99
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id: 141720a6fb203578bce06eeff9e14b54
+  mode: single
+- id: '1650736162083'
+  alias: 8_Blind open in the morning
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.is_dark
+    from: 'on'
+    to: 'off'
+  - platform: numeric_state
+    entity_id: sensor.openweathermap_cloud_coverage
+    above: '90'
+  condition:
+  - condition: device
+    device_id: 141720a6fb203578bce06eeff9e14b54
+    domain: cover
+    entity_id: cover.livingroom_blind
+    type: is_closed
+  action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id: 141720a6fb203578bce06eeff9e14b54
+  mode: single
