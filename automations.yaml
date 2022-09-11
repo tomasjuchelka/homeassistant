@@ -189,13 +189,12 @@
   condition: []
   action:
   - data:
-      entity_id: "{% if is_state(\"input_select.vacuum_room\", \"Kids room\") %}\n\
-        \  script.kids_room_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\"\
-        , \"Living room\") %} \n  script.living_room_zone_cleanup\n{% elif is_state(\"\
-        input_select.vacuum_room\", \"Bedroom\") %} \n  script.bedroom_zone_cleanup\n\
-        {% elif is_state(\"input_select.vacuum_room\", \"Kitchen\") %} \n  script.kitchen_zone_cleanup\n\
-        {% elif is_state(\"input_select.vacuum_room\", \"Hall\") %} \n  script.hall_zone_cleanup\n\
-        {% else %}  {% endif %}\n"
+      entity_id: "{% if is_state(\"input_select.vacuum_room\", \"Kids room\") %}\n
+        \ script.kids_room_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\",
+        \"Living room\") %} \n  script.living_room_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\",
+        \"Bedroom\") %} \n  script.bedroom_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\",
+        \"Kitchen\") %} \n  script.kitchen_zone_cleanup\n{% elif is_state(\"input_select.vacuum_room\",
+        \"Hall\") %} \n  script.hall_zone_cleanup\n{% else %}  {% endif %}\n"
     service: script.turn_on
   - data:
       option: Select ...
@@ -219,14 +218,14 @@
   - condition: or
     conditions:
     - condition: state
-      entity_id: light.workplace_lamp
+      entity_id: light.panel_lamp
       state: 'on'
     - condition: state
       entity_id: light.hall_lamp
       state: 'on'
   action:
   - data: {}
-    entity_id: light.workplace_lamp,light.hall_lamp
+    entity_id: light.panel_lamp,light.hall_lamp
     service: light.turn_off
   mode: single
 - id: '1596491335249'
@@ -490,53 +489,54 @@
         value_template: '{{ trigger.event.data.event == 1002 }}'
       sequence:
       - data: {}
-        entity_id: light.workplace_lamp
         service: light.toggle
+        target:
+          device_id: 5d60c5a87aeb0de91d4b7bdf30647718
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.workplace_lamp",
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.panel_lamp",
           "on") }}'
       sequence:
       - data:
           transition: 1
-          brightness_pct: "{% set brightness_pct = (state_attr('light.workplace_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  100\n{% endif %}\n"
-        entity_id: light.workplace_lamp
+          brightness_pct: "{% set brightness_pct = (state_attr('light.panel_lamp',
+            'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct
+            + 10 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else
+            %}\n  100\n{% endif %}\n"
+        entity_id: light.panel_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.workplace_lamp",
+        value_template: '{{ trigger.event.data.event == 2002 and is_state("light.panel_lamp",
           "off") }}'
       sequence:
       - data:
           transition: 1
           brightness_pct: 100
-        entity_id: light.workplace_lamp
+        entity_id: light.panel_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.workplace_lamp",
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.panel_lamp",
           "on") }}'
       sequence:
       - data:
           transition: 1
-          brightness_pct: "{% set brightness_pct = (state_attr('light.workplace_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  1\n{% endif %}\n"
-        entity_id: light.workplace_lamp
+          brightness_pct: "{% set brightness_pct = (state_attr('light.panel_lamp',
+            'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct
+            - 10 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n
+            \ 1\n{% endif %}\n"
+        entity_id: light.panel_lamp
         service: light.turn_on
     - conditions:
       - condition: template
-        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.workplace_lamp",
+        value_template: '{{ trigger.event.data.event == 3002 and is_state("light.panel_lamp",
           "off") }}'
       sequence:
       - data:
           transition: 1
           brightness_pct: 1
-        entity_id: light.workplace_lamp
+        entity_id: light.panel_lamp
         service: light.turn_on
     - conditions:
       - condition: template
@@ -551,9 +551,9 @@
       sequence:
       - data:
           transition: 1
-          color_temp: "{% set color = state_attr('light.workplace_lamp', 'color_temp')\
-            \ %}  {% if color > 400 %}\n  400 \n{% else %}\n  650\n{% endif %}\n"
-        entity_id: light.workplace_lamp
+          color_temp: "{% set color = state_attr('light.panel_lamp', 'color_temp')
+            %}  {% if color > 400 %}\n  400 \n{% else %}\n  650\n{% endif %}\n"
+        entity_id: light.panel_lamp
         service: light.turn_on
   mode: single
 - id: remote_control_dimmer
@@ -606,10 +606,10 @@
       sequence:
       - data:
           transition: 1
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  100\n{% endif %}\n"
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',
+            'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct
+            + 25 %} {% if new_brightness < 100 %}\n  {{ new_brightness }}\n{% else
+            %}\n  100\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
     - conditions:
@@ -629,10 +629,10 @@
       sequence:
       - data:
           transition: 1
-          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',\
-            \ 'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct\
-            \ - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else\
-            \ %}\n  1\n{% endif %}\n"
+          brightness_pct: "{% set brightness_pct = (state_attr('light.hall_lamp',
+            'brightness') / 2.55) | int | round(0) %} {% set new_brightness = brightness_pct
+            - 25 %} {% if new_brightness > 1 %}\n  {{ new_brightness }}\n{% else %}\n
+            \ 1\n{% endif %}\n"
         entity_id: light.hall_lamp
         service: light.turn_on
     - conditions:
@@ -709,14 +709,15 @@
   alias: 97_Info HA releases
   description: Notify about new HA releases
   trigger:
-  - type: update
-    platform: device
-    device_id: 215a20a374bbf29c688946a75b44ab9b
-    entity_id: binary_sensor.latest_version_homeassistant_update_available
-    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - sensor.latest_version_homeassistant
+    not_from:
+    - unavailable
+    - unknown
   condition:
   - condition: template
-    value_template: '{{ states(''var.version_ha_new'') != states(''sensor.latest_version_homeassistant'')
+    value_template: '{{ states(''sensor.latest_version_homeassistant'') | regex_match(''^\\d{4}\\.\\d{1,2}\\.\\d{1,2}$$'')
       }}'
   action:
   - data:
@@ -1151,22 +1152,22 @@
   action:
   - service: var.set
     data_template:
-      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha_new\n\
-        {% elif 'agent' in trigger.payload_json.image %}\n  var.version_agent_new\n\
-        {% elif 'room-assistant' in trigger.payload_json.image %}\n  var.version_roomassistant_new\n\
-        {% elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb_new\n\
-        {% elif 'portainer-ce' in trigger.payload_json.image %}\n  var.version_portainer_new\n\
-        {% elif 'pihole' in trigger.payload_json.image %}\n  var.version_pihole_new\n\
-        {% elif 'mosquitto' in trigger.payload_json.image %}\n  var.version_mosquitto_new\n\
-        {% elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb_new\n\
-        {% elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf_new\n\
-        {% elif 'diun' in trigger.payload_json.image %}\n  var.version_diun_new\n\
-        {% elif 'deconz' in trigger.payload_json.image %}\n  var.version_deconz_new\n\
-        {% elif 'unifi' in trigger.payload_json.image %}\n  var.version_unifi_new\n\
-        {% elif 'zwavejs2mqtt' in trigger.payload_json.image %}\n  var.version_zwavejs_new\n\
-        {% else %}\n  var.version_temp\n{% endif %}"
-      value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]\
-        \ %}\n  {{ version }}"
+      entity_id: "{% if 'homeassistant' in trigger.payload_json.image %}\n  var.version_ha_new\n{%
+        elif 'agent' in trigger.payload_json.image %}\n  var.version_agent_new\n{%
+        elif 'room-assistant' in trigger.payload_json.image %}\n  var.version_roomassistant_new\n{%
+        elif 'mariadb' in trigger.payload_json.image %}\n  var.version_mariadb_new\n{%
+        elif 'portainer-ce' in trigger.payload_json.image %}\n  var.version_portainer_new\n{%
+        elif 'pihole' in trigger.payload_json.image %}\n  var.version_pihole_new\n{%
+        elif 'mosquitto' in trigger.payload_json.image %}\n  var.version_mosquitto_new\n{%
+        elif 'influxdb' in trigger.payload_json.image %}\n  var.version_influxdb_new\n{%
+        elif 'chronograf' in trigger.payload_json.image %}\n  var.version_chronograf_new\n{%
+        elif 'diun' in trigger.payload_json.image %}\n  var.version_diun_new\n{% elif
+        'deconz' in trigger.payload_json.image %}\n  var.version_deconz_new\n{% elif
+        'unifi' in trigger.payload_json.image %}\n  var.version_unifi_new\n{% elif
+        'zwavejs2mqtt' in trigger.payload_json.image %}\n  var.version_zwavejs_new\n{%
+        else %}\n  var.version_temp\n{% endif %}"
+      value: "{% set s = trigger.payload_json.image %}   {% set version = s.split(':')[1]
+        %}\n  {{ version }}"
   mode: parallel
   max: 10
 - id: '1620478871087'
@@ -1207,10 +1208,10 @@
       message: 'Date: {{ states(''sensor.date_time'') }} {{ ''\n'' -}}   Temp: {{
         states(''sensor.openweathermap_temperature'') }} °C {{ ''\n'' -}}   EUR/CZK:
         {{ states(''sensor.eur_czk'') }} {{ ''\n'' -}}   BTC/USD: {{ states(''sensor.btc_exchange_rate'')
-        }} USD {{ ''\n'' -}}   Siemens AG: {{ state_attr(''sensor.siemens_ag'', ''05.
-        price'') | round(2) }} EUR {{ ''\n'' -}}  Home Assistant: {{ states(''sensor.current_version_homeassistant'')
-        }} | {{ states(''sensor.latest_version_homeassistant'') }} Vacuum: {{ states(''sensor.days_since_last_cleanup'')
-        }} days ago {{ ''\n'' -}}'
+        }} USD {{ ''\n'' -}}   Siemens AG: {{ states(''sensor.siemens_ag'') | round(2)
+        }} EUR {{ ''\n'' -}}  Home Assistant: {{ states(''sensor.current_version_homeassistant'')
+        }} | {{ states(''sensor.latest_version_homeassistant'') }} {{ ''\n'' -}} Vacuum:
+        {{ states(''sensor.days_since_last_cleanup'') }} days ago {{ ''\n'' -}}'
       title: Weekly status report
       data:
         priority: 0
@@ -1350,18 +1351,20 @@
       - condition: trigger
         id: '1000'
       sequence:
-      - service: cover.open_cover
-        data: {}
+      - service: cover.set_cover_position
+        data:
+          position: 100
         target:
-          device_id: 141720a6fb203578bce06eeff9e14b54
+          entity_id: cover.livingroom_blind
     - conditions:
       - condition: trigger
         id: '1001'
       sequence:
-      - service: cover.close_cover
-        data: {}
+      - service: cover.set_cover_position
+        data:
+          position: 0
         target:
-          device_id: 141720a6fb203578bce06eeff9e14b54
+          entity_id: cover.livingroom_blind
     default:
     - service: cover.stop_cover
       data: {}
@@ -1380,7 +1383,8 @@
     domain: sensor
     above: 25
   - platform: state
-    entity_id: sensor.openweathermap_condition
+    entity_id:
+    - sensor.openweathermap_condition
     to: sunny
   condition:
   - condition: state
@@ -1396,13 +1400,14 @@
     type: is_position
     above: 99
   action:
-  - service: cover.close_cover
-    data: {}
+  - service: cover.set_cover_position
+    data:
+      position: 0
     target:
-      device_id: 141720a6fb203578bce06eeff9e14b54
+      entity_id: cover.livingroom_blind
   mode: single
 - id: '1650736162083'
-  alias: 8_Blind open in the morning
+  alias: 8_Blind open if not dark
   description: ''
   trigger:
   - platform: state
@@ -1412,15 +1417,45 @@
   - platform: numeric_state
     entity_id: sensor.openweathermap_cloud_coverage
     above: '90'
+    enabled: false
   condition:
   - condition: device
     device_id: 141720a6fb203578bce06eeff9e14b54
     domain: cover
     entity_id: cover.livingroom_blind
     type: is_closed
+  - condition: state
+    entity_id: binary_sensor.is_dark
+    state: 'off'
   action:
-  - service: cover.open_cover
-    data: {}
+  - service: cover.set_cover_position
+    data:
+      position: 100
     target:
-      device_id: 141720a6fb203578bce06eeff9e14b54
+      entity_id: cover.livingroom_blind
+  mode: single
+- id: '1662875258164'
+  alias: 8_Blind close if dark
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.is_dark
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: device
+    device_id: 141720a6fb203578bce06eeff9e14b54
+    domain: cover
+    entity_id: cover.livingroom_blind
+    type: is_open
+  - condition: state
+    entity_id: binary_sensor.is_dark
+    state: 'on'
+  action:
+  - service: cover.set_cover_position
+    data:
+      position: 0
+    target:
+      entity_id: cover.livingroom_blind
   mode: single

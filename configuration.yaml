@@ -33,14 +33,14 @@ homeassistant:
 tts:
   - platform: google_translate
 
-switch:
-  - platform: mqtt
-    name: "Ventilator"
-    state_topic: "shellies/shelly1/relay/0"
-    command_topic: "shellies/shelly1/relay/0/command"
-    payload_on: "on"
-    payload_off: "off"
-    retain: false
+mqtt:
+    switch:
+      - name: "Ventilator"
+        state_topic: "shellies/shelly1/relay/0"
+        command_topic: "shellies/shelly1/relay/0/command"
+        payload_on: "on"
+        payload_off: "off"
+        retain: false
 
 panel_iframe:
   weather:
@@ -52,12 +52,6 @@ sonoff:
   username: !secret default_username
   password: !secret default_password
    
-notify:
-  - platform: pushover
-    name: Pusher
-    api_key: !secret pushover_api_key
-    user_key: !secret pushover_user_key
-
 input_boolean:
   enable_daily_vacuum:
     name: Daily cleanup
